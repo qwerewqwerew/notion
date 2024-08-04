@@ -1,10 +1,9 @@
 // pages/index.js
 import { getDatabase } from '../lib/notion';
 import styles from '../styles/Page.module.css';
-
 import Link from 'next/link';
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const database = await getDatabase();
 	return {
 		props: {
@@ -20,15 +19,10 @@ export default function Home({ database }) {
 			<ul className={styles.container}>
 				{database.map((item) => {
 					const title = item.properties?.이름?.title?.[0]?.plain_text || 'No title';
-					const url = item.properties?.URL?.url || 'No URL';
-					const tags = item.properties?.태그?.multi_select?.map((tag) => tag.name).join(', ') || 'No tags';
-
 					return (
 						<li key={item.id}>
 							<h2>
-								<Link href={`/${item.id}`} target='_blank'>
-									{title}
-								</Link>
+								<Link href={`/${item.id}`}>{title}</Link>
 							</h2>
 						</li>
 					);
