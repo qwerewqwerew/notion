@@ -1,16 +1,22 @@
 // pages/[id].js
 
-import { getDatabase, getPage, getBlocks } from '../lib/notion'; // 여기에서 getPage 함수가 import되고 있는지 확인
+import { getPage, getBlocks, getDatabase } from '../lib/notion';
 import styles from '../styles/Page.module.css';
 import { useRouter } from 'next/router';
 import Block from '../components/Block';
 
 export async function getStaticPaths() {
-	const database = await getDatabase();
+	const databaseId = process.env.NOTION_DATABASE_ID;
+
+	if (!databaseId) {
+		throw new Error('Notion database ID is not set. Please check your environment variables.');
+	}
+
+	const database = await getDatabase(databaseId);
 	const paths = database.map((page) => ({ params: { id: page.id } }));
 	return {
 		paths,
-		fallback: true,
+		fallback: 'blocking',
 	};
 }
 
@@ -19,10 +25,7 @@ export async function getStaticProps(context) {
 
 	try {
 		const page = await getPage(id);
-		const { blocks } = await getBlocks(id); // 블록 데이터와 커서를 가져옵니다.
-		// 콘솔 로그로 확인
-		console.log('Page:', page);
-		console.log('Blocks:', blocks);
+		const blocks = await getBlocks(id);
 
 		if (!page || !blocks) {
 			return {
@@ -38,16 +41,14 @@ export async function getStaticProps(context) {
 					id: page.id,
 					title: pageTitle,
 				},
-				blocks: blocks || [], // blocks가 없을 경우 빈 배열을 설정합니다.
+				blocks: blocks || [],
 			},
+			revalidate: 10, // ISR 설정
 		};
 	} catch (error) {
 		console.error('Error fetching page data:', error);
 		return {
-			props: {
-				page: null,
-				blocks: [],
-			},
+			notFound: true,
 		};
 	}
 }
