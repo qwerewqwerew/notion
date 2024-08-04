@@ -1,14 +1,9 @@
 // pages/[id].js
 
-import { getDatabase, getPage, getBlocks } from '../lib/notion';
+import { getDatabase, getPage, getBlocks } from '../lib/notion'; // 여기에서 getPage 함수가 import되고 있는지 확인
 import styles from '../styles/Page.module.css';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
-
-const Block = dynamic(() => import('../components/Block'), {
-	ssr: false,
-});
+import Block from '../components/Block';
 
 export async function getStaticPaths() {
 	const database = await getDatabase();
@@ -24,7 +19,10 @@ export async function getStaticProps(context) {
 
 	try {
 		const page = await getPage(id);
-		const blocks = await getBlocks(id);
+		const { blocks } = await getBlocks(id); // 블록 데이터와 커서를 가져옵니다.
+		// 콘솔 로그로 확인
+		console.log('Page:', page);
+		console.log('Blocks:', blocks);
 
 		if (!page || !blocks) {
 			return {
@@ -40,7 +38,7 @@ export async function getStaticProps(context) {
 					id: page.id,
 					title: pageTitle,
 				},
-				blocks,
+				blocks: blocks || [], // blocks가 없을 경우 빈 배열을 설정합니다.
 			},
 		};
 	} catch (error) {
@@ -54,140 +52,14 @@ export async function getStaticProps(context) {
 	}
 }
 
-const renderBlock = (block) => {
-	const { type, id } = block;
-	const value = block[type];
-
-	switch (type) {
-		case 'paragraph':
-			return (
-				<div key={id} className={styles.paragraph}>
-					{value?.rich_text?.map((text) => text.plain_text).join('') || ''}
-				</div>
-			);
-		case 'heading_1':
-			return (
-				<div key={id} className={styles.heading1}>
-					{value?.rich_text?.map((text) => text.plain_text).join('') || ''}
-				</div>
-			);
-		case 'heading_2':
-			return (
-				<div key={id} className={styles.heading2}>
-					{value?.rich_text?.map((text) => text.plain_text).join('') || ''}
-				</div>
-			);
-		case 'heading_3':
-			return (
-				<div key={id} className={styles.heading3}>
-					{value?.rich_text?.map((text) => text.plain_text).join('') || ''}
-				</div>
-			);
-		case 'bulleted_list_item':
-			return (
-				<div key={id} className={styles.listItem}>
-					{value?.rich_text?.map((text) => text.plain_text).join('') || ''}
-				</div>
-			);
-		case 'numbered_list_item':
-			return (
-				<div key={id} className={styles.listItem}>
-					{value?.rich_text?.map((text) => text.plain_text).join('') || ''}
-				</div>
-			);
-		case 'to_do':
-			return (
-				<div key={id} className={styles.paragraph}>
-					<input type='checkbox' checked={value?.checked} readOnly className={styles.checkbox} />
-					<span>{value?.rich_text?.map((text) => text.plain_text).join('') || ''}</span>
-				</div>
-			);
-		case 'toggle':
-			return (
-				<div key={id} className={styles.toggle}>
-					<details>
-						<summary>{value?.rich_text?.map((text) => text.plain_text).join('') || ''}</summary>
-						{value?.children?.map(renderBlock)}
-					</details>
-				</div>
-			);
-		case 'quote':
-			return (
-				<div key={id} className={styles.blockquote}>
-					{value?.rich_text?.map((text) => text.plain_text).join('') || ''}
-				</div>
-			);
-		case 'code':
-			return (
-				<div key={id} className={styles.code}>
-					<pre>
-						<code>{value?.rich_text?.map((text) => text.plain_text).join('') || ''}</code>
-					</pre>
-				</div>
-			);
-		case 'image':
-			const src = value?.type === 'external' ? value.external.url : value.file.url;
-			const caption = value?.caption?.length ? value.caption[0].plain_text : '';
-			return (
-				<div key={id} className={styles.image}>
-					<figure>
-						<img src={src} alt={caption} loading='lazy' />
-						{caption && <figcaption>{caption}</figcaption>}
-					</figure>
-				</div>
-			);
-		case 'divider':
-			return (
-				<div key={id} className={styles.divider}>
-					<hr />
-				</div>
-			);
-		case 'file':
-			const fileSrc = value?.type === 'external' ? value.external.url : value.file.url;
-			return (
-				<div key={id} className={styles.bookmark}>
-					<a href={fileSrc}>{fileSrc}</a>
-				</div>
-			);
-		case 'bookmark':
-			return (
-				<div key={id} className={styles.bookmark}>
-					<a href={value?.url}>{value?.url}</a>
-				</div>
-			);
-		case 'embed':
-			return (
-				<div key={id} className={styles.embed}>
-					<iframe src={value?.url} title='Embed' width='100%' height='400px' />
-				</div>
-			);
-		case 'child_page':
-			const childPageTitle = block.child_page?.title || '';
-			if (childPageTitle) {
-				// 제목이 있을 때만 렌더링
-				return (
-					<div key={id} className={styles.childPage}>
-						<h2>
-							<Link href={`/${block.id}`}>{childPageTitle}</Link>
-						</h2>
-						{block.child_page.blocks && <div className={styles.childBlocks}>{block.child_page.blocks.map(renderBlock)}</div>}
-					</div>
-				);
-			}
-			return null; // 제목이 없으면 렌더링하지 않음
-		default:
-			return <div key={id}>Unsupported block type: {type}</div>;
-	}
-};
-
-export default function Page({ page, blocks }) {
+export default function Page({ page, blocks = [] }) {
 	const router = useRouter();
 
 	if (!page || !blocks) {
 		return <div>Loading...</div>;
 	}
 
-	const title = page.title || ''; // 제목이 없을 때 빈 문자열
+	const title = page.title || '';
 
 	return (
 		<div className={styles.body}>
@@ -195,8 +67,12 @@ export default function Page({ page, blocks }) {
 				이전으로 가기
 			</button>
 			<div className={styles.container}>
-				{title && <div className={styles.title}>{title}</div>} {/* 제목이 있을 때만 표시 */}
-				<div>{blocks.map((block) => renderBlock(block))}</div>
+				{title && <div className={styles.title}>{title}</div>}
+				<div>
+					{blocks.map((block) => (
+						<Block key={block.id} block={block} />
+					))}
+				</div>
 			</div>
 		</div>
 	);
