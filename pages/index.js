@@ -22,7 +22,9 @@ export default function Home({ database }) {
 					return (
 						<li key={item.id}>
 							<h2>
-								<Link href={`/${item.id}`}>{title}</Link>
+								<Link href={`/${item.id}`} className={styles.mainTitle}>
+									{title}
+								</Link>
 							</h2>
 						</li>
 					);

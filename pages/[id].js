@@ -6,9 +6,8 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-// Block 컴포넌트를 동적으로 로드합니다.
 const Block = dynamic(() => import('../components/Block'), {
-	ssr: false, // 서버 사이드 렌더링을 비활성화하여 클라이언트에서만 로드
+	ssr: false,
 });
 
 export async function getStaticPaths() {
@@ -27,18 +26,13 @@ export async function getStaticProps(context) {
 		const page = await getPage(id);
 		const blocks = await getBlocks(id);
 
-		// 페이지 및 블록 데이터 로그
-		console.log(`Page: ${id}`, JSON.stringify(page, null, 2));
-		console.log(`Blocks: ${id}`, JSON.stringify(blocks, null, 2));
-
 		if (!page || !blocks) {
 			return {
-				notFound: true, // 페이지가 없는 경우 404 반환
+				notFound: true,
 			};
 		}
 
-		// 안전하게 제목 가져오기
-		const pageTitle = page.properties?.이름?.title?.[0]?.plain_text || 'Untitled';
+		const pageTitle = page.properties?.이름?.title?.[0]?.plain_text || '';
 
 		return {
 			props: {
@@ -63,9 +57,6 @@ export async function getStaticProps(context) {
 const renderBlock = (block) => {
 	const { type, id } = block;
 	const value = block[type];
-
-	// 블록 렌더링 로그
-	console.log(`Rendering block: ${type}`, JSON.stringify(block, null, 2));
 
 	switch (type) {
 		case 'paragraph':
@@ -140,7 +131,7 @@ const renderBlock = (block) => {
 			return (
 				<div key={id} className={styles.image}>
 					<figure>
-						<img src={src} alt={caption} loading='lazy' /> {/* 이미지 지연 로딩 */}
+						<img src={src} alt={caption} loading='lazy' />
 						{caption && <figcaption>{caption}</figcaption>}
 					</figure>
 				</div>
@@ -164,18 +155,26 @@ const renderBlock = (block) => {
 					<a href={value?.url}>{value?.url}</a>
 				</div>
 			);
-		case 'child_page':
-			// 자식 페이지의 제목 안전하게 가져오기
-			const childPageTitle = block.child_page?.title || 'Untitled';
+		case 'embed':
 			return (
-				<div key={id} className={styles.childPage}>
-					<h2>
-						<Link href={`/${block.id}`}>{childPageTitle}</Link>
-					</h2>
-					{/* 자식 페이지의 블록을 렌더링 */}
-					{block.child_page.blocks && <div className={styles.childBlocks}>{block.child_page.blocks.map(renderBlock)}</div>}
+				<div key={id} className={styles.embed}>
+					<iframe src={value?.url} title='Embed' width='100%' height='400px' />
 				</div>
 			);
+		case 'child_page':
+			const childPageTitle = block.child_page?.title || '';
+			if (childPageTitle) {
+				// 제목이 있을 때만 렌더링
+				return (
+					<div key={id} className={styles.childPage}>
+						<h2>
+							<Link href={`/${block.id}`}>{childPageTitle}</Link>
+						</h2>
+						{block.child_page.blocks && <div className={styles.childBlocks}>{block.child_page.blocks.map(renderBlock)}</div>}
+					</div>
+				);
+			}
+			return null; // 제목이 없으면 렌더링하지 않음
 		default:
 			return <div key={id}>Unsupported block type: {type}</div>;
 	}
@@ -188,7 +187,7 @@ export default function Page({ page, blocks }) {
 		return <div>Loading...</div>;
 	}
 
-	const title = page.title || 'No title';
+	const title = page.title || ''; // 제목이 없을 때 빈 문자열
 
 	return (
 		<div className={styles.body}>
@@ -196,7 +195,7 @@ export default function Page({ page, blocks }) {
 				이전으로 가기
 			</button>
 			<div className={styles.container}>
-				<div className={styles.title}>{title}</div>
+				{title && <div className={styles.title}>{title}</div>} {/* 제목이 있을 때만 표시 */}
 				<div>{blocks.map((block) => renderBlock(block))}</div>
 			</div>
 		</div>
