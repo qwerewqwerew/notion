@@ -1,0 +1,38 @@
+/* styles/Block.module.css */
+
+.heading {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.quote {
+  border-left: 4px solid #ddd;
+  margin: 1rem 0;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #555;
+}
+
+.listItem {
+  margin-left: 2rem;
+}
+
+.toggle {
+  margin-bottom: 1rem;
+  content:'>';
+}
+
+.toggleTitle {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toggleContent {
+  padding-left: 1rem;
+  border-left: 2px solid #ddd;
+  margin-top: 0.5rem;
+}
+
+.paragraph {
+  margin-bottom: 1rem;
+}

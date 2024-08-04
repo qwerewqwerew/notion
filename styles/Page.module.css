@@ -16,6 +16,7 @@
 .body a {
 	font-size: calc(1.2rem + 0.4vw);
 	color: #333;
+	display: block;
 }
 /* Page_container */
 .mainTitle {
@@ -43,6 +44,7 @@ ul.container {
 .url {
 	color: blue;
 	margin-bottom: 1rem;
+	display: block;
 }
 
 .tags {
@@ -103,11 +105,14 @@ ul.container {
 }
 
 .code {
-	font-size: calc(0.8rem + 0.2vw);
+	font-family: consola;
+	font-size: max(calc(0.8rem + 0.2vw), 1.6rem);
 	background-color: #f5f5f5;
-	padding: 0.5rem;
+	box-shadow: inset 3px 3px 3px #e0e0e0, 3px 3px 3px #e2e2e2;
+	padding: 1vw;
 	border-radius: 5px;
 	overflow-x: auto;
+	overflow-y: scroll;
 }
 
 .divider {
@@ -194,7 +199,7 @@ ul.container {
 .main.body li {
 	background: #f6f6f6;
 	padding: 1vw;
-	margin-bottom: 0.7vw;
+	margin-bottom: 1vw;
 	filter: drop-shadow(0px 1px 2px #939393);
 	border-radius: 5px;
 	cursor: pointer;
@@ -203,5 +208,5 @@ ul.container {
 .main.body li:hover {
 	filter: drop-shadow(1px 2px 0px #6b6b6b);
 	transform: translate(-1px, -1px);
-	background: #ffffff;
+	background: #f6f6f6;
 }
