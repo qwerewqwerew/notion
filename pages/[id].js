@@ -1,9 +1,13 @@
 // pages/[id].js
 
 import { getPage, getBlocks, getDatabase } from '../lib/notion';
-import styles from '../styles/Page.module.css';
 import { useRouter } from 'next/router';
-import Block from '../components/Block';
+import dynamic from 'next/dynamic';
+import 'bootstrap/dist/css/bootstrap.min.css'; // 부트스트랩 CSS 가져오기
+
+const Block = dynamic(() => import('../components/Block'), {
+	ssr: false,
+});
 
 export async function getStaticPaths() {
 	const databaseId = process.env.NOTION_DATABASE_ID;
@@ -63,17 +67,15 @@ export default function Page({ page, blocks = [] }) {
 	const title = page.title || '';
 
 	return (
-		<div className={styles.body}>
-			<button onClick={() => router.back()} className={styles.backButton}>
+		<div className='container mt-5'>
+			<button onClick={() => router.back()} className='btn btn-secondary mb-3'>
 				이전으로 가기
 			</button>
-			<div className={styles.container}>
-				{title && <div className={styles.title}>{title}</div>}
-				<div>
-					{blocks.map((block) => (
-						<Block key={block.id} block={block} />
-					))}
-				</div>
+			<h1 className='display-4 mb-4'>{title}</h1>
+			<div className='accordion' id={`accordion-${page.id}`}>
+				{blocks.map((block) => (
+					<Block key={block.id} block={block} parentId={`accordion-${page.id}`} />
+				))}
 			</div>
 		</div>
 	);
