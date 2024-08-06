@@ -3,10 +3,9 @@
 import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import ChildBlock from './ChildBlock';
 import 'bootstrap/dist/css/bootstrap.min.css'; // 부트스트랩 CSS 가져오기
 
-const Block = ({ block }) => {
+const ChildBlockBlock = ({ block }) => {
 	const { type, id } = block;
 
 	switch (type) {
@@ -52,7 +51,7 @@ const Block = ({ block }) => {
 					{isOpen && block.toggle.children && (
 						<div className='ml-3'>
 							{block.toggle.children.map((childBlock) => (
-								<ChildBlock key={childBlock.id} block={childBlock} />
+								<Block key={childBlock.id} block={childBlock} />
 							))}
 						</div>
 					)}
@@ -127,4 +126,4 @@ const Block = ({ block }) => {
 	}
 };
 
-export default Block;
+export default ChildBlockBlock;

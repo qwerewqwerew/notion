@@ -24,17 +24,17 @@ export default function Home({ database }) {
 	return (
 		<div className='container mt-5'>
 			<h1 className='display-4 mb-4'>Notion Database</h1>
-			<ul className='list-group'>
+			<div className='list-group'>
 				{database.map((item) => (
-					<li key={item.id} className='list-group-item'>
+					<div key={item.id} className='list-group-item'>
 						<h2 className='h5'>
 							<Link href={`/${item.id}`} className='text-decoration-none text-primary'>
 								{item.title}
 							</Link>
 						</h2>
-					</li>
+					</div>
 				))}
-			</ul>
+			</div>
 		</div>
 	);
 }
