@@ -45,7 +45,7 @@ const Block = ({ block }) => {
 			const [isOpen, setIsOpen] = useState(false);
 			return (
 				<div key={id} className='mb-3'>
-					<div className='btn btn-link' onClick={() => setIsOpen(!isOpen)}>
+					<div className='btn btn-link border-bottom rounded-2 text-decoration-none border-primary-subtle p-3' onClick={() => setIsOpen(!isOpen)}>
 						{block.toggle.rich_text.map((text) => text.plain_text).join('')}
 					</div>
 					{isOpen && block.toggle.children && (
