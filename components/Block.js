@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ChildBlock from './ChildBlock';
-import 'bootstrap/dist/css/bootstrap.min.css'; // 부트스트랩 CSS 가져오기
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 const Block = ({ block }) => {
 	const { type, id } = block;
@@ -35,11 +35,17 @@ const Block = ({ block }) => {
 			);
 
 		case 'numbered_list_item':
+			return (
+				<li key={id} className='numbered-list-item'>
+					{block[type].rich_text.map((text) => text.plain_text).join('')}
+				</li>
+			);
+
 		case 'bulleted_list_item':
 			return (
-				<div key={id} className='list-group-item'>
+				<li key={id} className='bulleted-list-item'>
 					{block[type].rich_text.map((text) => text.plain_text).join('')}
-				</div>
+				</li>
 			);
 
 		case 'toggle':
@@ -64,9 +70,7 @@ const Block = ({ block }) => {
 			return <img key={id} src={imageUrl} alt='Notion image' className='img-fluid mb-3' />;
 
 		case 'code':
-			// 코드 블록의 언어 설정. 언어가 없는 경우 기본값은 'plaintext'로 설정
 			const language = block.code.language || 'plaintext';
-			// 코드 텍스트를 가져와서 줄바꿈 문자로 연결
 			const codeText = block.code.rich_text.map((text) => text.plain_text).join('\n');
 			return (
 				<SyntaxHighlighter key={id} language={language} style={oneDark} className='mb-3'>

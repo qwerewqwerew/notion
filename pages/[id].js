@@ -1,10 +1,11 @@
 // pages/[id].js
 
-import { getPage, getBlocks, getDatabase } from '../lib/notion';
+import { getPage, getBlocks, getDatabase } from '../lib/notion'; // Ensure getDatabase is imported
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import 'bootstrap/dist/css/bootstrap.min.css'; // 부트스트랩 CSS 가져오기
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
+// Block component is dynamically imported to handle SSR issues
 const Block = dynamic(() => import('../components/Block'), {
 	ssr: false,
 });
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
 		throw new Error('Notion database ID is not set. Please check your environment variables.');
 	}
 
-	const database = await getDatabase(databaseId);
+	const database = await getDatabase(databaseId); // This should now be defined and called correctly
 	const paths = database.map((page) => ({ params: { id: page.id } }));
 	return {
 		paths,

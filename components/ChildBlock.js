@@ -1,11 +1,11 @@
-// components/Block.js
+// components/ChildBlock.js
 
 import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import 'bootstrap/dist/css/bootstrap.min.css'; // 부트스트랩 CSS 가져오기
 
-const ChildBlockBlock = ({ block }) => {
+const ChildBlock = ({ block }) => {
 	const { type, id } = block;
 
 	switch (type) {
@@ -36,9 +36,9 @@ const ChildBlockBlock = ({ block }) => {
 		case 'numbered_list_item':
 		case 'bulleted_list_item':
 			return (
-				<div key={id} className='list-group-item'>
+				<li key={id} className='list-group-item'>
 					{block[type].rich_text.map((text) => text.plain_text).join('')}
-				</div>
+				</li>
 			);
 
 		case 'toggle':
@@ -51,7 +51,7 @@ const ChildBlockBlock = ({ block }) => {
 					{isOpen && block.toggle.children && (
 						<div className='ml-3'>
 							{block.toggle.children.map((childBlock) => (
-								<Block key={childBlock.id} block={childBlock} />
+								<ChildBlock key={childBlock.id} block={childBlock} />
 							))}
 						</div>
 					)}
@@ -59,13 +59,13 @@ const ChildBlockBlock = ({ block }) => {
 			);
 
 		case 'image':
+			// 이미지 URL 가져오기 및 콘솔에 출력하여 확인
 			const imageUrl = block.image.file?.url || block.image.external?.url;
+			console.log('Image URL:', imageUrl); // 디버깅을 위해 콘솔 로그 추가
 			return <img key={id} src={imageUrl} alt='Notion image' className='img-fluid mb-3' />;
 
 		case 'code':
-			// 코드 블록의 언어 설정. 언어가 없는 경우 기본값은 'plaintext'로 설정
 			const language = block.code.language || 'plaintext';
-			// 코드 텍스트를 가져와서 줄바꿈 문자로 연결
 			const codeText = block.code.rich_text.map((text) => text.plain_text).join('\n');
 			return (
 				<SyntaxHighlighter key={id} language={language} style={oneDark} className='mb-3'>
@@ -98,7 +98,7 @@ const ChildBlockBlock = ({ block }) => {
 			const fileUrl = block.file.file?.url || block.file.external?.url;
 			return (
 				<a key={id} href={fileUrl} className='link-primary' target='_blank' rel='noopener noreferrer'>
-					Download File
+					파일 다운로드
 				</a>
 			);
 
@@ -110,7 +110,7 @@ const ChildBlockBlock = ({ block }) => {
 			);
 
 		case 'child_page':
-			const childPageTitle = block.child_page?.title || 'Untitled';
+			const childPageTitle = block.child_page?.title || '제목 없음';
 			return (
 				<div key={id} className='card mb-3'>
 					<div className='card-body'>
@@ -122,8 +122,8 @@ const ChildBlockBlock = ({ block }) => {
 			);
 
 		default:
-			return <div key={id}>Unsupported block type: {type}</div>;
+			return <div key={id}>지원하지 않는 블록 타입: {type}</div>;
 	}
 };
 
-export default ChildBlockBlock;
+export default ChildBlock;
