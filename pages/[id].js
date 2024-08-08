@@ -1,6 +1,4 @@
-// pages/[id].js
-
-import { getPage, getBlocks, getDatabase } from '../lib/notion'; // Ensure getDatabase is imported
+import { getPage, getBlocks, getDatabase } from '../lib/notion';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
@@ -17,7 +15,7 @@ export async function getStaticPaths() {
 		throw new Error('Notion database ID is not set. Please check your environment variables.');
 	}
 
-	const database = await getDatabase(databaseId); // This should now be defined and called correctly
+	const database = await getDatabase(databaseId); // Ensure getDatabase is defined
 	const paths = database.map((page) => ({ params: { id: page.id } }));
 	return {
 		paths,
@@ -32,13 +30,16 @@ export async function getStaticProps(context) {
 		const page = await getPage(id);
 		const blocks = await getBlocks(id);
 
+		console.log('Fetched Page:', page); // 페이지 데이터 로그
+		console.log('Fetched Blocks:', blocks); // 블록 데이터 로그
+
 		if (!page || !blocks) {
 			return {
 				notFound: true,
 			};
 		}
 
-		const pageTitle = page.properties?.이름?.title?.[0]?.plain_text || '';
+		const pageTitle = page.properties?.class?.title?.[0]?.plain_text || '';
 
 		return {
 			props: {

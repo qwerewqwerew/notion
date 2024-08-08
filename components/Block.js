@@ -1,12 +1,10 @@
-// components/Block.js
-
-import React, { useState } from 'react';
+import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ChildBlock from './ChildBlock';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
-const Block = ({ block }) => {
+const Block = ({ block, parentId }) => {
 	const { type, id } = block;
 
 	switch (type) {
@@ -19,13 +17,14 @@ const Block = ({ block }) => {
 
 		case 'heading_1':
 		case 'heading_2':
-		case 'heading_3':
+		case 'heading_3': {
 			const HeadingTag = `h${type.split('_')[1]}`;
 			return (
 				<HeadingTag key={id} className={`h${type.split('_')[1]} mb-3`}>
 					{block[type].rich_text.map((text) => text.plain_text).join('')}
 				</HeadingTag>
 			);
+		}
 
 		case 'quote':
 			return (
@@ -35,21 +34,22 @@ const Block = ({ block }) => {
 			);
 
 		case 'numbered_list_item':
-			return (
-				<li key={id} className='numbered-list-item'>
-					{block[type].rich_text.map((text) => text.plain_text).join('')}
-				</li>
-			);
-
 		case 'bulleted_list_item':
 			return (
-				<li key={id} className='bulleted-list-item'>
+				<li key={id}>
 					{block[type].rich_text.map((text) => text.plain_text).join('')}
+					{block.children && (
+						<ul>
+							{block.children.map((childBlock) => (
+								<ChildBlock key={childBlock.id} block={childBlock} />
+							))}
+						</ul>
+					)}
 				</li>
 			);
 
 		case 'toggle':
-			const [isOpen, setIsOpen] = useState(false);
+			const [isOpen, setIsOpen] = React.useState(false);
 			return (
 				<div key={id} className='mb-3'>
 					<div className='btn btn-link border-bottom rounded-2 text-decoration-none border-primary-subtle p-3' onClick={() => setIsOpen(!isOpen)}>
@@ -65,11 +65,12 @@ const Block = ({ block }) => {
 				</div>
 			);
 
-		case 'image':
+		case 'image': {
 			const imageUrl = block.image.file?.url || block.image.external?.url;
 			return <img key={id} src={imageUrl} alt='Notion image' className='img-fluid mb-3' />;
+		}
 
-		case 'code':
+		case 'code': {
 			const language = block.code.language || 'plaintext';
 			const codeText = block.code.rich_text.map((text) => text.plain_text).join('\n');
 			return (
@@ -77,6 +78,7 @@ const Block = ({ block }) => {
 					{codeText}
 				</SyntaxHighlighter>
 			);
+		}
 
 		case 'divider':
 			return <hr key={id} className='my-4' />;
@@ -91,21 +93,23 @@ const Block = ({ block }) => {
 		case 'embed':
 			return <iframe key={id} src={block.embed.url} className='embed-responsive-item' frameBorder='0' allowFullScreen></iframe>;
 
-		case 'video':
+		case 'video': {
 			const videoUrl = block.video.file?.url || block.video.external?.url;
 			return (
 				<video key={id} controls className='w-100 mb-3'>
 					<source src={videoUrl} type='video/mp4' />
 				</video>
 			);
+		}
 
-		case 'file':
+		case 'file': {
 			const fileUrl = block.file.file?.url || block.file.external?.url;
 			return (
 				<a key={id} href={fileUrl} className='link-primary' target='_blank' rel='noopener noreferrer'>
-					Download File
+					파일 다운로드
 				</a>
 			);
+		}
 
 		case 'bookmark':
 			return (
@@ -114,8 +118,8 @@ const Block = ({ block }) => {
 				</a>
 			);
 
-		case 'child_page':
-			const childPageTitle = block.child_page?.title || 'Untitled';
+		case 'child_page': {
+			const childPageTitle = block.child_page?.title || '제목 없음';
 			return (
 				<div key={id} className='card mb-3'>
 					<div className='card-body'>
@@ -125,9 +129,10 @@ const Block = ({ block }) => {
 					</div>
 				</div>
 			);
+		}
 
 		default:
-			return <div key={id}>Unsupported block type: {type}</div>;
+			return <div key={id}>지원하지 않는 블록 타입: {type}</div>;
 	}
 };
 
