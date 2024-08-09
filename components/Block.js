@@ -2,9 +2,10 @@ import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ChildBlock from './ChildBlock';
+import Link from 'next/link'; // Next.js의 Link 컴포넌트 가져오기
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
-const Block = ({ block, parentId }) => {
+const Block = ({ block }) => {
 	const { type, id } = block;
 
 	switch (type) {
@@ -48,7 +49,7 @@ const Block = ({ block, parentId }) => {
 				</li>
 			);
 
-		case 'toggle':
+		case 'toggle': {
 			const [isOpen, setIsOpen] = React.useState(false);
 			return (
 				<div key={id} className='mb-3'>
@@ -64,6 +65,7 @@ const Block = ({ block, parentId }) => {
 					)}
 				</div>
 			);
+		}
 
 		case 'image': {
 			const imageUrl = block.image.file?.url || block.image.external?.url;
@@ -113,19 +115,64 @@ const Block = ({ block, parentId }) => {
 
 		case 'bookmark':
 			return (
-				<a key={id} href={block.bookmark.url} className='link-primary' target='_blank' rel='noopener noreferrer'>
+				<Link key={id} href={block.bookmark.url} className='link-primary'>
 					{block.bookmark.url}
-				</a>
+				</Link>
 			);
+
+		case 'table': {
+			const tableData = block.table; // 블록의 테이블 데이터를 사용
+			const safeTableData = tableData.table || [];
+			const safeColumns = block.columns || [];
+
+			return (
+				<table key={id} className='table table-bordered mb-3'>
+					<tbody>
+						{Array.from(safeTableData).map((row, rowIndex) => (
+							<tr key={`row-${rowIndex}`}>
+								{row.cells.map((cell, cellIndex) => (
+									<td key={`cell-${cellIndex}`}>{cell.rich_text.map((text) => text.plain_text).join('')}</td>
+								))}
+							</tr>
+						))}
+					</tbody>
+					<div key={id} className='d-flex flex-wrap'>
+						{Array.from(safeColumns).map((column, colIndex) => (
+							<div key={`col-${colIndex}`} className='flex-grow-1'>
+								{column.children.map((childBlock) => (
+									<ChildBlock key={childBlock.id} block={childBlock} />
+								))}
+							</div>
+						))}
+					</div>
+				</table>
+			);
+		}
+
+		case 'column_list': {
+			const blockData = block.columns;
+			console.log("dd",blockData);
+			return (
+				<div key={id} className='d-flex flex-wrap'>
+					{Array.from(blockData).map((column, colIndex) => (
+						<div key={`col-${colIndex}`} className='flex-grow-1'>
+							{column.children.map((childBlock) => (
+								<ChildBlock key={childBlock.id} block={childBlock} />
+							))}
+						</div>
+					))}
+				</div>
+			);
+		}
 
 		case 'child_page': {
 			const childPageTitle = block.child_page?.title || '제목 없음';
 			return (
 				<div key={id} className='card mb-3'>
 					<div className='card-body'>
-						<a href={`/${block.id}`} className='stretched-link'>
+						<Link href={`/${block.id}`} className='stretched-link'>
 							{childPageTitle}
-						</a>
+						</Link>
 					</div>
 				</div>
 			);
