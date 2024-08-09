@@ -1,8 +1,8 @@
-import React from 'react';
+// /components/Block.js
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ChildBlock from './ChildBlock';
-import Link from 'next/link'; // Next.js의 Link 컴포넌트 가져오기
+import Link from 'next/link'; // Use Next.js Link
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 const Block = ({ block }) => {
@@ -150,8 +150,11 @@ const Block = ({ block }) => {
 		}
 
 		case 'column_list': {
-			const blockData = block.columns;
-			console.log("dd",blockData);
+			const blockData = block.columns || [];
+			if (!blockData) {
+				console.error('blockData is undefined');
+				return null;
+			}
 			return (
 				<div key={id} className='d-flex flex-wrap'>
 					{Array.from(blockData).map((column, colIndex) => (
