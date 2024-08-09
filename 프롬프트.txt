@@ -1,12 +1,1060 @@
 nextjs 와 노션 데이터베이스를 연동하고 있어
 
 1. 업로드한 파일을 분석해서 노션 데이터베이스를 연결해줘
-2. 데이터베이스는 자식페이지를 가지고 있어
-3. 자식이나 자손 페이지의 모든 콘텐츠 블록을 가져와서 렌더하는 코드를 작성해
+2. 데이터베이스는 자식페이지를 가지고 있어 자식이나 자손 페이지의 모든 콘텐츠 블록을 가져와서 렌더하는 코드가 제대로 동작하는지 확인해
 4. code 블록은 prism 을 사용해서 다크테마를 적용해
 5. 스타일은 부트스트랩을 사용해
 6. 자식이나 자손 페이지의 모든 콘텐츠 블록을 가져와서 렌더하는 코드를 작성할때 제목 다음에 오는 리스트는 ul이나 ol로 랩핑해
-7. 중첩된 테이블블록이나 이미지, 코드가 표시되도록 주의해서 작성해줘
+7. 중첩된 테이블 블록이나 이미지, 코드가 표시되도록 주의해서 작성해줘
 8. 링크는 Link 컴포넌트를 사용하고 a태그를 포함시키지 마
+9.
+Unhandled Runtime Error
+TypeError: undefined is not iterable (cannot read property Symbol(Symbol.iterator))
 
+Source
+components\Block.js (157:13) @ from
+
+  155 | 			return (
+  156 | 				<div key={id} className='d-flex flex-wrap'>
+> 157 | 					{Array.from(blockData).map((column, colIndex) => (
+      | 					       ^
+  158 | 						<div key={`col-${colIndex}`} className='flex-grow-1'>
+  159 | 							{column.children.map((childBlock) => (
+  160 | 								<ChildBlock key={childBlock.id}
+
+  현재 발생하는 오류를 해결해
+첨부한 파일의 코드를 분석하고 내 요구사항을 이행해
 이해했는지 대답해주고 다음에 내가 요청한 코드를 작성해줘
+한글로 말해
+
+    object: 'block',
+    id: 'dc2c1176-fea6-4298-86ba-05a3bbce7a03',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T04:46:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '3de6527f-4ad7-4018-a232-0550a8afa9e2',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:20:00.000Z',
+    last_edited_time: '2024-08-08T15:37:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '410629e5-9788-4714-b6d1-87b2eda5e829',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T04:46:00.000Z',
+    last_edited_time: '2024-08-07T12:33:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'b2222c67-8a91-4167-a784-b85ba969b0fe',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:20:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '2425ba7d-4dc6-4b78-abc8-a18a516b9526',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:21:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'f1510467-4af4-466b-b266-58b4326b6229',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:21:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'ad9a7b36-1e71-4d36-bf07-d824c6659e8d',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:21:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '0be96fd5-9e13-475f-ae4a-7d686c5a86f5',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:21:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '664779f9-d612-4c47-a116-9deb25fbf9a2',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:21:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '4b7ac325-1a9f-4dd6-aab1-783b441d0c87',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'heading_2',
+    heading_2: { rich_text: [Array], is_toggleable: false, color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '62ecbe24-4d2a-4ab0-b1fd-fb3e0785167f',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '1ae330a2-d2f5-431b-92b8-5f275f8812ee',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'df772f06-44d2-4a3f-8241-6368dfff5227',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'e5309384-04db-47af-ba64-79b9597c13dc',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '89ef7905-0e4a-4f89-882d-3db85c76ae7f',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'paragraph',
+    paragraph: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'fc33d278-db62-4ae1-b9f3-b8e8189773f6',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:08:00.000Z',
+    last_edited_time: '2024-08-04T06:08:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'heading_1',
+    heading_1: { rich_text: [Array], is_toggleable: false, color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'fdb44c9d-3461-4d65-9894-c27765970e25',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:32:00.000Z',
+    last_edited_time: '2024-08-04T06:33:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'quote',
+    quote: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '6cb7b3dc-76cc-42e2-b709-e5680d868ee9',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:09:00.000Z',
+    last_edited_time: '2024-08-04T06:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '5a92f23b-7c80-4fd2-ada8-e3a0ac86d4b5',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:09:00.000Z',
+    last_edited_time: '2024-08-04T06:35:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'f251e031-d812-49e8-a515-e26029e57459',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:10:00.000Z',
+    last_edited_time: '2024-08-04T07:02:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '9d88cba2-b2e2-4af3-974a-8ff2d81416e6',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:46:00.000Z',
+    last_edited_time: '2024-08-04T06:47:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'd1e8fcf0-fc77-498a-a248-198eea23942d',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:47:00.000Z',
+    last_edited_time: '2024-08-04T06:47:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '64d224a3-d6a4-4436-8ea2-0f7102d23ef6',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T07:04:00.000Z',
+    last_edited_time: '2024-08-04T07:04:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'heading_1',
+    heading_1: { rich_text: [Array], is_toggleable: false, color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'e59ec007-e517-4943-888a-5d1cd8e82297',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T07:04:00.000Z',
+    last_edited_time: '2024-08-04T07:04:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '0663e1bc-3a98-440c-a5e0-0f9d5b19a9a7',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T07:04:00.000Z',
+    last_edited_time: '2024-08-04T07:06:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'a12722b0-3e90-4c8e-8861-747e165c7c75',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T07:06:00.000Z',
+    last_edited_time: '2024-08-04T07:07:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '68b16645-074d-4272-949b-ca40abb15f40',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-06T07:07:00.000Z',
+    last_edited_time: '2024-08-06T07:07:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'paragraph',
+    paragraph: { rich_text: [], color: 'default' }
+  }
+]
+Fetched Page: {
+  object: 'page',
+  id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b',
+  created_time: '2024-08-04T04:33:00.000Z',
+  last_edited_time: '2024-08-08T15:37:00.000Z',
+  created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+  last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+  cover: null,
+  icon: null,
+  parent: { type: 'page_id', page_id: 'a44220c2-caf9-4628-9c1a-e923ff7405ff' },
+  archived: false,
+  in_trash: false,
+  properties: { title: { id: 'title', type: 'title', title: [Array] } },
+  url: 'https://www.notion.so/2-c1e622cc5f294ed0b7e0decb78b2222b',
+  public_url: 'https://mango2.notion.site/2-c1e622cc5f294ed0b7e0decb78b2222b',
+  request_id: '20134175-f2d8-4ad1-ad03-52da550d27f5'
+}
+Fetched Blocks: [
+  {
+    object: 'block',
+    id: 'eb495dfc-0454-4aaf-8775-96000e16c36e',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:34:00.000Z',
+    last_edited_time: '2024-08-04T06:29:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'heading_1',
+    heading_1: { rich_text: [Array], is_toggleable: false, color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '681f8685-0614-4a06-ae5d-9a2efe93aa14',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T04:45:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'heading_2',
+    heading_2: { rich_text: [Array], is_toggleable: false, color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'dc2c1176-fea6-4298-86ba-05a3bbce7a03',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T04:46:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '3de6527f-4ad7-4018-a232-0550a8afa9e2',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:20:00.000Z',
+    last_edited_time: '2024-08-08T15:37:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '410629e5-9788-4714-b6d1-87b2eda5e829',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T04:46:00.000Z',
+    last_edited_time: '2024-08-07T12:33:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'b2222c67-8a91-4167-a784-b85ba969b0fe',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:20:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '2425ba7d-4dc6-4b78-abc8-a18a516b9526',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:21:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'f1510467-4af4-466b-b266-58b4326b6229',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:21:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'ad9a7b36-1e71-4d36-bf07-d824c6659e8d',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:21:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '0be96fd5-9e13-475f-ae4a-7d686c5a86f5',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:21:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '664779f9-d612-4c47-a116-9deb25fbf9a2',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T05:21:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '4b7ac325-1a9f-4dd6-aab1-783b441d0c87',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'heading_2',
+    heading_2: { rich_text: [Array], is_toggleable: false, color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '62ecbe24-4d2a-4ab0-b1fd-fb3e0785167f',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '1ae330a2-d2f5-431b-92b8-5f275f8812ee',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'df772f06-44d2-4a3f-8241-6368dfff5227',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'e5309384-04db-47af-ba64-79b9597c13dc',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '89ef7905-0e4a-4f89-882d-3db85c76ae7f',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:30:00.000Z',
+    last_edited_time: '2024-08-06T08:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'paragraph',
+    paragraph: { rich_text: [], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'fc33d278-db62-4ae1-b9f3-b8e8189773f6',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:08:00.000Z',
+    last_edited_time: '2024-08-04T06:08:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'heading_1',
+    heading_1: { rich_text: [Array], is_toggleable: false, color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'fdb44c9d-3461-4d65-9894-c27765970e25',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:32:00.000Z',
+    last_edited_time: '2024-08-04T06:33:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'quote',
+    quote: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '6cb7b3dc-76cc-42e2-b709-e5680d868ee9',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:09:00.000Z',
+    last_edited_time: '2024-08-04T06:34:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '5a92f23b-7c80-4fd2-ada8-e3a0ac86d4b5',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:09:00.000Z',
+    last_edited_time: '2024-08-04T06:35:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'f251e031-d812-49e8-a515-e26029e57459',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:10:00.000Z',
+    last_edited_time: '2024-08-04T07:02:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '9d88cba2-b2e2-4af3-974a-8ff2d81416e6',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:46:00.000Z',
+    last_edited_time: '2024-08-04T06:47:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'd1e8fcf0-fc77-498a-a248-198eea23942d',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T06:47:00.000Z',
+    last_edited_time: '2024-08-04T06:47:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '64d224a3-d6a4-4436-8ea2-0f7102d23ef6',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T07:04:00.000Z',
+    last_edited_time: '2024-08-04T07:04:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'heading_1',
+    heading_1: { rich_text: [Array], is_toggleable: false, color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'e59ec007-e517-4943-888a-5d1cd8e82297',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T07:04:00.000Z',
+    last_edited_time: '2024-08-04T07:04:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '0663e1bc-3a98-440c-a5e0-0f9d5b19a9a7',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T07:04:00.000Z',
+    last_edited_time: '2024-08-04T07:06:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: true,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: 'a12722b0-3e90-4c8e-8861-747e165c7c75',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-04T07:06:00.000Z',
+    last_edited_time: '2024-08-04T07:07:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'numbered_list_item',
+    numbered_list_item: { rich_text: [Array], color: 'default' }
+  },
+  {
+    object: 'block',
+    id: '68b16645-074d-4272-949b-ca40abb15f40',
+    parent: {
+      type: 'page_id',
+      page_id: 'c1e622cc-5f29-4ed0-b7e0-decb78b2222b'
+    },
+    created_time: '2024-08-06T07:07:00.000Z',
+    last_edited_time: '2024-08-06T07:07:00.000Z',
+    created_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    last_edited_by: { object: 'user', id: '9b3cadad-75b7-4c5e-98d9-6d87bedc7a72' },
+    has_children: false,
+    archived: false,
+    in_trash: false,
+    type: 'paragraph',
+    paragraph: { rich_text: [], color: 'default' }
+  }
+]
+Item properties: {
+  '태그': { id: 'Jl%5BN', type: 'multi_select', multi_select: [] },
+  ID: {
+    id: 'rmZD',
+    type: 'unique_id',
+    unique_id: { prefix: 'AI', number: 11 }
+  },
+  class: { id: 'title', type: 'title', title: [ [Object] ] }
+}
+Item properties: {
+  '태그': { id: 'Jl%5BN', type: 'multi_select', multi_select: [] },
+  ID: {
+    id: 'rmZD',
+    type: 'unique_id',
+    unique_id: { prefix: 'AI', number: 8 }
+  },
+  class: { id: 'title', type: 'title', title: [ [Object] ] }
+}
+Item properties: {
+  '태그': { id: 'Jl%5BN', type: 'multi_select', multi_select: [] },
+  ID: {
+    id: 'rmZD',
+    type: 'unique_id',
+    unique_id: { prefix: 'AI', number: 6 }
+  },
+  class: { id: 'title', type: 'title', title: [ [Object] ] }
+}
+Item properties: {
+  '태그': { id: 'Jl%5BN', type: 'multi_select', multi_select: [] },
+  ID: {
+    id: 'rmZD',
+    type: 'unique_id',
+    unique_id: { prefix: 'AI', number: 5 }
+  },
+  class: { id: 'title', type: 'title', title: [ [Object] ] }
+}
+Item properties: {
+  '태그': { id: 'Jl%5BN', type: 'multi_select', multi_select: [] },
+  ID: {
+    id: 'rmZD',
+    type: 'unique_id',
+    unique_id: { prefix: 'AI', number: 2 }
+  },
+  class: { id: 'title', type: 'title', title: [ [Object] ] }
+}
+Item properties: {
+  '태그': { id: 'Jl%5BN', type: 'multi_select', multi_select: [] },
+  ID: {
+    id: 'rmZD',
+    type: 'unique_id',
+    unique_id: { prefix: 'AI', number: 3 }
+  },
+  class: { id: 'title', type: 'title', title: [ [Object] ] }
+}
+1. 로그를 분석해서 하위페이지내 콘텐츠블록이 중첩된경우 제대로 렌더할수 있게 코드를 작성해
+필요하다면 컴포넌트를 분리해도 좋아
+2. 너는 이전 지시내용 중 아래를 빼먹었어 주의해서 다시 수행해
+6. 자식이나 자손 페이지의 모든 콘텐츠 블록을 가져와서 렌더하는 코드를 작성할때 제목 다음에 오는 리스트는 ul이나 ol로 랩핑해
+7. 중첩된 테이블 블록이나 이미지, 코드가 표시되도록 주의해서 작성해줘
+8. 링크는 Link 컴포넌트를 사용하고 a태그를 포함시키지 마

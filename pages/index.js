@@ -1,6 +1,6 @@
 import { getDatabase } from '../lib/notion';
 import Link from 'next/link';
-import 'bootstrap/dist/css/bootstrap.min.css'; // 부트스트랩 CSS 가져오기
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export async function getStaticProps() {
 	const databaseId = process.env.NOTION_DATABASE_ID;

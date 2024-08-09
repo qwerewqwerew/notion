@@ -1,12 +1,14 @@
 // /components/Block.js
+import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ChildBlock from './ChildBlock';
+import ListGroup from './ListGroup';
 import Link from 'next/link'; // Use Next.js Link
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 const Block = ({ block }) => {
-	const { type, id } = block;
+	const { type, id, has_children, children } = block;
 
 	switch (type) {
 		case 'paragraph':
@@ -36,18 +38,8 @@ const Block = ({ block }) => {
 
 		case 'numbered_list_item':
 		case 'bulleted_list_item':
-			return (
-				<li key={id}>
-					{block[type].rich_text.map((text) => text.plain_text).join('')}
-					{block.children && (
-						<ul>
-							{block.children.map((childBlock) => (
-								<ChildBlock key={childBlock.id} block={childBlock} />
-							))}
-						</ul>
-					)}
-				</li>
-			);
+			// ListGroup으로 래핑된 리스트 아이템을 반환합니다.
+			return <ListGroup key={id} items={[block]} />;
 
 		case 'toggle': {
 			const [isOpen, setIsOpen] = React.useState(false);
@@ -56,20 +48,14 @@ const Block = ({ block }) => {
 					<div className='btn btn-link border-bottom rounded-2 text-decoration-none border-primary-subtle p-3' onClick={() => setIsOpen(!isOpen)}>
 						{block.toggle.rich_text.map((text) => text.plain_text).join('')}
 					</div>
-					{isOpen && block.toggle.children && (
-						<div className='ml-3'>
-							{block.toggle.children.map((childBlock) => (
-								<ChildBlock key={childBlock.id} block={childBlock} />
-							))}
-						</div>
-					)}
+					{isOpen && has_children && <ChildBlock blocks={children} />}
 				</div>
 			);
 		}
 
 		case 'image': {
 			const imageUrl = block.image.file?.url || block.image.external?.url;
-			return <img key={id} src={imageUrl} alt='Notion image' className='img-fluid mb-3' />;
+			return <img key={id} src={imageUrl} alt='coalacoding' className='img-fluid shadow border border-muted ' />;
 		}
 
 		case 'code': {
@@ -107,9 +93,9 @@ const Block = ({ block }) => {
 		case 'file': {
 			const fileUrl = block.file.file?.url || block.file.external?.url;
 			return (
-				<a key={id} href={fileUrl} className='link-primary' target='_blank' rel='noopener noreferrer'>
+				<Link key={id} href={fileUrl} className='link-primary'>
 					파일 다운로드
-				</a>
+				</Link>
 			);
 		}
 
@@ -121,14 +107,16 @@ const Block = ({ block }) => {
 			);
 
 		case 'table': {
-			const tableData = block.table; // 블록의 테이블 데이터를 사용
-			const safeTableData = tableData.table || [];
-			const safeColumns = block.columns || [];
+			const tableData = block.table;
+			if (!tableData) {
+				console.error('Table data is undefined');
+				return null;
+			}
 
 			return (
 				<table key={id} className='table table-bordered mb-3'>
 					<tbody>
-						{Array.from(safeTableData).map((row, rowIndex) => (
+						{tableData.rows.map((row, rowIndex) => (
 							<tr key={`row-${rowIndex}`}>
 								{row.cells.map((cell, cellIndex) => (
 									<td key={`cell-${cellIndex}`}>{cell.rich_text.map((text) => text.plain_text).join('')}</td>
@@ -136,31 +124,22 @@ const Block = ({ block }) => {
 							</tr>
 						))}
 					</tbody>
-					<div key={id} className='d-flex flex-wrap'>
-						{Array.from(safeColumns).map((column, colIndex) => (
-							<div key={`col-${colIndex}`} className='flex-grow-1'>
-								{column.children.map((childBlock) => (
-									<ChildBlock key={childBlock.id} block={childBlock} />
-								))}
-							</div>
-						))}
-					</div>
 				</table>
 			);
 		}
 
 		case 'column_list': {
-			const blockData = block.columns || [];
-			if (!blockData) {
-				console.error('blockData is undefined');
+			const columns = block.columns || [];
+			if (!columns.length) {
+				console.error('Columns are undefined or empty');
 				return null;
 			}
 			return (
 				<div key={id} className='d-flex flex-wrap'>
-					{Array.from(blockData).map((column, colIndex) => (
+					{columns.map((column, colIndex) => (
 						<div key={`col-${colIndex}`} className='flex-grow-1'>
 							{column.children.map((childBlock) => (
-								<ChildBlock key={childBlock.id} block={childBlock} />
+								<ChildBlock key={childBlock.id} blocks={childBlock} />
 							))}
 						</div>
 					))}
