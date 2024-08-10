@@ -59,7 +59,7 @@ const ListGroup = ({ items }) => {
 		elements.push(renderListItems(listItems, currentListType));
 	}
 
-	return <div>{elements}</div>;
+	return <div className="group">{elements}</div>;
 };
 
 export default ListGroup;
