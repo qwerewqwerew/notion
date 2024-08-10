@@ -1,21 +1,4 @@
-import React from 'react';
-import ChildBlock from './ChildBlock';
-import Link from 'next/link';
-
-const renderRichText = (richTextArray) => {
-	if (!Array.isArray(richTextArray)) return null;
-
-	return richTextArray.map((text, index) => {
-		if (text.href) {
-			return (
-				<Link key={`link-${index}`} href={text.href}>
-					<span>{text.plain_text}</span>
-				</Link>
-			);
-		}
-		return <span key={`text-${index}`}>{text.plain_text}</span>;
-	});
-};
+import RenderRichText from './RenderRichText';
 
 const renderImages = (images) => {
 	if (!images || images.length === 0) return null;
@@ -26,46 +9,35 @@ const renderImages = (images) => {
 const ListGroup = ({ items }) => {
 	if (!items || items.length === 0) return null;
 
-	const elements = [];
-	let listItems = [];
-	let currentListType = null;
-	let renderImagesFlag = false;
-
 	const renderListItems = (listItems, listType) => {
 		return React.createElement(
 			listType,
 			{ className: 'list-group list-group-flush disc' },
 			listItems.map((item) => (
 				<li key={item.id} className='list-group-item'>
-					{renderRichText(item[item.type].rich_text)}
-					{renderImagesFlag && renderImages(item.images)}
-					{item.has_children && <ChildBlock blocks={item.children} />}
+					<RenderRichText richTextArray={item[item.type].rich_text} />
+					{renderImages(item.images)}
 				</li>
 			))
 		);
 	};
 
-	items.forEach((item, index) => {
-		if (item.type === 'heading_2' && item.heading_2.rich_text[0].plain_text) {
-			renderImagesFlag = true;
-		}
+	const elements = [];
+	let listItems = [];
+	let currentListType = null;
 
-		if (item.type.startsWith('heading')) {
-			if (listItems.length > 0 && currentListType) {
+	items.forEach((item) => {
+		if (item.type === 'numbered_list_item' || item.type === 'bulleted_list_item') {
+			const listType = item.type === 'numbered_list_item' ? 'ol' : 'ul';
+
+			if (!currentListType) {
+				currentListType = listType;
+			} else if (currentListType !== listType) {
 				elements.push(renderListItems(listItems, currentListType));
 				listItems = [];
-				renderImagesFlag = false;
+				currentListType = listType;
 			}
 
-			elements.push(
-				<div key={`heading-${item.id}`} className={`heading ${item.type}`}>
-					{renderRichText(item[item.type].rich_text)}
-				</div>
-			);
-		} else if (item.type === 'numbered_list_item') {
-			if (!currentListType) {
-				currentListType = 'ul';
-			}
 			listItems.push(item);
 		} else {
 			if (listItems.length > 0 && currentListType) {
@@ -73,9 +45,10 @@ const ListGroup = ({ items }) => {
 				listItems = [];
 				currentListType = null;
 			}
+
 			elements.push(
-				<div key={`item-${item.id}`} className={item.type}>
-					{renderRichText(item[item.type].rich_text)}
+				<div key={item.id} className={item.type}>
+					<RenderRichText richTextArray={item[item.type].rich_text} />
 				</div>
 			);
 		}

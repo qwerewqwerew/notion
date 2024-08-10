@@ -6,17 +6,17 @@ export async function getStaticProps() {
 	const databaseId = process.env.NOTION_DATABASE_ID;
 
 	if (!databaseId) {
-		throw new Error('Notion database ID is not set. Please check your environment variables.');
+		throw new Error('데이터베이스 로드 오류');
 	}
 
 	const database = await getDatabase(databaseId);
-	//console.log('Database:', database); // 데이터 확인을 위한 로그
+	//console.log('Database:', database);
 
 	return {
 		props: {
 			database,
 		},
-		revalidate: 10, // ISR 설정
+		revalidate: 10,
 	};
 }
 

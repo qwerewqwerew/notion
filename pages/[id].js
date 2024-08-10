@@ -1,7 +1,7 @@
 import { getPage, getBlocks, getDatabase } from '../lib/notion';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Block = dynamic(() => import('../components/Block'), {
 	ssr: false,
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 		throw new Error('Notion database ID is not set. Please check your environment variables.');
 	}
 
-	const database = await getDatabase(databaseId); // Ensure getDatabase is defined
+	const database = await getDatabase(databaseId);
 	const paths = database.map((page) => ({ params: { id: page.id } }));
 	return {
 		paths,

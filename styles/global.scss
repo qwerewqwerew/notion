@@ -1,24 +1,33 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 @import '~bootstrap/scss/bootstrap'; // 부트스트랩 SCSS 가져오기
+
 html {
 	overflow-y: scroll;
 }
-
+a {
+	font-size: $font-size-base * 1.25;
+}
 body {
 	font-family: 'Pretendard Variable', Pretendard, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	background-color: #f8f9fa;
 	line-height: 1.75;
 	color: var(--bs-gray-900);
-	font-size: 1rem;
+	font-size: $font-size-base * 1.25;
 }
 .headline {
 	&.h1 {
+		font-size: $font-size-base * 3.4;
 		margin: 3rem 0;
+		font-weight: 200;
 	}
 	&.h2 {
+		font-size: $font-size-base * 2.4;
 		margin: 2rem 0;
+		color: var(--bs-gray-700);
+		font-weight: 400;
 	}
 	&.h3 {
+		font-size: $font-size-base * 1.8;
 		margin: 1.5rem 0;
 	}
 }
@@ -58,9 +67,43 @@ pre {
 				content: '▪';
 				color: var(--bs-info);
 				left: 0%;
-				top: 50%;
-				transform: translateY(-50%);
+				top: 5%;
 			}
 		}
 	}
 }
+
+.bold {
+	font-weight: bold;
+}
+
+.italic {
+	display: block;
+	padding-left: 1rem;
+	color: var(--bs-gray-600);
+}
+
+.line-through {
+	text-decoration: line-through;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.code {
+	font-family: 'Courier New', Courier, monospace;
+	background-color: #f4f4f4;
+	padding: 2px 4px;
+	border-radius: 4px;
+}
+
+.text-blue {
+	color: blue;
+}
+
+.text-red {
+	color: red;
+}
+
+/* 다른 색상들에 대해서도 추가 */

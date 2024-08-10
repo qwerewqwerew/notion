@@ -1,15 +1,15 @@
-// /components/Block.js
 import React, { useState, useEffect } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ChildBlock from './ChildBlock';
 import ListGroup from './ListGroup';
-import Link from 'next/link'; // Use Next.js Link
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import { getBlocks } from '../lib/notion'; // Notion API에서 getBlocks 함수를 가져옵니다.
+import RenderRichText from './RenderRichText';
+import Link from 'next/link';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { getBlocks } from '../lib/notion';
 
 const Block = ({ block }) => {
-	const { type, id, has_children, children } = block;
+	const { type, id, has_children } = block;
 
 	const renderCodeBlock = (code, language = 'javascript') => {
 		const copyToClipboard = () => {
@@ -35,15 +35,11 @@ const Block = ({ block }) => {
 		);
 	};
 
-	const renderRichText = (richTextArray) => {
-		return richTextArray.map((textObj, index) => <span key={`text-${index}`}>{textObj.plain_text}</span>);
-	};
-
 	switch (type) {
 		case 'paragraph':
 			return (
 				<p key={id} className='mb-3'>
-					{renderRichText(block.paragraph.rich_text)}
+					<RenderRichText richTextArray={block.paragraph.rich_text} />
 				</p>
 			);
 
@@ -54,7 +50,7 @@ const Block = ({ block }) => {
 			const HeadingTag = `h${num}`;
 			return (
 				<HeadingTag key={id} className={`h${num} headline`}>
-					{renderRichText(block[type].rich_text)}
+					<RenderRichText richTextArray={block[type].rich_text} />
 				</HeadingTag>
 			);
 		}
@@ -62,7 +58,7 @@ const Block = ({ block }) => {
 		case 'quote':
 			return (
 				<blockquote key={id} className='blockquote mb-3'>
-					{renderRichText(block.quote.rich_text)}
+					<RenderRichText richTextArray={block.quote.rich_text} />
 				</blockquote>
 			);
 
@@ -75,9 +71,9 @@ const Block = ({ block }) => {
 			return (
 				<div key={id} className='mb-3'>
 					<div className='btn btn-link border-bottom rounded-2 text-decoration-none border-primary-subtle p-3' onClick={() => setIsOpen(!isOpen)}>
-						{renderRichText(block.toggle.rich_text)}
+						<RenderRichText richTextArray={block.toggle.rich_text} />
 					</div>
-					{isOpen && has_children && <ChildBlock blocks={children} />}
+					{isOpen && has_children && <ChildBlock blockId={id} />}
 				</div>
 			);
 		}
@@ -101,10 +97,9 @@ const Block = ({ block }) => {
 			return <hr key={id} className='my-4' />;
 
 		case 'callout':
-			console.log(block.callout.rich_text);
 			return (
 				<div key={id} className='alert alert-light callout'>
-					{renderRichText(block.callout.rich_text)}
+					<RenderRichText richTextArray={block.callout.rich_text} />
 				</div>
 			);
 
@@ -146,7 +141,7 @@ const Block = ({ block }) => {
 					{columns.map((column, colIndex) => (
 						<div key={`col-${colIndex}`} className='flex-grow-1'>
 							{column.children.map((childBlock) => (
-								<ChildBlock key={childBlock.id} blocks={childBlock} />
+								<ChildBlock key={childBlock.id} blockId={childBlock.id} />
 							))}
 						</div>
 					))}
@@ -156,7 +151,7 @@ const Block = ({ block }) => {
 
 		case 'table': {
 			const tableData = block.table;
-			const tableRows = (children || []).filter((child) => child.type === 'table_row'); // children이 undefined일 때 빈 배열로 설정
+			const tableRows = (block.children || []).filter((child) => child.type === 'table_row');
 
 			if (!tableData || tableRows.length === 0) {
 				return null;
@@ -166,9 +161,11 @@ const Block = ({ block }) => {
 				<table key={id} className='table table-bordered mb-3'>
 					<tbody>
 						{tableRows.map((row, rowIndex) => (
-							<tr key={`row-${rowIndex}`}>
+							<tr key={`row-${id}`}>
 								{row.table_row.cells.map((cell, cellIndex) => (
-									<td key={`cell-${cellIndex}`}>{renderRichText(cell)}</td>
+									<td key={`cell-${cellIndex}`}>
+										<RenderRichText richTextArray={cell} />
+									</td>
 								))}
 							</tr>
 						))}
@@ -183,7 +180,7 @@ const Block = ({ block }) => {
 
 			useEffect(() => {
 				async function fetchChildBlocks() {
-					const blocks = await getBlocks(block.id); // 자식 페이지의 블록을 가져옴
+					const blocks = await getBlocks(block.id);
 					setChildBlocks(blocks);
 				}
 				fetchChildBlocks();
@@ -195,7 +192,7 @@ const Block = ({ block }) => {
 						<Link href={`/${block.id}`}>
 							<span className='stretched-link'>{childPageTitle}</span>
 						</Link>
-						<ChildBlock blocks={childBlocks} />
+						<ChildBlock blockId={block.id} />
 					</div>
 				</div>
 			);

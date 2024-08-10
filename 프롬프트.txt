@@ -1172,3 +1172,40 @@ Example Table row block object
 위의 데이터구조가 API 공식문서의 내용이야
 block.js 에서 올바른 키로 접근하지 않아서 rows변수에 빈 배열이 들어와
 다시 수정해
+
+
+
+
+ListGroup.js:126 Warning: Each child in a list should have a unique "key" prop.
+
+Check the render method of `ListGroup`. See https://reactjs.org/link/warning-keys for more information.
+    at ul
+    at ListGroup (webpack-internal:///./components/ListGroup.js:55:11)
+    at Block (webpack-internal:///./components/Block.js:26:11)
+    at LoadableComponent (webpack-internal:///./node_modules/next/dist/shared/lib/loadable.shared-runtime.js:113:9)
+    at div
+    at div
+    at Page (webpack-internal:///./pages/[id].js:30:11)
+    at MyApp (webpack-internal:///./pages/_app.js:19:11)
+    at PathnameContextProviderAdapter (webpack-internal:///./node_modules/next/dist/shared/lib/router/adapters.js:81:11)
+    at ErrorBoundary (webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/ErrorBoundary.js:41:9)
+    at ReactDevOverlay (webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/ReactDevOverlay.js:33:11)
+    at Container (webpack-internal:///./node_modules/next/dist/client/index.js:81:1)
+    at AppContainer (webpack-internal:///./node_modules/next/dist/client/index.js:189:11)
+    at Root (webpack-internal:///./node_modules/next/dist/client/index.js:413:11)
+
+1. 올려준 파일의 코드를 분석해서 위의 오류를 해결해
+2.
+block.js중 아래의 함수를 별도의 컴포넌트로 만들고
+  https://developers.notion.com/reference/rich-text 이 링크의 문서를 분석해서 rich-text 데이터의 필드와 타입을 모두 펼쳐서 렌더링 또한 Retrieve block children 을 사용해서 하위 블럭이 있을경우 모두 펼쳐서 렌더해
+const renderRichText = (richTextArray) => {
+		console.log("rich",richTextArray);
+		return richTextArray.map((textObj, index) => <span key={`text-${index}`}>{textObj.plain_text}</span>);
+	};
+
+
+
+
+1. 올려준 파일의 코드를 분석해서 답변해
+2. 너는 한글로 말해야돼
+3. Rich text 타입의 데이터를 받을때 annotations 객체의 하위키도 모두 전달받고 값이 false나 default 가 아닌 경우 해당 키와 값을 css 스타일로 적용할수 있게 클래스로 만드는 로직을 구현해
