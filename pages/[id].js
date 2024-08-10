@@ -29,8 +29,8 @@ export async function getStaticProps(context) {
 		const page = await getPage(id);
 		const blocks = await getBlocks(id);
 
-		console.log('Fetched Page:', page); // 페이지 데이터 로그
-		console.log('Fetched Blocks:', blocks); // 블록 데이터 로그
+		//console.log('Fetched Page:', page); // 페이지 데이터 로그
+		//console.log('Fetched Blocks:', blocks); // 블록 데이터 로그
 
 		if (!page || !blocks) {
 			return {

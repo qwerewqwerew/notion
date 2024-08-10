@@ -10,12 +10,31 @@ import { getBlocks } from '../lib/notion'; // Notion API에서 getBlocks 함수�
 
 const Block = ({ block }) => {
 	const { type, id, has_children, children } = block;
-	const renderCodeBlock = (code, language = 'javascript') => (
-		<SyntaxHighlighter language={language} style={oneDark}>
-			{code}
-		</SyntaxHighlighter>
-	);
-	// 텍스트를 단순히 렌더링하는 함수
+
+	const renderCodeBlock = (code, language = 'javascript') => {
+		const copyToClipboard = () => {
+			navigator.clipboard.writeText(code).then(
+				() => {
+					alert('코드가 클립보드에 복사되었습니다.');
+				},
+				(err) => {
+					console.error('코드를 복사하는 중에 오류가 발생했습니다.', err);
+				}
+			);
+		};
+
+		return (
+			<div className={`snippets position-relative`}>
+				<button onClick={copyToClipboard} className='btn btn-dark btn-sm position-absolute copy'>
+					복사
+				</button>
+				<SyntaxHighlighter language={language} style={oneDark} customStyle={{ whiteSpace: 'pre-wrap', overflowWrap: 'break-word', padding: '20px' }}>
+					{code}
+				</SyntaxHighlighter>
+			</div>
+		);
+	};
+
 	const renderRichText = (richTextArray) => {
 		return richTextArray.map((textObj, index) => <span key={`text-${index}`}>{textObj.plain_text}</span>);
 	};
@@ -31,9 +50,10 @@ const Block = ({ block }) => {
 		case 'heading_1':
 		case 'heading_2':
 		case 'heading_3': {
-			const HeadingTag = `h${type.split('_')[1]}`;
+			const num = `${type.split('_')[1]}`;
+			const HeadingTag = `h${num}`;
 			return (
-				<HeadingTag key={id} className={`h${type.split('_')[1]} mb-3`}>
+				<HeadingTag key={id} className={`h${num} headline`}>
 					{renderRichText(block[type].rich_text)}
 				</HeadingTag>
 			);
@@ -71,7 +91,7 @@ const Block = ({ block }) => {
 			const code = block.code.rich_text.map((text) => text.plain_text).join('\n');
 			const language = block.code.language || 'plaintext';
 			return (
-				<div key={id} className='mb-3'>
+				<div key={id} className='mb-3 mx-3 code col-12 code'>
 					{renderCodeBlock(code, language)}
 				</div>
 			);
@@ -81,14 +101,15 @@ const Block = ({ block }) => {
 			return <hr key={id} className='my-4' />;
 
 		case 'callout':
+			console.log(block.callout.rich_text);
 			return (
-				<div key={id} className='alert alert-info'>
+				<div key={id} className='alert alert-light callout'>
 					{renderRichText(block.callout.rich_text)}
 				</div>
 			);
 
 		case 'embed':
-			return <iframe key={id} src={block.embed.url} className='embed-responsive-item' frameBorder='0' allowFullScreen></iframe>;
+			return <iframe key={id} src={block.embed.url} className='embed-responsive-item' allowFullScreen></iframe>;
 
 		case 'video': {
 			const videoUrl = block.video.file?.url || block.video.external?.url;

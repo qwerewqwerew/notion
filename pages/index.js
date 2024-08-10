@@ -10,7 +10,7 @@ export async function getStaticProps() {
 	}
 
 	const database = await getDatabase(databaseId);
-	console.log('Database:', database); // 데이터 확인을 위한 로그
+	//console.log('Database:', database); // 데이터 확인을 위한 로그
 
 	return {
 		props: {
