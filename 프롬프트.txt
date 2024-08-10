@@ -1058,3 +1058,117 @@ Item properties: {
 6. 자식이나 자손 페이지의 모든 콘텐츠 블록을 가져와서 렌더하는 코드를 작성할때 제목 다음에 오는 리스트는 ul이나 ol로 랩핑해
 7. 중첩된 테이블 블록이나 이미지, 코드가 표시되도록 주의해서 작성해줘
 8. 링크는 Link 컴포넌트를 사용하고 a태그를 포함시키지 마
+
+
+1. 내가 올린 파일의 소스코드와 모듈간의 의존성 관계를 분석해
+2. 데이터는 연결이 잘 되어 있고 모듈간 임포트도 잘 되어있으니까 이건 검토안해되 돼
+3. 아래의 오류메시지를 분석해
+Unhandled Runtime Error
+TypeError: Cannot read properties of undefined (reading 'map')
+
+Source
+components\Block.js (120:23) @ map
+
+  118 | 				<table key={id} className='table table-bordered mb-3'>
+  119 | 					<tbody>
+> 120 | 						{tableData.rows.map((row, rowIndex) => (
+      | 						                ^
+  121 | 							<tr key={`row-${rowIndex}`}>
+  122 | 								{row.cells.map((cell, cellIndex) => (
+  123 | 									<td key={`cell-${cellIndex}`}>{cell.rich_text.map((text) => text.plain_text).join('')}</td>
+  118 | 				<table key={id} className='table table-bordered mb-3'>
+  119 | 					<tbody>
+> 120 | 						{tableData.rows.map((row, rowIndex) => (
+      | 						                ^
+  121 | 							<tr key={`row-${rowIndex}`}>
+  122 | 								{row.cells.map((cell, cellIndex) => (
+  123 | 									<td key={`cell-${cellIndex}`}>{cell.rich_text.map((text) => text.plain_text).join('')}</td>
+
+4. 아래의 API 레퍼런스를 참고해
+https://developers.notion.com/reference/block#table
+5. 아래는 block.js의 205라인의 응답받은 로그야
+{
+    "table_width": 2,
+    "has_column_header": false,
+    "has_row_header": false
+}
+6. 1단계부터 5단계의 지시문을 분석후 이해했으면 대답하고 3단계의 오류의 원인을 1단계의 코드를 기반으로 해결해
+
+
+1. 이전의 질문에 이어서 대답해 문제가 해결되지 않았어
+Table
+Table block objects are parent blocks for table row children. Table block objects contain the following fields within the table property:
+
+Field	Type	Description
+table_width	integer	The number of columns in the table.
+
+Note that this cannot be changed via the public API once a table is created.
+has_column_header	boolean	Whether the table has a column header. If true, then the first row in the table appears visually distinct from the other rows.
+has_row_header	boolean	Whether the table has a header row. If true, then the first column in the table appears visually distinct from the other columns.
+Example Table block object
+
+{
+  //...other keys excluded
+  "type": "table",
+  "table": {
+    "table_width": 2,
+    "has_column_header": false,
+    "has_row_header": false
+  }
+}
+🚧
+table_width can only be set when the table is first created.
+
+Note that the number of columns in a table can only be set when the table is first created. Calls to the Update block endpoint to update table_width fail.
+
+Table rows
+Follow these steps to fetch the table_rows of a table:
+
+Get the table ID from a query to Retrieve block children for the parent page.
+
+Get the table_rows from a query to Retrieve block children for the table.
+
+A table_row block object contains the following fields within the table_row property:
+
+Property	Type	Description
+cells	array of array of rich text objects	An array of cell contents in horizontal display order. Each cell is an array of rich text objects.
+Example Table row block object
+
+{
+  //...other keys excluded
+  "type": "table_row",
+  "table_row": {
+    "cells": [
+      [
+        {
+          "type": "text",
+          "text": {
+            "content": "column 1 content",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "column 1 content",
+          "href": null
+        }
+      ],
+      [
+        {
+          "type": "text",
+          "text": {
+            "content": "column 2 content",
+            "link": null
+          },
+          "annotations": {
+
+            ...
+
+위의 데이터구조가 API 공식문서의 내용이야
+block.js 에서 올바른 키로 접근하지 않아서 rows변수에 빈 배열이 들어와
+다시 수정해

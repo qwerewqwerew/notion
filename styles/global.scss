@@ -12,28 +12,32 @@ body {
 	background-color: #f8f9fa;
 	line-height: 1.75;
 	color: var(--bs-gray-900);
-	font-size: 1.4em;
+	font-size: 1rem;
 }
 
 h1,
 .display-4,
 .h1 {
 	font-weight: 100;
-	font-size: calc(1.475rem + 2.7vw);
-	color: var(--bs-gray-700);
+	font-size: 3.6rem;
+	color: var(--bs-link-hover-color);
+	margin-bottom:2.4rem;
 }
 h2,
 .h2 {
-	font-weight: 600;
+	font-size: 2.8rem;
+	font-weight: 300;
 	color: var(--bs-gray-600);
 }
 h3,
 .h3 {
+	font-size: 2.4rem;
 	font-weight: 800;
 	color: var(--bs-gray-500);
 }
 h4,
 .h4 {
+	font-size: 2rem;
 	font-weight: 800;
 	color: var(--bs-gray-600);
 }
@@ -81,11 +85,10 @@ li::marker,
 	list-style: disc !important; // 불릿 기호 사용
 }
 
-li::before{
-	margin-right:1rem ;
+li::before {
+	margin-right: 1rem;
 	content: '▪ ' !important;
-
 }
-.img-fluid.shadow.border.border-muted{
-	margin-left:2rem;
+.img-fluid.shadow.border.border-muted {
+	margin-left: 2rem;
 }

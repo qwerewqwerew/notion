@@ -1,4 +1,3 @@
-// /components/ListGroup.js
 import React from 'react';
 import ChildBlock from './ChildBlock';
 import Link from 'next/link';
@@ -21,7 +20,7 @@ const renderRichText = (richTextArray) => {
 const renderImages = (images) => {
 	if (!images || images.length === 0) return null;
 
-	return images.map((image, index) => <img key={index} src={image.url} alt={image.alt || 'Image'} className='shadow-lg p-3 mb-5 bg-white rounded' />);
+	return images.map((image, index) => <img key={`image-${index}`} src={image.url} alt={image.alt || 'Image'} className='shadow-lg p-3 mb-5 bg-white rounded' />);
 };
 
 const ListGroup = ({ items }) => {
@@ -36,15 +35,13 @@ const ListGroup = ({ items }) => {
 		return React.createElement(
 			listType,
 			{ className: 'list-group list-group-flush disc' },
-			listItems.map((item) => {
-				return (
-					<li key={item.id} className='list-group-item'>
-						{renderRichText(item[item.type].rich_text)}
-						{renderImagesFlag && renderImages(item.images)}
-						{item.has_children && <ChildBlock blocks={item.children} />}
-					</li>
-				);
-			})
+			listItems.map((item) => (
+				<li key={item.id} className='list-group-item'>
+					{renderRichText(item[item.type].rich_text)}
+					{renderImagesFlag && renderImages(item.images)}
+					{item.has_children && <ChildBlock blocks={item.children} />}
+				</li>
+			))
 		);
 	};
 
@@ -61,7 +58,7 @@ const ListGroup = ({ items }) => {
 			}
 
 			elements.push(
-				<div key={item.id} className={`heading ${item.type}`}>
+				<div key={`heading-${item.id}`} className={`heading ${item.type}`}>
 					{renderRichText(item[item.type].rich_text)}
 				</div>
 			);
@@ -77,7 +74,7 @@ const ListGroup = ({ items }) => {
 				currentListType = null;
 			}
 			elements.push(
-				<div key={item.id} className={item.type}>
+				<div key={`item-${item.id}`} className={item.type}>
 					{renderRichText(item[item.type].rich_text)}
 				</div>
 			);

@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
-// Block component is dynamically imported to handle SSR issues
 const Block = dynamic(() => import('../components/Block'), {
 	ssr: false,
 });
