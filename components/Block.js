@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
@@ -17,8 +16,17 @@ const Block = ({ block }) => {
 	useEffect(() => {
 		const fetchChildBlocks = async () => {
 			if (has_children) {
-				const children = await getBlocks(id);
-				setChildBlocks(children);
+				try {
+					const response = await fetch(`/api/notion-proxy?blockId=${id}`); // 페이지 ID를 사용하여 호출
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					const data = await response.json();
+					console.log('Fetched child blocks:', data.results); // 콘솔 로그로 데이터 확인
+					setChildBlocks(data.results);
+				} catch (error) {
+					console.error('Error fetching child blocks:', error);
+				}
 			}
 		};
 
