@@ -1208,4 +1208,110 @@ const renderRichText = (richTextArray) => {
 
 1. 올려준 파일의 코드를 분석해서 답변해
 2. 너는 한글로 말해야돼
-3. Rich text 타입의 데이터를 받을때 annotations 객체의 하위키도 모두 전달받고 값이 false나 default 가 아닌 경우 해당 키와 값을 css 스타일로 적용할수 있게 클래스로 만드는 로직을 구현해
+3. Table
+Table block objects are parent blocks for table row children. Table block objects contain the following fields within the table property:
+
+Field	Type	Description
+table_width	integer	The number of columns in the table.
+
+Note that this cannot be changed via the public API once a table is created.
+has_column_header	boolean	Whether the table has a column header. If true, then the first row in the table appears visually distinct from the other rows.
+has_row_header	boolean	Whether the table has a header row. If true, then the first column in the table appears visually distinct from the other columns.
+Example Table block object
+
+{
+  //...other keys excluded
+  "type": "table",
+  "table": {
+    "table_width": 2,
+    "has_column_header": false,
+    "has_row_header": false
+  }
+}
+🚧
+table_width can only be set when the table is first created.
+
+Note that the number of columns in a table can only be set when the table is first created. Calls to the Update block endpoint to update table_width fail.
+
+Table rows
+Follow these steps to fetch the table_rows of a table:
+
+Get the table ID from a query to Retrieve block children for the parent page.
+
+Get the table_rows from a query to Retrieve block children for the table.
+
+A table_row block object contains the following fields within the table_row property:
+
+Property	Type	Description
+cells	array of array of rich text objects	An array of cell contents in horizontal display order. Each cell is an array of rich text objects.
+Example Table row block object
+
+{
+  //...other keys excluded
+  "type": "table_row",
+  "table_row": {
+    "cells": [
+      [
+        {
+          "type": "text",
+          "text": {
+            "content": "column 1 content",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "column 1 content",
+          "href": null
+        }
+      ],
+      [
+        {
+          "type": "text",
+          "text": {
+            "content": "column 2 content",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "column 2 content",
+          "href": null
+        }
+      ],
+      [
+        {
+          "type": "text",
+          "text": {
+            "content": "column 3 content",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "column 3 content",
+          "href": null
+        }
+      ]
+    ]
+  }
+}
+📘
+When creating a table block via the Append block children endpoint, the table must have at least one table_row whose cells array has the same length as the table_width.
+
+이 문서의 내용을 이해하고 테이블블록이 table_width 가 있을때 위의 가이드에 맞게 id를 탐색하고 cells 을 가져오는 로직을 작성해 필요할경우 별도의 컴포넌트를 생성해도 좋아

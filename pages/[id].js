@@ -1,6 +1,7 @@
-import { getPage, getBlocks, getDatabase } from '../lib/notion';
+import { getPage, getDatabase } from '../lib/notion';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Block = dynamic(() => import('../components/Block'), {
@@ -27,12 +28,8 @@ export async function getStaticProps(context) {
 
 	try {
 		const page = await getPage(id);
-		const blocks = await getBlocks(id);
 
-		//console.log('Fetched Page:', page); // 페이지 데이터 로그
-		//console.log('Fetched Blocks:', blocks); // 블록 데이터 로그
-
-		if (!page || !blocks) {
+		if (!page) {
 			return {
 				notFound: true,
 			};
@@ -46,24 +43,41 @@ export async function getStaticProps(context) {
 					id: page.id,
 					title: pageTitle,
 				},
-				blocks: blocks || [],
 			},
-			revalidate: 10, // ISR 설정
+			revalidate: 10,
 		};
 	} catch (error) {
-		console.error('Error fetching page data:', error);
+		console.error('데이터패칭오류:', error);
 		return {
 			notFound: true,
 		};
 	}
 }
 
-export default function Page({ page, blocks = [] }) {
+export default function Page({ page }) {
 	const router = useRouter();
+	const [blocks, setBlocks] = useState([]);
+	const [error, setError] = useState(null);
 
-	if (!page || !blocks) {
-		return <div>Loading...</div>;
-	}
+	useEffect(() => {
+		const fetchBlocks = async () => {
+			try {
+				const response = await fetch(`/api/notion-proxy?blockId=${page.id}`);
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				const data = await response.json();
+				setBlocks(data.results);
+			} catch (error) {
+				setError(error);
+			}
+		};
+
+		fetchBlocks();
+	}, [page.id]);
+
+	if (error) return <div>Error: {error.message}</div>;
+	if (!blocks || blocks.length === 0) return <div>Loading...</div>;
 
 	const title = page.title || '';
 
@@ -73,9 +87,9 @@ export default function Page({ page, blocks = [] }) {
 				이전으로 가기
 			</button>
 			<h1 className='display-4 mb-4'>{title}</h1>
-			<div className='accordion' id={`accordion-${page.id}`}>
+			<div className='container' id={`id-${page.id}`}>
 				{blocks.map((block) => (
-					<Block key={block.id} block={block} parentId={`accordion-${page.id}`} />
+					<Block key={block.id} block={block} />
 				))}
 			</div>
 		</div>
