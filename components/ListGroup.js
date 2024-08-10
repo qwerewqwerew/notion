@@ -1,3 +1,4 @@
+import React from 'react';
 import RenderRichText from './RenderRichText';
 
 const renderImages = (images) => {
