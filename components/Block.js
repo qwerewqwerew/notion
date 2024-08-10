@@ -10,7 +10,11 @@ import { getBlocks } from '../lib/notion'; // Notion API에서 getBlocks 함수�
 
 const Block = ({ block }) => {
 	const { type, id, has_children, children } = block;
-
+	const renderCodeBlock = (code, language = 'javascript') => (
+		<SyntaxHighlighter language={language} style={oneDark}>
+			{code}
+		</SyntaxHighlighter>
+	);
 	// 텍스트를 단순히 렌더링하는 함수
 	const renderRichText = (richTextArray) => {
 		return richTextArray.map((textObj, index) => <span key={`text-${index}`}>{textObj.plain_text}</span>);
@@ -64,12 +68,12 @@ const Block = ({ block }) => {
 		}
 
 		case 'code': {
+			const code = block.code.rich_text.map((text) => text.plain_text).join('\n');
 			const language = block.code.language || 'plaintext';
-			const codeText = block.code.rich_text.map((text) => text.plain_text).join('\n');
 			return (
-				<SyntaxHighlighter key={id} language={language} style={oneDark} className='mb-3'>
-					{codeText}
-				</SyntaxHighlighter>
+				<div key={id} className='mb-3'>
+					{renderCodeBlock(code, language)}
+				</div>
 			);
 		}
 
