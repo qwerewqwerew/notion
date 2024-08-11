@@ -4,7 +4,7 @@ const RenderRichText = ({ richTextArray }) => {
 	if (!Array.isArray(richTextArray)) return null;
 
 	return richTextArray.map((textObj, index) => {
-		//console.log(textObj);
+		// console.log(textObj);
 		const { plain_text, href, annotations } = textObj;
 		const { bold, italic, strikethrough, underline, code, color } = annotations || {};
 
@@ -14,14 +14,16 @@ const RenderRichText = ({ richTextArray }) => {
 
 		if (href) {
 			return (
-				<Link key={`link-${index}`} href={href} target='_blank'>
-					<span className={classes}>{content}</span>
+				<Link key={`link-${index}`} href={href} passHref>
+					<a target='_blank' {...(classes && { className: classes })}>
+						{content}
+					</a>
 				</Link>
 			);
 		}
 
 		return (
-			<span key={`text-${index}`} className={classes}>
+			<span key={`text-${index}`} {...(classes && { className: classes })}>
 				{content}
 			</span>
 		);
