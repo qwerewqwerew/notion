@@ -6,6 +6,7 @@ html {
 }
 a {
 	font-size: $font-size-base * 1.25;
+	text-decoration: none;
 }
 body {
 	font-family: 'Pretendard Variable', Pretendard, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -13,23 +14,25 @@ body {
 	line-height: 1.75;
 	color: var(--bs-gray-900);
 	font-size: $font-size-base * 1.25;
-	margin:10vh auto;
+	margin: 10vh auto;
 }
 .headline {
-	&.h1 {
-		font-size: $font-size-base * 3.4;
-		margin: 3rem 0;
+	&.h1,h1 {
+		color: var(--bs-gray-800);
+		font-size: $font-size-base * 2.4;
+		margin: 3rem 0 1.5rem;
 		font-weight: 200;
 	}
-	&.h2 {
-		font-size: $font-size-base * 2.4;
-		margin: 2rem 0;
+	&.h2,h2 {
+		font-size: $font-size-base * 2;
+		margin: 3rem 0 1.5rem;
 		color: var(--bs-gray-700);
 		font-weight: 400;
 	}
-	&.h3 {
+	&.h3,h3 {
+		color: var(--bs-gray-600);
 		font-size: $font-size-base * 1.8;
-		margin: 1.5rem 0;
+		margin: 3rem 0 1.5rem;
 	}
 }
 .snippets {
@@ -51,20 +54,8 @@ pre {
 }
 
 .container {
-	li {
-		padding-top: 1.6rem;
-	}
-	li::before {
-		position: relative;
-		left: -0.5rem;
-		top: -0.23rem;
-		content: '▪ ';
-		color: var(--bs-info);
-		font-size: 1rem;
-	}
-	p {
-		padding-left: 0.5rem;
-		padding-top: 1.5rem;
+	img + * {
+		margin-top: 2rem;
 	}
 	img {
 		margin-left: 2rem;
@@ -73,6 +64,17 @@ pre {
 	}
 	.disc {
 		padding-left: 0.5rem;
+		li {
+			padding-top: 1.6rem;
+		}
+		li::before {
+			position: relative;
+			left: -0.5rem;
+			top: -0.23rem;
+			content: '▪ ';
+			color: var(--bs-info);
+			font-size: 1rem;
+		}
 	}
 }
 

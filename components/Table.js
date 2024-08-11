@@ -2,8 +2,6 @@ import RenderRichText from './RenderRichText';
 
 const Table = ({ block, childBlocks }) => {
 	const { table } = block;
-	console.log('Table block:', block);
-	console.log('Child blocks:', childBlocks);
 
 	if (!table || !childBlocks) {
 		return null;

@@ -10,8 +10,6 @@ export async function getStaticProps() {
 	}
 
 	const database = await getDatabase(databaseId);
-	//console.log('Database:', database);
-
 	return {
 		props: {
 			database,
@@ -27,19 +25,19 @@ export default function Home({ database }) {
 				<h1 className='display-4 mb-4 brand'>CoalaCoding</h1>
 			</Link>
 			<Link href='https://www.youtube.com/@coalacoding' target='_blank'>
-				<span className="btn btn_light">🐨 코알라코딩 유튜브🐨</span>
+				<span className='btn btn_light'>🐨 코알라코딩 유튜브🐨</span>
 			</Link>
-			<div className='list-group'>
+			<ul className='list-group'>
 				{database.map((item) => (
-					<div key={item.id} className='list-group-item'>
+					<li key={item.id} className='list-group-item'>
 						<h2 className='h5'>
 							<Link href={`/${item.id}`} className='text-decoration-none text-primary'>
 								{item.title}
 							</Link>
 						</h2>
-					</div>
+					</li>
 				))}
-			</div>
+			</ul>
 		</div>
 	);
 }

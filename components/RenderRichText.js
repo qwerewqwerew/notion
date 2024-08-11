@@ -14,10 +14,8 @@ const RenderRichText = ({ richTextArray }) => {
 
 		if (href) {
 			return (
-				<Link key={`link-${index}`} href={href} passHref>
-					<a target='_blank' {...(classes && { className: classes })}>
-						{content}
-					</a>
+				<Link key={`link-${index}`} href={href} target='_blank' {...(classes && { className: classes })}>
+					<span>{content}</span>
 				</Link>
 			);
 		}

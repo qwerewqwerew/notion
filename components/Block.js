@@ -168,7 +168,7 @@ const Block = ({ block, isChild = false }) => {
 						{columns.map((column, colIndex) => (
 							<div key={`col-${colIndex}`} className='flex-grow-1'>
 								{column.children.map((childBlock) => (
-									<ChildBlock key={childBlock.id} childBlocks={childBlocks} />
+									<ChildBlock key={childBlock.id} block={childBlock} childBlocks={childBlocks} />
 								))}
 							</div>
 						))}
