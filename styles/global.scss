@@ -13,24 +13,30 @@ body {
 	font-family: 'Pretendard Variable', Pretendard, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	background-color: #f8f9fa;
 	line-height: 1.75;
+	table > * {
+		color: var(--bs-gray-900) !important;
+	}
 	color: var(--bs-gray-900);
 	font-size: $font-size-base * 1.25;
 	margin: 10vh auto;
 }
 .headline {
-	&.h1,h1 {
+	&.h1,
+	h1 {
 		color: var(--bs-gray-800);
 		font-size: $font-size-base * 2.4;
 		margin: 3rem 0 1.5rem;
 		font-weight: 200;
 	}
-	&.h2,h2 {
+	&.h2,
+	h2 {
 		font-size: $font-size-base * 2;
 		margin: 3rem 0 1.5rem;
 		color: var(--bs-gray-700);
 		font-weight: 400;
 	}
-	&.h3,h3 {
+	&.h3,
+	h3 {
 		color: var(--bs-gray-600);
 		font-size: $font-size-base * 1.8;
 		margin: 3rem 0 1.5rem;
@@ -66,7 +72,7 @@ pre {
 	.disc {
 		padding-left: 0.5rem;
 		li {
-			padding: 1rem 0 .5rem;
+			padding: 1rem 0 0.5rem;
 		}
 		li::before {
 			position: relative;
