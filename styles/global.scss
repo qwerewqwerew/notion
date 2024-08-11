@@ -81,6 +81,14 @@ pre {
 			content: '▪ ';
 			color: var(--bs-info);
 			font-size: 1rem;
+			li::before {
+				position: relative;
+				left: -0.5rem;
+				top: -0.23rem;
+				content: '▪ ';
+				color: var(--bs-primary-text-emphasis);
+				font-size: 1rem;
+			}
 		}
 	}
 }
