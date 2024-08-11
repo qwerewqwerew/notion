@@ -182,14 +182,13 @@ const Block = ({ block, isChild = false }) => {
 			case 'child_page': {
 				const childPageTitle = block.child_page?.title || '제목 없음';
 				return (
-					<div key={id} className='card mb-3'>
-						<div className='card-body'>
-							<Link href={`/${block.id}`}>
+					<Link href={`/${block.id}`} passHref>
+						<div key={id} className='card mb-3 cursor-pointer'>
+							<div className='card-body'>
 								<span className='stretched-link'>{childPageTitle}</span>
-							</Link>
-							<ChildBlock childBlocks={childBlocks} />
+							</div>
 						</div>
-					</div>
+					</Link>
 				);
 			}
 
