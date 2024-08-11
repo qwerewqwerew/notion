@@ -22,12 +22,12 @@ export async function getStaticProps() {
 
 export default function Home({ database }) {
 	return (
-		<div className='container m-5'>
+		<div className='container my-5'>
 			<Link href='https://coalacoding.com'>
-				<h1 className='display-4 mb-4'>CoalaCoding</h1>
+				<h1 className='display-4 mb-4 brand'>CoalaCoding</h1>
 			</Link>
 			<Link href='https://www.youtube.com/@coalacoding' target='_blank'>
-				🐨 코알라코딩 유튜브🐨
+				<span className="btn btn_light">🐨 코알라코딩 유튜브🐨</span>
 			</Link>
 			<div className='list-group'>
 				{database.map((item) => (
