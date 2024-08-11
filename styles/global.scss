@@ -1,5 +1,5 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
-@import '~bootstrap/scss/bootstrap'; // 부트스트랩 SCSS 가져오기
+@import '~bootstrap/scss/bootstrap';
 
 html {
 	overflow-y: scroll;
@@ -13,6 +13,7 @@ body {
 	line-height: 1.75;
 	color: var(--bs-gray-900);
 	font-size: $font-size-base * 1.25;
+	margin:10vh auto;
 }
 .headline {
 	&.h1 {
@@ -50,6 +51,17 @@ pre {
 }
 
 .container {
+	li {
+		padding-top: 1.6rem;
+	}
+	li::before {
+		position: relative;
+		left: -0.5rem;
+		top: -0.23rem;
+		content: '▪ ';
+		color: var(--bs-info);
+		font-size: 1rem;
+	}
 	p {
 		padding-left: 0.5rem;
 	}
@@ -60,16 +72,6 @@ pre {
 	}
 	.disc {
 		padding-left: 0.5rem;
-		li {
-			position: relative;
-			&:before {
-				position: absolute;
-				content: '▪';
-				color: var(--bs-info);
-				left: 0%;
-				top: 5%;
-			}
-		}
 	}
 }
 

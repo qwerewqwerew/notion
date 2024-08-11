@@ -1,14 +1,34 @@
 import React from 'react';
 import RenderRichText from './RenderRichText';
+import ChildBlock from './ChildBlock';
 
-const renderImages = (images) => {
-	if (!images || images.length === 0) return null;
-
-	return images.map((image, index) => <img key={`image-${index}`} src={image.url} alt={image.alt || 'Image'} className='shadow-lg p-3 mb-5 bg-white rounded' />);
-};
-
-const ListGroup = ({ items }) => {
+const ListGroup = ({ items, childBlocks }) => {
 	if (!items || items.length === 0) return null;
+
+	const groupListItems = (blocks) => {
+		const newBlockArray = [];
+		let currentList = null;
+
+		blocks.forEach((block) => {
+			if (block.type === 'bulleted_list_item' || block.type === 'numbered_list_item') {
+				if (!currentList || currentList.type !== block.type) {
+					currentList = {
+						type: block.type === 'bulleted_list_item' ? 'ul' : 'ol',
+						children: [],
+					};
+					newBlockArray.push(currentList);
+				}
+				currentList.children.push(block);
+			} else {
+				newBlockArray.push(block);
+				currentList = null;
+			}
+		});
+
+		return newBlockArray;
+	};
+
+	const processedItems = groupListItems(items);
 
 	const renderListItems = (listItems, listType) => {
 		return React.createElement(
@@ -17,49 +37,28 @@ const ListGroup = ({ items }) => {
 			listItems.map((item) => (
 				<li key={item.id} className='list-group-item'>
 					<RenderRichText richTextArray={item[item.type].rich_text} />
-					{renderImages(item.images)}
+					{item.has_children && <ChildBlock childBlocks={childBlocks.filter((child) => child.parent.block_id === item.id)} />}
 				</li>
 			))
 		);
 	};
 
-	const elements = [];
-	let listItems = [];
-	let currentListType = null;
-
-	items.forEach((item) => {
-		if (item.type === 'numbered_list_item' || item.type === 'bulleted_list_item') {
-			const listType = item.type === 'numbered_list_item' ? 'ol' : 'ul';
-
-			if (!currentListType) {
-				currentListType = listType;
-			} else if (currentListType !== listType) {
-				elements.push(renderListItems(listItems, currentListType));
-				listItems = [];
-				currentListType = listType;
+	const renderBlocks = (blocks) => {
+		return blocks.map((item, index) => {
+			if (item.type === 'ul' || item.type === 'ol') {
+				return <React.Fragment key={index}>{renderListItems(item.children, item.type)}</React.Fragment>;
+			} else {
+				return (
+					<div key={item.id} className={item.type}>
+						<RenderRichText richTextArray={item[item.type].rich_text} />
+						{item.has_children && <ChildBlock childBlocks={childBlocks.filter((child) => child.parent.block_id === item.id)} />}
+					</div>
+				);
 			}
+		});
+	};
 
-			listItems.push(item);
-		} else {
-			if (listItems.length > 0 && currentListType) {
-				elements.push(renderListItems(listItems, currentListType));
-				listItems = [];
-				currentListType = null;
-			}
-
-			elements.push(
-				<div key={item.id} className={item.type}>
-					<RenderRichText richTextArray={item[item.type].rich_text} />
-				</div>
-			);
-		}
-	});
-
-	if (listItems.length > 0 && currentListType) {
-		elements.push(renderListItems(listItems, currentListType));
-	}
-
-	return <div className="group">{elements}</div>;
+	return <div className='group'>{renderBlocks(processedItems)}</div>;
 };
 
 export default ListGroup;

@@ -6,32 +6,33 @@ import ListGroup from './ListGroup';
 import RenderRichText from './RenderRichText';
 import Link from 'next/link';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getBlocks } from '../lib/notion';
 import Table from './Table';
 
-const Block = ({ block }) => {
+const Block = ({ block, isChild = false }) => {
 	const { type, id, has_children } = block;
 	const [childBlocks, setChildBlocks] = useState([]);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		const fetchChildBlocks = async () => {
-			if (has_children) {
+			if (has_children && !isChild) {
+				// 부모 블록에서만 API 호출
 				try {
-					const response = await fetch(`/api/notion-proxy?blockId=${id}`); // 페이지 ID를 사용하여 호출
+					const response = await fetch(`/api/notion-proxy?blockId=${id}`);
 					if (!response.ok) {
-						throw new Error('Network response was not ok');
+						throw new Error(`Failed to fetch child blocks for block ID ${id}`);
 					}
 					const data = await response.json();
-					console.log('Fetched child blocks:', data.results); // 콘솔 로그로 데이터 확인
 					setChildBlocks(data.results);
 				} catch (error) {
 					console.error('Error fetching child blocks:', error);
+					setError(error);
 				}
 			}
 		};
 
 		fetchChildBlocks();
-	}, [id, has_children]);
+	}, [id, has_children, isChild]);
 
 	const renderCodeBlock = (code, language = 'javascript') => {
 		const copyToClipboard = () => {
@@ -58,6 +59,8 @@ const Block = ({ block }) => {
 	};
 
 	const renderBlock = () => {
+		if (error) return <div>오류 발생: {error.message}</div>;
+
 		switch (type) {
 			case 'paragraph':
 				return (
@@ -85,9 +88,10 @@ const Block = ({ block }) => {
 					</blockquote>
 				);
 
-			case 'numbered_list_item':
 			case 'bulleted_list_item':
-				return <ListGroup key={id} items={[block]} />;
+			case 'numbered_list_item':
+				console.log('list item', block);
+				return <ListGroup key={id} items={[block]} childBlocks={childBlocks} />;
 
 			case 'toggle': {
 				const [isOpen, setIsOpen] = useState(false);
@@ -96,7 +100,7 @@ const Block = ({ block }) => {
 						<div className='btn btn-link border-bottom rounded-2 text-decoration-none border-primary-subtle p-3' onClick={() => setIsOpen(!isOpen)}>
 							<RenderRichText richTextArray={block.toggle.rich_text} />
 						</div>
-						{isOpen && has_children && <ChildBlock blockId={id} />}
+						{isOpen && has_children && <ChildBlock childBlocks={childBlocks} />}
 					</div>
 				);
 			}
@@ -164,7 +168,7 @@ const Block = ({ block }) => {
 						{columns.map((column, colIndex) => (
 							<div key={`col-${colIndex}`} className='flex-grow-1'>
 								{column.children.map((childBlock) => (
-									<ChildBlock key={childBlock.id} blockId={childBlock.id} />
+									<ChildBlock key={childBlock.id} childBlocks={childBlocks} />
 								))}
 							</div>
 						))}
@@ -183,7 +187,7 @@ const Block = ({ block }) => {
 							<Link href={`/${block.id}`}>
 								<span className='stretched-link'>{childPageTitle}</span>
 							</Link>
-							<ChildBlock blockId={block.id} />
+							<ChildBlock childBlocks={childBlocks} />
 						</div>
 					</div>
 				);
