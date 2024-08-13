@@ -107,7 +107,7 @@ const Block = ({ block, isChild = false }) => {
 
 			case 'image': {
 				const imageUrl = block.image.file?.url || block.image.external?.url;
-				return <img key={id} src={imageUrl} alt='Image' className='img-fluid shadow border border-muted ' />;
+				return <img key={id} src={imageUrl} alt='Image' className='img-thumbnail' />;
 			}
 
 			case 'code': {
