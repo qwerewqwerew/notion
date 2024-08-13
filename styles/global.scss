@@ -1,6 +1,6 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 @import '~bootstrap/scss/bootstrap';
-
+.list-group-item{background-color:transparent;}
 html {
 	overflow-y: scroll;
 	letter-spacing: -0.5px;
@@ -66,9 +66,7 @@ pre {
 	}
 	img {
 		margin-left: 2rem;
-		width: 100%;	
-		object-fit:scale-down;
-		object-position:0 center;
+	
 	}
 	.disc {
 		padding-left: 0.5rem;
