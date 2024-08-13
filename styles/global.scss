@@ -74,6 +74,7 @@ pre {
 			padding: 1rem 0 0.5rem;
 		}
 		li::before {
+			display:block;
 			position: relative;
 			left: -0.5rem;
 			top: -0.23rem;
@@ -81,6 +82,7 @@ pre {
 			color: var(--bs-info);
 			font-size: 1rem;
 			li::before {
+				display:block;
 				position: relative;
 				left: -0.5rem;
 				top: -0.23rem;
