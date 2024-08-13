@@ -22,10 +22,10 @@ export default function Home({ database }) {
 	return (
 		<div className='container my-5'>
 			<Link href='https://coalacoding.com'>
-				<h1 className='display-4 mb-4 brand'>CoalaCoding</h1>
+				<h1 className='display-4 mb-4 brand'>CoalaCoding.com</h1>
 			</Link>
 			<Link href='https://www.youtube.com/@coalacoding' target='_blank'>
-				
+
 			</Link>
 			<ul className='list-group'>
 				{database.map((item) => (

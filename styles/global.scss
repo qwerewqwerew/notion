@@ -99,9 +99,28 @@ pre {
 		}
 	}
 }
-
+p {
+	word-break: break-all;
+	.text {
+		&-yellow_background {
+			font-size: $font-size-base * 1.2;
+			padding: $spacer * 0.8 $spacer * 1.2;
+			border-radius: $spacer;
+			border: 1px solid $blue-300;
+			display: inline-block;
+		}
+		&-red {
+			padding: $spacer $spacer * 1.2 0;
+			display: block;
+			color: $gray-600;
+			font-size: $font-size-base * 1.4;
+			margin-bottom: -20px;
+			text-transform: uppercase;
+		}
+	}
+}
 .bold {
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .italic {
@@ -132,5 +151,3 @@ pre {
 .text-red {
 	color: red;
 }
-
-/* 다른 색상들에 대해서도 추가 */
