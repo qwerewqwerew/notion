@@ -66,8 +66,9 @@ pre {
 	}
 	img {
 		margin-left: 2rem;
-		width: 100%;
-		max-width: 50rem;
+		width: 100%;	
+		object-fit:scale-down;
+		object-position:0 center;
 	}
 	.disc {
 		padding-left: 0.5rem;
