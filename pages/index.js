@@ -25,7 +25,7 @@ export default function Home({ database }) {
 				<h1 className='display-4 mb-4 brand'>CoalaCoding</h1>
 			</Link>
 			<Link href='https://www.youtube.com/@coalacoding' target='_blank'>
-				<span className='btn btn_light'>🐨 코알라코딩 유튜브🐨</span>
+				
 			</Link>
 			<ul className='list-group'>
 				{database.map((item) => (
