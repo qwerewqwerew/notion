@@ -18,5 +18,11 @@ module.exports = withBundleAnalyzer({
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.cache = false
+    }
+    return config
   }
 })
