@@ -23,15 +23,15 @@
       "./node_modules/@types"
     ],
     "paths": {
-      "@/lib*": [
-        "./lib*"
+      "@/lib/*": [
+        "./lib/*"
       ],
       "@/*": [
         "../*"
       ],
       "~/*": [
         "./*"
-      ],
+      ]
     },
     "incremental": true
   },
@@ -42,6 +42,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "site.config.ts"
+    "site.config.ts",
+    "!components/GitHubShareButton.tsx"
   ]
 }
