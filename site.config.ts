@@ -3,7 +3,7 @@ import { siteConfig } from './lib/site-config'
 export default siteConfig({
   // the site's root Notion page (required)
   rootNotionPageId: '9a6dcf6356604822af39094db8c70cf0',
-  //rootNotionPageId: '7875426197cf461698809def95960ebf',
+
 
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
@@ -11,7 +11,7 @@ export default siteConfig({
 
   // basic site info (required)
   name: 'Next.js Notion',
-  domain: 'nextjs-notion-starter-kit.transitivebullsh.it',
+  domain: 'coalacoding.com',
   author: 'coalacoding',
 
   // open graph metadata (optional)
