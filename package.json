@@ -47,7 +47,12 @@
     "react-notion-x": "^6.15.6",
     "react-tweet-embed": "^2.0.0",
     "react-use": "^17.4.2",
-    "rss": "^1.2.2"
+    "rss": "^1.2.2",
+    "sharp": "^0.33.4"
+  },
+  "optionalDependencies": {
+    "@img/sharp-linux-arm": "^0.33.2",
+    "@img/sharp-win32-x64": "^0.33.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.3.1",
