@@ -50,16 +50,16 @@ export default siteConfig({
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
-  navigationStyle: 'default'
-  // navigationStyle: 'custom',
-  // navigationLinks: [
-  //   {
-  //     title: 'About',
-  //     pageId: 'React-3fa9c6473aac49e3be09d7c7cda924f4'
-  //   },
-  //   {
-  //     title: 'Contact',
-  //     pageId: '6a29ebcb935a4f0689fe661ab5f3b8d1'
-  //   }
-  // ]
+  //navigationStyle: 'default'
+  navigationStyle: 'custom',
+  navigationLinks: [
+    {
+      title: 'React',
+      pageId: 'React-3fa9c6473aac49e3be09d7c7cda924f4'
+    },
+    {
+      title: 'Javascript',
+      pageId: 'dd72dfb6e7d0472399bc4840448ced29'
+    }
+  ]
 })
