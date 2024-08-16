@@ -1,19 +1,20 @@
-import { siteConfig } from './lib/site-config'
+import { siteConfig } from './lib/site-config';
+
 
 export default siteConfig({
   // the site's root Notion page (required)
   rootNotionPageId: '660d1a8fa22a457ebab29e3d8c8af854',
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
-  rootNotionSpaceId: null,
+  rootNotionSpaceId: 'f2b063ab-5763-4522-82a6-f18f4aaa1c70',
 
   // basic site info (required)
   name: 'Lesson',
-  domain: 'coalacoding.com',
+  domain: 'mango2.notion.site',
   author: 'coalacoding',
 
   // open graph metadata (optional)
-  description: 'Example Next.js Notion Starter Kit Site',
+  description: 'Frontend 공부방',
 
   // social usernames (optional)
   //twitter: 'transitive_bs',
@@ -21,7 +22,7 @@ export default siteConfig({
   //linkedin: 'fisch2',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
-  // youtube: '#', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
+  youtube: 'channel/UCMb94yucTNsjIJqD8C8lO2Q', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
