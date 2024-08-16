@@ -11,13 +11,13 @@ export const ErrorPage: React.FC<{ statusCode: number }> = ({ statusCode }) => {
       <PageHead title={title} />
 
       <div className={styles.container}>
-        <div className={styles.main}>
+        <main className={styles.main}>
           <h1>Error Loading Page</h1>
 
           {statusCode && <p>Error code: {statusCode}</p>}
 
           <img src='/error.png' alt='Error' className={styles.errorImage} />
-        </div>
+        </main>
       </div>
     </>
   )

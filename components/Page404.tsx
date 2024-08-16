@@ -13,7 +13,7 @@ export const Page404: React.FC<types.PageProps> = ({ site, pageId, error }) => {
       <PageHead site={site} title={title} />
 
       <div className={styles.container}>
-        <div className={styles.main}>
+        <main className={styles.main}>
           <h1>Notion Page Not Found</h1>
 
           {error ? (
@@ -32,7 +32,7 @@ export const Page404: React.FC<types.PageProps> = ({ site, pageId, error }) => {
             alt='404 Not Found'
             className={styles.errorImage}
           />
-        </div>
+        </main>
       </div>
     </>
   )
