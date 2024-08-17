@@ -28,7 +28,7 @@ if (!rootNotionPageId) {
 // if you want to restrict pages to a single notion workspace (optional)
 export const rootNotionSpaceId: string | null = parsePageId(
   getSiteConfig('rootNotionSpaceId', null),
-  { uuid: true }
+  { uuid: false }
 )
 
 export const pageUrlOverrides = cleanPageUrlMap(
