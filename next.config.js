@@ -3,7 +3,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 
-module.exports = withBundleAnalyzer({
+const nextConfig = {
   staticPageGenerationTimeout: 600,
   images: {
     domains: [
@@ -19,7 +19,9 @@ module.exports = withBundleAnalyzer({
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
   experimental: {
-    //largePageDataBytes: 128 * 1000, // 128KB by default
-    largePageDataBytes: 128 * 100000
+    // largePageDataBytes: 128 * 1000, // 128KB by default
+    largePageDataBytes: 128 * 100000 // 증가된 128MB로 설정
   }
-})
+}
+
+module.exports = withBundleAnalyzer(nextConfig)
