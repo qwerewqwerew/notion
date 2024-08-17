@@ -1,0 +1,9 @@
+// 해당 import문의 순서를 변경하면 스타일이 제대로 적용되지 않습니다.
+@import '../global.css';
+@import '../notion.css';
+@import '../prism-theme.css';
+
+@import './vars.scss';
+@import './notion.scss';
+
+@import '../../components/Comments/index.scss';

@@ -1,4 +1,5 @@
-import { siteConfig } from './lib/site-config'
+import { siteConfig } from './lib/site-config';
+
 
 export default siteConfig({
   // the site's root Notion page (required)
@@ -77,5 +78,6 @@ export default siteConfig({
       title: 'Effects',
       pageId: '844ad9fe16104afd863290f2db3da1d0'
     }
-  ]
+  ],
+  enableComment: true
 })

@@ -24,6 +24,7 @@
   background-color: var(--bg-color);
 }
 
+
 .loadingIcon {
   animation: spinner 0.6s linear infinite;
   display: block;
@@ -55,7 +56,11 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.comments {
+  width: 100%;
+  margin-top: 2em;
+  border-top: 1px solid var(--fg-color-0);
+}
 .copyright {
   font-size: 80%;
   padding: 0.5em;

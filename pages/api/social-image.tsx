@@ -12,6 +12,13 @@ export const config = {
 
 export default async function OGImage(req: NextRequest) {
   const { searchParams } = new URL(req.url)
+  const { id } = Object.fromEntries(searchParams)
+  const result = await fetch(`https://api.notion.com/v1/pages/${id}`, {
+    headers: {
+      Authorization: `Bearer ${process.env.NOTION_API_KEY}`,
+      'Notion-Version': '2022-06-28'
+    }
+  })
   const pageId = searchParams.get('id') || rootNotionPageId
   if (!pageId) {
     return new Response('Invalid notion page id', { status: 400 })
