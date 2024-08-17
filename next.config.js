@@ -20,7 +20,7 @@ const nextConfig = {
   },
   experimental: {
     // largePageDataBytes: 128 * 1000, // 128KB by default
-    largePageDataBytes: 128 * 100000 // 증가된 128MB로 설정
+    //largePageDataBytes: 128 * 100000 // 증가된 128MB로 설정
   }
 }
 
