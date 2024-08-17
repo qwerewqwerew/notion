@@ -41,11 +41,12 @@ export async function getStaticPaths() {
         pageId
       }
     })),
-    // paths: [],
+
+    //paths: [],
     fallback: true
   }
 
-  //  console.log(staticPaths.paths)
+    console.log(staticPaths.paths)
   return staticPaths
 }
 
