@@ -22,7 +22,7 @@ export default siteConfig({
   //linkedin: 'fisch2',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
-  youtube: 'channel/UCMb94yucTNsjIJqD8C8lO2Q', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
+  youtube: 'channel/UCMb94yucTNsjIJqD8C8lO2Q',
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
@@ -55,31 +55,27 @@ export default siteConfig({
   navigationLinks: [
     {
       title: 'React',
-      pageId: 'React-3fa9c6473aac49e3be09d7c7cda924f4'
+      pageId: '3fa9c6473aac49e3be09d7c7cda924f4'
     },
     {
       title: 'Javascript',
       pageId: 'dd72dfb6e7d0472399bc4840448ced29'
     },
-    // {
-    //   title: 'Next',
-    //   pageId: 'Nextjs-74e5fbc6db104de6847c0d5373c82d29'
-    // },
     {
       title: 'HTML/CSS',
-      pageId: 'HTML-CSS-643e64a0be9f43aaad03803436e8132d'
+      pageId: '643e64a0be9f43aaad03803436e8132d'
     },
     {
       title: 'GoogleAnalytics',
-      pageId: 'GoogleAnalytics-2b8e85e1167142fea7078aae35e7247e'
+      pageId: '2b8e85e1167142fea7078aae35e7247e'
     },
     {
       title: 'Git',
-      pageId: 'Git-141d54a2691240e889bc3a6b5f932acf'
+      pageId: '141d54a2691240e889bc3a6b5f932acf'
     },
     {
       title: 'Effects',
-      pageId: 'ScrollEffect-844ad9fe16104afd863290f2db3da1d0'
+      pageId: '844ad9fe16104afd863290f2db3da1d0'
     }
   ]
 })
