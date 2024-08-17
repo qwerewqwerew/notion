@@ -12,10 +12,14 @@ module.exports = withBundleAnalyzer({
       'images.unsplash.com',
       'pbs.twimg.com',
       'abs.twimg.com',
-      's3.us-west-2.amazonaws.com',
+      's3.us-west-2.amazonaws.com'
     ],
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
+  },
+  experimental: {
+    //largePageDataBytes: 128 * 1000, // 128KB by default
+    largePageDataBytes: 128 * 100000
   }
 })

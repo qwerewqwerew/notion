@@ -400,6 +400,10 @@
   color: var(--fg-color-2);
 }
 
-.notion-equation.notion-equation-block{
+.notion-equation.notion-equation-block {
   align-items: center;
+}
+.notion-simple-table td {
+  white-space: nowrap;
+
 }
