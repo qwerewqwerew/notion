@@ -17,10 +17,6 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
-  },
-  experimental: {
-    // largePageDataBytes: 128 * 1000, // 128KB by default
-    //largePageDataBytes: 128 * 100000 // 증가된 128MB로 설정
   }
 }
 
