@@ -1,9 +1,8 @@
-import { siteConfig } from './lib/site-config';
-
+import { siteConfig } from './lib/site-config'
 
 export default siteConfig({
   // the site's root Notion page (required)
-  rootNotionPageId: '660d1a8fa22a457ebab29e3d8c8af854',
+  rootNotionPageId: 'Coala-Lesson-660d1a8fa22a457ebab29e3d8c8af854',
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   //rootNotionSpaceId: 'f2b063ab-5763-4522-82a6-f18f4aaa1c70',
@@ -79,5 +78,6 @@ export default siteConfig({
       pageId: '844ad9fe16104afd863290f2db3da1d0'
     }
   ],
+  includeNotionIdInUrls: true,
   enableComment: false
 })
