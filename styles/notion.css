@@ -8,10 +8,12 @@
  */
 
 .notion {
-  --notion-max-width: min(calc(80vw), 1400px);
+  --notion-max-width: min(calc(80vw), 1600px);
   --notion-header-height: 54px;
 }
-
+.notion-aside{
+  left:0%;
+}
 .notion-frame {
   padding: 0;
 }

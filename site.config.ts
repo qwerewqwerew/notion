@@ -79,5 +79,5 @@ export default siteConfig({
       pageId: '844ad9fe16104afd863290f2db3da1d0'
     }
   ],
-  enableComment: true
+  enableComment: false
 })
