@@ -11,7 +11,7 @@ export default siteConfig({
 
   // basic site info (required)
   name: 'Lesson',
-  domain: 'mango2.notion.site',
+  domain: 'coalacoding.notion.site',
   author: 'coalacoding',
 
   // open graph metadata (optional)

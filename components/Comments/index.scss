@@ -1,9 +1,19 @@
 .notion-comments {
   margin-top: 3rem;
   width: 100%;
+  position: relative;
+  &:before {
+    content: '';
+    left: 0;
+    right: 0;
+    top: -2rem;
+    height: 1px;
+    position: absolute;
+    background-color: #dddddd;
+  }
 
   @media (min-width: 1400px) {
-    width: calc(100% - 300px - 5rem);
+    width: calc(100%);
   }
 
   h2 {
