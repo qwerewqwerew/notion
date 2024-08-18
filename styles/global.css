@@ -15,7 +15,8 @@ body {
     'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   font-family: var(--notion-font);
   overflow-x: hidden;
-  font-weight: 500;
+  font-weight: 450;
+
 }
 
 a {
