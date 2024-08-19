@@ -340,6 +340,7 @@ body {
   .notion {
     &-h1 {
       font-size: 1.7rem;
+      margin-top: 2rem;
 
       &::after {
         content: '';
@@ -359,6 +360,7 @@ body {
 
     &-h3 {
       font-size: 1.2rem;
+      margin-top: 2rem;
     }
   }
 
