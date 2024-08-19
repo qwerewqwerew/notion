@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "composite": true,
     "target": "es2016",
     "lib": [ "dom", "dom.iterable", "esnext" ],
     "allowJs": true,
@@ -28,18 +29,4 @@
   },
   "exclude": [ "node_modules" ],
   "include": [ "next-env.d.ts", "**/*.ts", "**/*.tsx", "site.config.ts" ],
-  "references": [
-    {
-      "path": "./packages/notion-types/tsconfig.json"
-    },
-    {
-      "path": "./packages/notion-utils/tsconfig.json"
-    },
-    {
-      "path": "./packages/notion-client/tsconfig.json"
-    },
-    {
-      "path": "./packages/react-notion-x/tsconfig.json"
-    }
-  ]
 }
