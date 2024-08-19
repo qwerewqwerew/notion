@@ -15,6 +15,23 @@
   :root {
     --base-font-size: 0.95rem;
   }
+  .notion-table {
+    width: 100% !important;
+    max-width: 100%;
+    margin: auto;
+    overflow: scroll hidden !important;
+  }
+}
+@media only screen and (width <= 520px) {
+  .notion-aside {
+    display: none;
+  }
+  .notion-table {
+    width: 100% !important;
+    max-width: 100%;
+    margin: auto;
+    overflow: scroll hidden !important;
+  }
 }
 
 /**
