@@ -1,4 +1,5 @@
-import { siteConfig } from './lib/site-config'
+import { siteConfig } from './lib/site-config';
+
 
 export default siteConfig({
   // the site's root Notion page (required)
@@ -54,29 +55,9 @@ export default siteConfig({
   navigationStyle: 'custom',
   navigationLinks: [
     {
-      title: 'React',
-      pageId: '3fa9c6473aac49e3be09d7c7cda924f4'
+      title: '카테고리',
+      pageId: 'Category-709f1b28d3e848c481e5745c04e53ff3'
     },
-    {
-      title: 'Javascript',
-      pageId: 'dd72dfb6e7d0472399bc4840448ced29'
-    },
-    {
-      title: 'HTML/CSS',
-      pageId: '643e64a0be9f43aaad03803436e8132d'
-    },
-    {
-      title: 'GoogleAnalytics',
-      pageId: '2b8e85e1167142fea7078aae35e7247e'
-    },
-    {
-      title: 'Git',
-      pageId: '141d54a2691240e889bc3a6b5f932acf'
-    },
-    {
-      title: 'Effects',
-      pageId: '844ad9fe16104afd863290f2db3da1d0'
-    }
   ],
   includeNotionIdInUrls: true,
   enableComment: false
