@@ -11,8 +11,8 @@
   --notion-max-width: min(calc(80vw), 1600px);
   --notion-header-height: 54px;
 }
-.notion-aside{
-  left:0%;
+.notion-aside {
+  left: 0%;
 }
 .notion-frame {
   padding: 0;
@@ -86,6 +86,7 @@
 
 .notion-collection-card-cover img {
   border-radius: 16px;
+  object-fit: cover;
 }
 
 .notion-collection-card {
