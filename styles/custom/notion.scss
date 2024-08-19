@@ -111,6 +111,7 @@ body {
   .notion-page-cover-wrapper span,
   .notion-page-cover-wrapper img {
     max-width: 100% !important;
+    object-fit: cover;
     border-radius: 0;
     height: calc(30vh + var(--notion-header-height)) !important;
     min-height: calc(30vh + var(--notion-header-height)) !important;
@@ -603,6 +604,7 @@ body {
 
         img {
           border-radius: 0;
+          object-fit: cover;
         }
       }
 
