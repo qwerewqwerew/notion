@@ -9,7 +9,7 @@ import { useFormik } from 'formik'
 import useSWR from 'swr'
 
 
-import { ExtendedRecordMap } from 'notion-types/src'
+import { ExtendedRecordMap } from 'notion-types'
 
 
 interface CommentsProps {
