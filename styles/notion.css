@@ -86,7 +86,7 @@
 
 .notion-collection-card-cover img {
   border-radius: 16px;
-  object-fit: cover;
+  object-fit: cover !important;
 }
 
 .notion-collection-card {
