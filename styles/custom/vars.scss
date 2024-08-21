@@ -1,5 +1,6 @@
 // vars
 :root {
+
   --base-font-size: 1.125rem;
 
   --primary-color: #daaa52;
@@ -80,8 +81,7 @@
   --notion-aside-space-width: 5rem;
 
   --notion-page-content-inner-width: calc(
-    var($notion-max-width) - var(--notion-aside-width) -
-      var(--notion-aside-space-width)
+    var(--notion-max-width) - var(--notion-aside-width) - var(--notion-aside-space-width)
   );
 }
 

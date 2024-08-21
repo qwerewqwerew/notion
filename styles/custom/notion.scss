@@ -2,7 +2,38 @@
 ::-webkit-scrollbar {
   display: none;
 }
-$notion-max-width: 100%;
+
+// 반응형 처리
+@media only screen and (max-width: 1500px) {
+  :root {
+    --notion-page-left-right-padding: 8vw;
+    --notion-page-fullwith-left-right-padding: 8vw;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  :root {
+    --base-font-size: 0.95rem;
+  }
+  .notion-table {
+    width: 100% !important;
+    max-width: 100%;
+    margin: auto;
+    overflow: scroll hidden !important;
+  }
+}
+@media only screen and (width <= 520px) {
+  .notion-aside {
+    display: none;
+  }
+  .notion-table {
+    width: 100% !important;
+    max-width: 100%;
+    margin: auto;
+    overflow: scroll hidden !important;
+  }
+}
+
 /**
  * ================ 전체적인 레이아웃 구성 관련 ================
  */
@@ -19,13 +50,6 @@ body {
   }
 
   .notion-page {
-    width: calc(
-      $notion-max-width -
-        (
-          var(--notion-page-left-right-padding) +
-            var(--notion-page-left-right-padding) + 300px
-        )
-    );
     padding-left: var(--notion-page-left-right-padding);
     padding-right: var(--notion-page-left-right-padding);
   }
@@ -50,7 +74,7 @@ body {
     transition-property: background-color, color;
 
     .notion-nav-header {
-      max-width: var($notion-max-width);
+      max-width: var(--notion-max-width);
     }
 
     .breadcrumb.notion-nav-header-mobile svg {
@@ -580,7 +604,6 @@ body {
 
         img {
           border-radius: 0;
-          object-fit: cover !important;
         }
       }
 
