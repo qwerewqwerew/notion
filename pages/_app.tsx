@@ -15,12 +15,12 @@ import 'prismjs/themes/prism-coy.css';
 //import 'prismjs/themes/prism-okaidia.css'
 // core styles shared by all of react-notion-x (required)
 import 'react-notion-x/src/styles.css';
-//import 'styles/global.css';
+import 'styles/global.css';
 // global style overrides for notion
-//import 'styles/notion.css';
+import 'styles/notion.css';
 // global style overrides for prism theme (optional)
 import 'styles/prism-theme.css'
-import 'styles/custom/index.scss'
+import '~/styles/custom/index.scss'
 
 
 
