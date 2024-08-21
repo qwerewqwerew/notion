@@ -2,7 +2,7 @@
 ::-webkit-scrollbar {
   display: none;
 }
-
+$notion-max-width: 100%;
 /**
  * ================ 전체적인 레이아웃 구성 관련 ================
  */
@@ -19,6 +19,13 @@ body {
   }
 
   .notion-page {
+    width: calc(
+      $notion-max-width -
+        (
+          var(--notion-page-left-right-padding) +
+            var(--notion-page-left-right-padding) + 300px
+        )
+    );
     padding-left: var(--notion-page-left-right-padding);
     padding-right: var(--notion-page-left-right-padding);
   }

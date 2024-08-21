@@ -13,19 +13,6 @@ $notion-max-width: min(80%, 1300px);
   }
 }
 
-/* @media (min-width: 1300px) and (min-height: 300px) {
-  .notion-page-content-has-aside {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    width: calc((100vw + var(--notion-max-width)) / 2);
-    .notion-page-content-inner {
-      width: calc(100% - 300px);
-      max-width: calc($notion-max-width - 300px);
-    }
-  }
-}
- */
 @media only screen and (width> 720px) {
   :root {
     --base-font-size: 0.95rem;
