@@ -3,8 +3,9 @@
 @import '../prism-theme.css';
 
 @import './vars.scss';
+@import './responsive.scss';
 @import './notion.scss';
 
 @import '../../components/Comments/index.scss';
 
-@import './responsive.scss';
+@import './custom.scss';

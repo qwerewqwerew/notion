@@ -71,7 +71,7 @@
 
   --notion-card-background-color: #ffffff;
 
-  --notion-max-width: 1600px;
+  $notion-max-width: 1600px;
   --notion-header-height: 54px;
 
   --notion-page-left-right-padding: calc(min(16px, 8vw));
@@ -81,7 +81,7 @@
   --notion-aside-space-width: 5rem;
 
   --notion-page-content-inner-width: calc(
-    var(--notion-max-width) - var(--notion-aside-width) - var(--notion-aside-space-width)
+    var($notion-max-width) - var(--notion-aside-width) - var(--notion-aside-space-width)
   );
 }
 
