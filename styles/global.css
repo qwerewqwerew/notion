@@ -70,7 +70,7 @@ a {
 /* 코알라 커스텀 // 공통 ================  */
 /* ====================================  */
 .notion-page-content-inner {
-  tab-size: 0;
+  tab-size: 0.5rem;
 }
 
 .notion-page-no-cover .notion-page-no-icon .notion-page-content-inner img {
