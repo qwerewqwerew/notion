@@ -15,6 +15,10 @@ body {
     'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   font-family: var(--notion-font);
   overflow-x: hidden;
+  transition-duration: 250ms;
+  transition-property: transform, background-color, color, background-image, top,
+    left;
+  -webkit-font-smoothing: antialiased;
   font-weight: 400;
 }
 
@@ -68,31 +72,58 @@ a {
 .notion-page-content-inner {
   tab-size: 0;
 }
-.notion-page-content-inner img {
+
+.notion-page-no-cover .notion-page-no-icon .notion-page-content-inner img {
   width: clamp(30rem, 50%, 500px);
 }
 
 .notion-link {
-  background: none;
-  box-sizing: content-box;
-  font-size: 125%;
-  display: inline-block;
-  padding: 0 1rem;
-  font-weight: 900;
+  top: 0;
+  left: 0;
+  border-radius: 0.5rem;
 
-  background: radial-gradient(
-    farthest-corner circle at 0% 0% in oklch,
-    oklch(95% 0.25 160) 0%,
-    26%,
-    oklch(75% 0.5 180) 0% 0%,
-    46%,
-    oklch(75% 0.5 210) 0% 0%,
-    60%,
-    oklch(75% 0.5 230) 0% 0%,
-    82%,
-    oklch(75% 0.5 260) 0% 0%
+  border-color: transparent;
+  box-sizing: content-box;
+  font-size: 105%;
+  padding: 0.5rem 1rem;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  background: linear-gradient(
+    -39deg,
+    #12c2e9 0%,
+    #c471ed 50%,
+    #f64f59 100%
   ) !important;
   background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
+  letter-spacing: 0.1rem;
   color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  z-index: 1;
+  transition: all 0.5s cubic-bezier(1, 0, 0.72, 0.66) !important;
+  box-shadow: 1px 1px 0px #12c2e977, 1px 1px 1px #c471ed75;
+}
+
+.notion-link:after {
+  content: '';
+  border-radius: 0.5rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(39deg, #12c2e9 0%, #c471ed 50%, #f64f59 100%);
+  opacity: 0.2;
+  z-index: -1;
+  transition: all 0.5s cubic-bezier(1, 0, 0.72, 0.66) !important;
+}
+.notion-link:hover,
+.notion-link:focus {
+  left: -0.1rem;
+  top: -0.1rem;
+  box-shadow: 3px 3px 3px #12c2e9, 6px 6px 6px #c471ed;
+}
+.notion-link:hover:focus,
+.notion-link:hover:after {
+  left: -0.1rem;
+  top: -0.1rem;
 }
