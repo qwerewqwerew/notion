@@ -1,4 +1,7 @@
 @media (min-width: 300px) {
+  .notion-page {
+    width: $notion-max-width;
+  }
   .notion-page-scroller .notion-page {
     padding-left: $notion-page-left-right-padding;
     padding-right: $notion-page-left-right-padding;
