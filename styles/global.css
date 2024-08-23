@@ -19,7 +19,7 @@ body {
   transition-property: transform, background-color, color, background-image, top,
     left;
   -webkit-font-smoothing: antialiased;
-  font-weight: 400;
+  font-weight: 380;
 }
 
 a {
@@ -78,13 +78,14 @@ a {
 }
 
 .notion-link {
-  margin:1rem 0;
+  display: inline-block;
+  margin: 1rem;
+  margin-left: 0;
   top: 0;
   left: 0;
   border-radius: 0.5rem;
   border-color: transparent;
   box-sizing: content-box;
-  font-size: 105%;
   padding: 0.5rem 1rem;
   font-weight: 800;
   letter-spacing: 0.1rem;
@@ -126,4 +127,9 @@ a {
 .notion-link:hover:after {
   left: -0.1rem;
   top: -0.1rem;
+}
+
+.notion-h-title {
+  display: flex;
+  column-gap: 0.4rem;
 }

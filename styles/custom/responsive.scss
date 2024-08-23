@@ -1,5 +1,8 @@
 $notion-max-width: min(80%, 1600px);
 @media (min-width: 1300px) and (min-height: 300px) {
+  :root {
+    --notion-page-left-right-padding: 3vw;
+  }
   .notion-page-content-has-aside {
     position: relative;
     display: flex;
@@ -10,4 +13,9 @@ $notion-max-width: min(80%, 1600px);
       max-width: calc($notion-max-width - 300px);
     }
   }
+  .notion .notion-page-no-cover {
+    padding-left: var(--notion-page-left-right-padding);
+    padding-right: var(--notion-page-left-right-padding);
+  }
+
 }

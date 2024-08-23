@@ -720,3 +720,29 @@ body {
     }
   }
 }
+// =====================================================
+// 코알라 글로벌 커스텀
+.notion- {
+  // =====================================================
+  // &page-content-inner
+  &page-content-inner {
+    img[alt='notion image'] {
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+        rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        padding: .8rem;
+        border-radius: .8rem;
+    }
+  }
+  // !&page-content-inner
+
+  &row {
+    font-size: 84%;
+    line-height: 2;
+  }
+  &spacer {
+    width: 1px;
+    margin: calc(min(32px, 4vw));
+    box-sizing: content-box;
+    background: var(--fg-color-1);
+  }
+}
