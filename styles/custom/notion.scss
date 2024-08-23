@@ -9,6 +9,16 @@
     --notion-page-left-right-padding: 8vw;
     --notion-page-fullwith-left-right-padding: 8vw;
   }
+  .notion-collection {
+    width: inherit;
+    .notion-table {
+      overflow: hidden;
+    }
+    .notion-table-view {
+      padding-left: var(----notion-page-left-right-padding);
+      padding-right: var(----notion-page-left-right-padding);
+    }
+  }
 }
 
 @media only screen and (max-width: 720px) {
@@ -28,7 +38,7 @@
   }
   .notion-table {
     width: 100% !important;
-    max-width: 100%;
+    max-width: inherit;
     margin: auto;
     overflow: scroll hidden !important;
   }

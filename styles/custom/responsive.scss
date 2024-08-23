@@ -1,5 +1,3 @@
-$notion-max-width: min(90%, 1600px);
-$notion-page-left-right-padding: 0vw;
 @media (min-width: 300px) {
   .notion-page-scroller .notion-page {
     padding-left: $notion-page-left-right-padding;
@@ -14,20 +12,21 @@ $notion-page-left-right-padding: 0vw;
 }
 @media (min-width: 1300px) and (min-height: 300px) {
   :root {
-    --notion-page-left-right-padding: 3vw;
+    $notion-page-left-right-padding: 3vw;
+    $notion-aside-width: 0;
   }
   .notion-page-content-has-aside {
     position: relative;
     display: flex;
     flex-direction: row;
-    width: calc((100vw + var(--notion-max-width)) / 2);
+    width: calc((100vw + var($notion-max-width)) / 2);
     .notion-page-content-inner {
       width: calc(100% - 300px);
       max-width: calc($notion-max-width - 300px);
     }
   }
   .notion .notion-page-no-cover {
-    padding-left: var(--notion-page-left-right-padding);
-    padding-right: var(--notion-page-left-right-padding);
+    padding-left: var($notion-page-left-right-padding);
+    padding-right: var($notion-page-left-right-padding);
   }
 }
