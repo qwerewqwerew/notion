@@ -14,10 +14,9 @@
   }
 }
 @media (min-width: 1300px) and (min-height: 300px) {
-  :root {
-    $notion-page-left-right-padding: 3vw;
-    $notion-aside-width: 0;
-  }
+  $notion-page-left-right-padding: 3vw;
+  $notion-aside-width: 0;
+  $notion-max-width: 100%;
   .notion-page-content-has-aside {
     position: relative;
     display: flex;
