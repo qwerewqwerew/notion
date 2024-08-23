@@ -156,7 +156,7 @@ $fg-color-3: rgba(55, 53, 47, 0.6);
 $fg-color-4: #000;
 $fg-color-5: rgba(55, 53, 47, 0.024);
 $fg-color-6: rgba(55, 53, 47, 0.8);
-$fg-color-icon: var($fg-color);
+$fg-color-icon: $fg-color;
 $fg-color-lighten: #eff3f7;
 
 $bg-color: #ffffff;
@@ -164,8 +164,8 @@ $bg-color-0: rgba(135, 131, 120, 0.15);
 $bg-color-1: rgb(247, 246, 243);
 $bg-color-2: rgba(135, 131, 120, 0.15);
 
-$select-color-0: var($primary-color);
-$select-color-1: var($primary-color);
+$select-color-0: $primary-color;
+$select-color-1: $primary-color;
 $select-color-2: #d9eff8;
 
 $notion-red: rgb(224, 62, 62);
@@ -211,7 +211,7 @@ $notion-item-gray: rgba(155, 154, 151, 0.4);
 
 $notion-card-background-color: #ffffff;
 
-$notion-max-width: 1600px;
+$notion-max-width: 90%;
 $notion-header-height: 54px;
 
 $notion-page-left-right-padding: calc(min(16px, 8vw));
@@ -220,9 +220,8 @@ $notion-page-fullwith-left-right-padding: calc(min(96px, 8vw));
 $notion-aside-width: 300px;
 $notion-aside-space-width: 5rem;
 
-$notion-page-content-inner-width: calc(
-  var($notion-max-width) - var($notion-aside-width) -
-    var($notion-aside-space-width)
+$notion-page-content-inner-width: abs(
+  $notion-max-width - $notion-aside-width - $notion-aside-space-width
 );
 
 // dark-mode vars
@@ -230,11 +229,11 @@ $notion-page-content-inner-width: calc(
   $line-color: rgba(255, 255, 255, 0.1);
 
   $fg-color: rgba(255, 255, 255, 0.9);
-  $fg-color-0: var($fg-color);
-  $fg-color-1: var($fg-color);
-  $fg-color-2: var($fg-color);
-  $fg-color-3: var($fg-color);
-  $fg-color-4: var($fg-color);
+  $fg-color-0: $fg-color;
+  $fg-color-1: $fg-color;
+  $fg-color-2: $fg-color;
+  $fg-color-3: $fg-color;
+  $fg-color-4: $fg-color;
   $fg-color-5: rgba(255, 255, 255, 0.7);
   $fg-color-6: #fff;
   $fg-color-icon: #fff;
