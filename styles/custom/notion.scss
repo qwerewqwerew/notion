@@ -725,9 +725,12 @@ body {
 .notion {
   &-list {
     white-space: break-spaces;
-    padding-bottom: 2rem !important;
+    padding-bottom: 1rem !important;
     > li {
       line-height: 2;
+    }
+    & + *:not(ul) {
+      margin-top: -1rem;
     }
   }
 
