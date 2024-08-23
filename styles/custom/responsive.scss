@@ -5,7 +5,9 @@ $notion-page-left-right-padding: 0vw;
     padding-left: $notion-page-left-right-padding;
     padding-right: $notion-page-left-right-padding;
   }
+
   figure,
+  .notion-asset-wrapper.notion-asset-wrapper-video,
   img {
     width: inherit;
   }

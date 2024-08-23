@@ -722,10 +722,18 @@ body {
 }
 // =====================================================
 // 코알라 글로벌 커스텀
-.notion- {
-  &page-content {
+.notion {
+  &-list {
+    white-space: break-spaces;
+    padding-bottom: 2rem !important;
+    > li {
+      line-height: 2;
+    }
+  }
+
+  &-page-content {
     width: 100%;
-    &has-aside {
+    &- has-aside {
       width: 100%;
     }
   }
@@ -734,15 +742,15 @@ body {
   }
   // =====================================================
   // &table-cell-
-  &table-cell- {
-    &select,
-    &multi_select {
+  &-table-cell {
+    &-select,
+    &-multi_select {
       padding-top: 14px;
     }
   }
   // =====================================================
   // &page-content-inner
-  &page-content-inner {
+  &-page-content-inner {
     img[alt='notion image'],
     figure > div {
       box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
@@ -756,11 +764,11 @@ body {
   }
   // !&page-content-inner
 
-  &row {
+  &-row {
     font-size: 84%;
     line-height: 2;
   }
-  &spacer {
+  &-spacer {
     width: 1px;
     margin: calc(min(32px, 4vw));
     box-sizing: content-box;
