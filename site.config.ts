@@ -1,5 +1,4 @@
-import { siteConfig } from './lib/site-config';
-
+import { siteConfig } from './lib/site-config'
 
 export default siteConfig({
   // the site's root Notion page (required)
@@ -18,16 +17,17 @@ export default siteConfig({
   description: 'Example Next.js Notion Starter Kit Site',
 
   // social usernames (optional)
-  twitter: 'transitive_bs',
-  github: 'transitive-bullshit',
-  linkedin: 'fisch2',
+  //twitter: '',
+  github: 'qwerewqwerew',
+  linkedin: 'qwerew0',
+  youtube: 'channel/UCMb94yucTNsjIJqD8C8lO2Q',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
-  // youtube: '#', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
-  defaultPageIcon: null,
+  defaultPageIcon:
+    'https://yt3.ggpht.com/oy4M3qMhcHKncK3tJtMWkEe1_8zE8riYvpDO9URcigVqTRNzV2CjcdC9KC7gOzkqoZDB2sS8=s88-c-k-c0x00ffffff-no-rj',
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
 
