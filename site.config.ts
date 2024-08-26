@@ -26,7 +26,7 @@ export default siteConfig({
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
-  defaultPageIcon: null,
+  defaultPageIcon:null,
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
 
@@ -50,8 +50,8 @@ export default siteConfig({
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
-  navigationStyle: 'custom',
   //navigationStyle: 'default'
+  navigationStyle: 'custom',
   navigationLinks: [
     {
       title: '카테고리',
