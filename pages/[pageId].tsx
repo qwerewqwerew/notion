@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { GetStaticProps } from 'next'
 
-
 import { NotionPage } from '@/components/NotionPage'
 import { domain, isDev } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
@@ -42,8 +41,7 @@ export async function getStaticPaths() {
         pageId
       }
     })),
-
-    //paths: [],
+    // paths: [],
     fallback: true
   }
 

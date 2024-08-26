@@ -19,8 +19,8 @@ import { getCanonicalPageUrl, mapPageUrl } from '@/lib/map-page-url'
 import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
-import Comments from './Comments'
 import { Footer } from './Footer'
+import { GitHubShareButton } from './GitHubShareButton'
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
 import { Page404 } from './Page404'
@@ -212,6 +212,14 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
   const title = getBlockTitle(block, recordMap) || site.name
 
+  console.log('notion page', {
+    isDev: config.isDev,
+    title,
+    pageId,
+    rootNotionPageId: site.rootNotionPageId,
+    recordMap
+  })
+
   if (!config.isServer) {
     // add important objects to the window global for easy debugging
     const g = window as any
@@ -270,15 +278,10 @@ export const NotionPage: React.FC<types.PageProps> = ({
         mapImageUrl={mapImageUrl}
         searchNotion={config.isSearchEnabled ? searchNotion : null}
         pageAside={pageAside}
-        pageFooter={
-          config.enableComment ? (
-            !isBlogPost ? null : (
-              <Comments pageId={pageId} recordMap={recordMap} />
-            )
-          ) : null
-        }
         footer={footer}
       />
+
+      <GitHubShareButton />
     </>
   )
 }

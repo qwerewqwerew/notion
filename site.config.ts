@@ -3,27 +3,27 @@ import { siteConfig } from './lib/site-config';
 
 export default siteConfig({
   // the site's root Notion page (required)
-  rootNotionPageId: 'Coala-Lesson-660d1a8fa22a457ebab29e3d8c8af854',
+  rootNotionPageId: '660d1a8fa22a457ebab29e3d8c8af854',
+
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
-  //rootNotionSpaceId: 'f2b063ab-5763-4522-82a6-f18f4aaa1c70',
   rootNotionSpaceId: null,
 
   // basic site info (required)
-  name: 'Lesson',
+  name: 'CoalaCoding',
   domain: 'coalacoding.notion.site',
   author: 'coalacoding',
 
   // open graph metadata (optional)
-  description: 'Frontend 공부방',
+  description: 'Example Next.js Notion Starter Kit Site',
 
   // social usernames (optional)
-  //twitter: 'transitive_bs',
-  github: 'qwerewqwerew',
-  //linkedin: 'fisch2',
+  twitter: 'transitive_bs',
+  github: 'transitive-bullshit',
+  linkedin: 'fisch2',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
-  youtube: 'channel/UCMb94yucTNsjIJqD8C8lO2Q',
+  // youtube: '#', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
@@ -51,14 +51,16 @@ export default siteConfig({
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
-  //navigationStyle: 'default'
-  navigationStyle: 'custom',
-  navigationLinks: [
-    {
-      title: '카테고리',
-      pageId: 'Category-709f1b28d3e848c481e5745c04e53ff3'
-    },
-  ],
-  includeNotionIdInUrls: true,
-  enableComment: false
+  navigationStyle: 'default'
+  // navigationStyle: 'custom',
+  // navigationLinks: [
+  //   {
+  //     title: 'About',
+  //     pageId: 'f1199d37579b41cbabfc0b5174f4256a'
+  //   },
+  //   {
+  //     title: 'Contact',
+  //     pageId: '6a29ebcb935a4f0689fe661ab5f3b8d1'
+  //   }
+  // ]
 })

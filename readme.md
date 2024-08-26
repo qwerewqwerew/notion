@@ -1,8 +1,1 @@
-# Next.js Notion Blog
-
-
-'⚠️': 'warning',
-'🔑': 'key',
-'🔴': 'error',
-'🔒': 'quiz',
-'💡': 'info'
+# [코알라코딩](https://coalalcoding.com)

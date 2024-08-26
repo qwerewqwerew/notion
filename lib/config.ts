@@ -28,7 +28,7 @@ if (!rootNotionPageId) {
 // if you want to restrict pages to a single notion workspace (optional)
 export const rootNotionSpaceId: string | null = parsePageId(
   getSiteConfig('rootNotionSpaceId', null),
-  { uuid: false }
+  { uuid: true }
 )
 
 export const pageUrlOverrides = cleanPageUrlMap(
@@ -70,8 +70,6 @@ export const getMastodonHandle = (): string | null => {
   // Since Mastodon is decentralized, handles include the instance domain name.
   // e.g. @example@mastodon.social
   const url = new URL(mastodon)
-  console.log(url)
-
   return `${url.pathname.slice(1)}@${url.hostname}`
 }
 
@@ -221,7 +219,3 @@ function invertPageUrlOverrides(
     }
   }, {})
 }
-// custom configs
-// ----------------------------------------------------------------------------
-
-export const enableComment: boolean = getSiteConfig('enableComment', false)

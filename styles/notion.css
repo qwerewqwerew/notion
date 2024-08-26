@@ -8,12 +8,10 @@
  */
 
 .notion {
-  --notion-max-width: min(calc(90vw), 1600px);
+  --notion-max-width: 720px;
   --notion-header-height: 54px;
 }
-.notion-aside {
-  left: 0%;
-}
+
 .notion-frame {
   padding: 0;
 }
@@ -86,7 +84,6 @@
 
 .notion-collection-card-cover img {
   border-radius: 16px;
-  object-fit: cover !important;
 }
 
 .notion-collection-card {
@@ -403,9 +400,6 @@
   color: var(--fg-color-2);
 }
 
-.notion-equation.notion-equation-block {
+.notion-equation.notion-equation-block{
   align-items: center;
-}
-.notion-simple-table td {
-  white-space: nowrap;
 }
