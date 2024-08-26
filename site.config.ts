@@ -26,8 +26,7 @@ export default siteConfig({
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
-  defaultPageIcon:
-    'https://yt3.ggpht.com/oy4M3qMhcHKncK3tJtMWkEe1_8zE8riYvpDO9URcigVqTRNzV2CjcdC9KC7gOzkqoZDB2sS8=s88-c-k-c0x00ffffff-no-rj',
+  defaultPageIcon: null,
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
 
@@ -51,16 +50,12 @@ export default siteConfig({
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
-  //navigationStyle: 'default'
   navigationStyle: 'custom',
+  //navigationStyle: 'default'
   navigationLinks: [
     {
       title: '카테고리',
       pageId: '709f1b28d3e848c481e5745c04e53ff3'
     }
-    //   {
-    //     title: 'Contact',
-    //     pageId: '6a29ebcb935a4f0689fe661ab5f3b8d1'
-    //   }
   ]
 })
