@@ -14,19 +14,19 @@ export default siteConfig({
   author: 'coalacoding',
 
   // open graph metadata (optional)
-  description: 'Example Next.js Notion Starter Kit Site',
+  description: 'wrtieNotion',
 
   // social usernames (optional)
   //twitter: '',
   github: 'qwerewqwerew',
+  linkedin: 'qwerew0',
   youtube: 'channel/UCMb94yucTNsjIJqD8C8lO2Q',
-  //linkedin: 'qwerew0',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
-  defaultPageIcon:null,
+  defaultPageIcon: null,
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
 
@@ -50,12 +50,16 @@ export default siteConfig({
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
-  //navigationStyle: 'default'
-  navigationStyle: 'custom',
-  navigationLinks: [
-    {
-      title: '카테고리',
-      pageId: '709f1b28d3e848c481e5745c04e53ff3'
-    }
-  ]
+  navigationStyle: 'default'
+  // navigationStyle: 'custom',
+  // navigationLinks: [
+  //   {
+  //     title: 'About',
+  //     pageId: 'f1199d37579b41cbabfc0b5174f4256a'
+  //   },
+  //   {
+  //     title: 'Contact',
+  //     pageId: '6a29ebcb935a4f0689fe661ab5f3b8d1'
+  //   }
+  // ]
 })
