@@ -400,6 +400,164 @@
   color: var(--fg-color-2);
 }
 
-.notion-equation.notion-equation-block{
+.notion-equation.notion-equation-block {
   align-items: center;
+}
+/* ====================================  */
+/* coala custom===========================  */
+/* ====================================  */
+.notion-search-button {
+  display: none !important;
+}
+.notion-collection-row-body {
+  flex-direction: row;
+  column-gap: 1.6rem;
+}
+.notion-collection-page-properties .notion-collection-column-title {
+  display: flex;
+  width: auto;
+  padding-right: 0.4rem;
+}
+
+/* ====================================  */
+/* 코알라 커스텀 // 공통 ================  */
+/* ====================================  */
+.notion-page-content-inner {
+  tab-size: 0.5rem;
+}
+
+.notion-page-no-cover .notion-page-no-icon .notion-page-content-inner img {
+  width: clamp(30rem, 50%, 500px);
+}
+
+.notion-h-title {
+  display: flex;
+  column-gap: 0.4rem;
+}
+
+/* ===링크/배경초록===========================  */
+.notion-teal_background {
+  &:has(.notion-link) {
+    background: none;
+    display: inline-block;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 15%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid #c471ed;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+    }
+  }
+  .notion-link {
+    display: inline-block;
+    margin: 1rem;
+    margin-left: 0;
+    top: 0;
+    left: 0;
+    border-radius: 0.5rem;
+    border-color: transparent;
+    box-sizing: content-box;
+    padding: 0.5rem 1rem 0.5rem 2rem;
+    font-weight: 800;
+    letter-spacing: 0.1rem;
+    background: linear-gradient(
+      -39deg,
+      #12c2e9 0%,
+      #c471ed 50%,
+      #f64f59 100%
+    ) !important;
+    background-clip: text !important;
+    letter-spacing: 0.1rem;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    z-index: 1;
+    transition: all 0.5s cubic-bezier(1, 0, 0.72, 0.66) !important;
+    box-shadow: 1px 1px 0px #12c2e977, 1px 1px 1px #c471ed75;
+  }
+
+  .notion-link:after {
+    content: '';
+    border-radius: 0.5rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(39deg, #12c2e9 0%, #c471ed 50%, #f64f59 100%);
+    opacity: 0.2;
+    z-index: -1;
+    transition: all 0.5s cubic-bezier(1, 0, 0.72, 0.66) !important;
+  }
+  .notion-link:hover,
+  .notion-link:focus {
+    left: -0.1rem;
+    top: -0.1rem;
+    box-shadow: 3px 3px 3px #12c2e9, 6px 6px 6px #c471ed;
+  }
+  .notion-link:hover:focus,
+  .notion-link:hover:after {
+    left: -0.1rem;
+    top: -0.1rem;
+  }
+}
+/* ===링크/배경노랑===========================  */
+.notion-yellow_background {
+  &:has(.notion-link) {
+    background: none;
+    display: inline-block;
+    position: relative;
+    &:after {
+      position: absolute;
+      content: '🔗';
+      left: 15%;
+      top: 50%;
+      z-index: 9999;
+      transform: translateY(-50%);
+    }
+  }
+  .notion-link {
+    display: inline-block;
+    background: #b421fecf;
+    padding: .6rem 1.5rem .6rem 2rem;
+    position: relative;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 105%;
+    font-weight: 700 ;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    border: none;
+    z-index: 1;
+  }
+  .notion-link:after {
+    position: absolute;
+
+    content: '';
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background-color: #663dff;
+    border-radius: 5px;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+      7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  .notion-link:hover {
+    color: #fff;
+  }
+  .notion-link:hover:after {
+    left: 0;
+    width: 100%;
+  }
+  .notion-link:active {
+    top: 2px;
+  }
 }
