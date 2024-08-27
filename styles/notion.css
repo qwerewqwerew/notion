@@ -441,30 +441,19 @@
     background: none;
     display: inline-block;
     position: relative;
-    &:after {
-      content: '';
-      position: absolute;
-      left: 15%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-left: 10px solid #c471ed;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-    }
   }
   .notion-link {
     display: inline-block;
+    position: relative;
     margin: 1rem;
     margin-left: 0;
     top: 0;
     left: 0;
     border-radius: 0.5rem;
     border-color: transparent;
-    box-sizing: content-box;
     padding: 0.5rem 1rem 0.5rem 2rem;
-    font-weight: 800;
+    font-weight: 900;
+    font-size: 110%;
     letter-spacing: 0.1rem;
     background: linear-gradient(
       -39deg,
@@ -473,12 +462,23 @@
       #f64f59 100%
     ) !important;
     background-clip: text !important;
-    letter-spacing: 0.1rem;
     color: transparent !important;
     -webkit-text-fill-color: transparent !important;
     z-index: 1;
     transition: all 0.5s cubic-bezier(1, 0, 0.72, 0.66) !important;
     box-shadow: 1px 1px 0px #12c2e977, 1px 1px 1px #c471ed75;
+    &:before {
+      position: absolute;
+      content: '';
+      left: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid #c471ed;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
   }
 
   .notion-link:after {
@@ -523,28 +523,38 @@
   }
   .notion-link {
     display: inline-block;
-    background: #b421fecf;
-    padding: .6rem 1.5rem .6rem 2rem;
+    background: linear-gradient(
+      to right,
+      #eea2a2 0%,
+      #bbc1bf 19%,
+      #57c6e1 42%,
+      #b49fda 79%,
+      #7ac5d8 100%
+    );
+    padding: 0.6rem 1.5rem 0.6rem 2rem;
     position: relative;
     border-radius: 5px;
-    color: #fff;
+    color: white;
     font-size: 105%;
-    font-weight: 700 ;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
     border: none;
     z-index: 1;
+    text-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+      7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+      7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   }
   .notion-link:after {
     position: absolute;
-
     content: '';
     width: 0;
     height: 100%;
     top: 0;
     right: 0;
     z-index: -1;
-    background-color: #663dff;
+    background: linear-gradient(45deg, #7ac5d8 0%, #eea2a2 100%);
     border-radius: 5px;
     box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
       7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);

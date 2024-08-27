@@ -1,4 +1,5 @@
-import { siteConfig } from './lib/site-config'
+import { siteConfig } from './lib/site-config';
+
 
 export default siteConfig({
   // the site's root Notion page (required)
@@ -19,14 +20,14 @@ export default siteConfig({
   // social usernames (optional)
   //twitter: '',
   github: 'qwerewqwerew',
-  linkedin: 'qwerew0',
+  //linkedin: 'qwerew0',
   youtube: 'channel/UCMb94yucTNsjIJqD8C8lO2Q',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
-  defaultPageIcon: null,
+  defaultPageIcon: '🐨',
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
 
