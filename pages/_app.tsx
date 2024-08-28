@@ -1,7 +1,6 @@
 // global styles shared across the entire site
 import * as React from 'react'
 import type { AppProps } from 'next/app'
-import localFont from 'next/font/local'
 import { useRouter } from 'next/router'
 
 import * as Fathom from 'fathom-client'
@@ -28,12 +27,6 @@ import {
   posthogConfig,
   posthogId
 } from '@/lib/config'
-
-const pretendard = localFont({
-  src: './fonts/PretendardVariable.woff2',
-  display: 'swap',
-  weight: '45 920'
-})
 
 if (!isServer) {
   bootstrap()
@@ -68,9 +61,5 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return (
-    <div className={`${pretendard}`}>
-      <Component {...pageProps} />
-    </div>
-  )
+  return <Component {...pageProps} />
 }

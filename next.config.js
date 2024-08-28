@@ -4,7 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 const nextConfig = {
-  staticPageGenerationTimeout: 1000,
+  staticPageGenerationTimeout: 600,
   images: {
     domains: [
       'www.notion.so',
@@ -20,8 +20,9 @@ const nextConfig = {
   },
   experimental: {
     //largePageDataBytes: 128 * 1000, // 128KB by default
-    largePageDataBytes: 128 * 100000
+    largePageDataBytes: 128 * 1000
   }
 }
 
+// @ts-ignore
 module.exports = withBundleAnalyzer(nextConfig)

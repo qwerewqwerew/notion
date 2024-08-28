@@ -1,7 +1,34 @@
+@import url('./font/font.css');
+/* coalal-var=========================== */
+/* ==================================== */
+
+:root {
+  --a: 1;
+  --c_blue-00: rgba(232, 246, 251, var(--a));
+  --c_blue-20: rgba(171, 221, 241, var(--a));
+  --c_blue-30: rgba(130, 204, 234, var(--a));
+  --c_blue-40: rgba(88, 187, 227, var(--a));
+  --c_blue-50: rgba(46, 170, 220, var(--a));
+  --c_blue-60: rgba(31, 139, 182, var(--a));
+  --c_blue-70: rgba(15, 69, 91, var(--a));
+  --c_blue-80: rgba(23, 104, 137, var(--a));
+  --c_blue-90: rgba(15, 69, 91, var(--a));
+  --c_blue-10: rgba(8, 35, 46, var(--a));
+  --c_bg-00: rgba(244, 245, 246, var(--a));
+  --c_bg-10: rgba(56, 66, 71, var(--a));
+}
+
+/* // !! coalal-var !! // */
+
 * {
   box-sizing: border-box;
 }
-
+.light-mode {
+  background-color: var(--c_bg-00);
+}
+.notion-aside-table-of-contents{
+  background-color: transparent;
+}
 body,
 html {
   padding: 0;
@@ -9,10 +36,6 @@ html {
 }
 
 body {
-  --notion-font: 'Pretendard Variable', Pretendard, -apple-system,
-    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
-    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   font-family: var(--notion-font);
   overflow-x: hidden;
   transition-duration: 250ms;
