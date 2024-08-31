@@ -119,7 +119,6 @@
   }
 }
 .notion-quote {
-
   padding: 1em 0.75em;
   line-height: 1.75;
   font-size: 1em;
@@ -433,7 +432,9 @@
 /* ==================================== */
 
 /* 라이트모드,다크모드 */
-.light-mode,.dark-mode {
+.light-mode,
+.dark-mode {
+
   .notion-page-content-inner {
     tab-size: 0.5rem;
   }
