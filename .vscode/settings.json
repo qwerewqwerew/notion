@@ -15,6 +15,11 @@
     {
       "filePath": "node_modules\\react-notion-x",
       "group": "Default"
+    },
+    {
+      "filePath": "node_modules\\react-notion-x\\build\\third-party\\collection.js",
+      "group": "Default"
     }
-  ]
+  ],
+  "favorites.sortOrder": "DESC"
 }

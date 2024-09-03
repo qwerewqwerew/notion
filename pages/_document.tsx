@@ -1,8 +1,8 @@
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import * as React from 'react'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 import { IconContext } from '@react-icons/all-files'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export default class MyDocument extends Document {
   render() {
@@ -17,10 +17,8 @@ export default class MyDocument extends Document {
               sizes='32x32'
               href='favicon.png'
             />
-
             <link rel='manifest' href='/manifest.json' />
           </Head>
-
           <body>
             <script
               dangerouslySetInnerHTML={{
@@ -63,7 +61,6 @@ export default class MyDocument extends Document {
               }}
             />
             <Main />
-
             <NextScript />
             <SpeedInsights />
           </body>

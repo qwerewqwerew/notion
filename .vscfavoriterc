@@ -1,0 +1,12 @@
+{
+  "resources": [
+    {
+      "filePath": "node_modules\\react-notion-x",
+      "group": "Default"
+    }
+  ],
+  "groups": [
+    "Default",
+    "node"
+  ]
+}

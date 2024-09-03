@@ -1,8 +1,119 @@
+diff --git a/node_modules/react-notion-x/build/renderer.d.ts b/node_modules/react-notion-x/build/renderer.d.ts
+index cb45204..3373f8d 100644
+--- a/node_modules/react-notion-x/build/renderer.d.ts
++++ b/node_modules/react-notion-x/build/renderer.d.ts
+@@ -1,50 +1,59 @@
+-import * as React from 'react';
+-import { ExtendedRecordMap } from 'notion-types';
+-import { MapImageUrlFn, MapPageUrlFn, NotionComponents, SearchNotionFn } from './types';
++import * as React from 'react'
++
++import { ExtendedRecordMap } from 'notion-types'
++
++import {
++  MapImageUrlFn,
++  MapPageUrlFn,
++  NotionComponents,
++  SearchNotionFn
++} from './types'
++
++
+ export declare const NotionRenderer: React.FC<{
+-    recordMap: ExtendedRecordMap;
+-    components?: Partial<NotionComponents>;
+-    mapPageUrl?: MapPageUrlFn;
+-    mapImageUrl?: MapImageUrlFn;
+-    searchNotion?: SearchNotionFn;
+-    isShowingSearch?: boolean;
+-    onHideSearch?: () => void;
+-    rootPageId?: string;
+-    rootDomain?: string;
+-    fullPage?: boolean;
+-    darkMode?: boolean;
+-    previewImages?: boolean;
+-    forceCustomImages?: boolean;
+-    showCollectionViewDropdown?: boolean;
+-    linkTableTitleProperties?: boolean;
+-    isLinkCollectionToUrlProperty?: boolean;
+-    isImageZoomable?: boolean;
+-    showTableOfContents?: boolean;
+-    minTableOfContentsItems?: number;
+-    defaultPageIcon?: string;
+-    defaultPageCover?: string;
+-    defaultPageCoverPosition?: number;
+-    className?: string;
+-    bodyClassName?: string;
+-    header?: React.ReactNode;
+-    footer?: React.ReactNode;
+-    pageHeader?: React.ReactNode;
+-    pageFooter?: React.ReactNode;
+-    pageTitle?: React.ReactNode;
+-    pageAside?: React.ReactNode;
+-    pageCover?: React.ReactNode;
+-    blockId?: string;
+-    hideBlockId?: boolean;
+-    disableHeader?: boolean;
+-}>;
++  recordMap: ExtendedRecordMap
++  components?: Partial<NotionComponents>
++  mapPageUrl?: MapPageUrlFn
++  mapImageUrl?: MapImageUrlFn
++  searchNotion?: SearchNotionFn
++  isShowingSearch?: boolean
++  onHideSearch?: () => void
++  rootPageId?: string
++  rootDomain?: string
++  fullPage?: boolean
++  darkMode?: boolean
++  previewImages?: boolean
++  forceCustomImages?: boolean
++  showCollectionViewDropdown?: boolean
++  linkTableTitleProperties?: boolean
++  isLinkCollectionToUrlProperty?: boolean
++  isImageZoomable?: boolean
++  showTableOfContents?: boolean
++  minTableOfContentsItems?: number
++  defaultPageIcon?: string
++  defaultPageCover?: string
++  defaultPageCoverPosition?: number
++  className?: string
++  bodyClassName?: string
++  header?: React.ReactNode
++  footer?: React.ReactNode
++  pageHeader?: React.ReactNode
++  pageFooter?: React.ReactNode
++  pageTitle?: React.ReactNode
++  pageAside?: React.ReactNode
++  pageCover?: React.ReactNode
++  blockId?: string
++  hideBlockId?: boolean
++  disableHeader?: boolean
++}>
+ export declare const NotionBlockRenderer: React.FC<{
+-    className?: string;
+-    bodyClassName?: string;
+-    header?: React.ReactNode;
+-    footer?: React.ReactNode;
+-    disableHeader?: boolean;
+-    blockId?: string;
+-    hideBlockId?: boolean;
+-    level?: number;
+-}>;
++  className?: string
++  bodyClassName?: string
++  header?: React.ReactNode
++  footer?: React.ReactNode
++  disableHeader?: boolean
++  blockId?: string
++  hideBlockId?: boolean
++  level?: number
++}>
+ //# sourceMappingURL=renderer.d.ts.map
 diff --git a/node_modules/react-notion-x/src/styles.css b/node_modules/react-notion-x/src/styles.css
-index 71b8b4a..67f3e2b 100644
+index 71b8b4a..ecce7a0 100644
 --- a/node_modules/react-notion-x/src/styles.css
 +++ b/node_modules/react-notion-x/src/styles.css
-@@ -2,6 +2,19 @@
+@@ -2,6 +2,27 @@
    --notion-font: ui-sans-serif, system-ui, apple-system, BlinkMacSystemFont,
      'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif,
      'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -18,20 +129,54 @@ index 71b8b4a..67f3e2b 100644
 +  --c_blue-90: rgba(15, 69, 91, var(--a));
 +  --c_blue-10: rgba(8, 35, 46, var(--a));
 +  --c_bg-00: rgba(244, 245, 246, var(--a));
-+  --c_bg-10: rgba(56, 66, 71, var(--a));
++  --c_bg-10: #384247;
++  --c_bg-20: #b6c8e139;
++  --c_bg-30: #c1d0e580;
++  --c_bg-40: #dadee3;
++  --c_bg-50: #b5bdc7;
++  --c_bg-60: #909cab;
++  --c_bg-70: #7e8b9d;
++  --c_bg-80: #3c5f8c;
++  --c_bg-90: #505b69;
    --fg-color: rgb(55, 53, 47);
    --fg-color-0: rgba(55, 53, 47, 0.09);
    --fg-color-1: rgba(55, 53, 47, 0.16);
-@@ -77,7 +90,7 @@
+@@ -65,7 +86,9 @@
+   --notion-max-width: 720px;
+   --notion-header-height: 45px;
+ }
+-
++.light-mode {
++  background-color: var(--bg-color);
++}
+ .dark-mode {
+   --fg-color: rgba(255, 255, 255, 0.9);
+   --fg-color-0: var(--fg-color);
+@@ -77,10 +100,9 @@
    --fg-color-6: #fff;
    --fg-color-icon: #fff;
  
 -  --bg-color: #2f3437;
-+  --bg-color: var(--c_bg-10);
-   --bg-color-0: rgb(71, 76, 80);
-   --bg-color-1: rgb(63, 68, 71);
-   --bg-color-2: rgba(135, 131, 120, 0.15);
-@@ -1208,7 +1221,7 @@ svg.notion-page-icon {
+-  --bg-color-0: rgb(71, 76, 80);
+-  --bg-color-1: rgb(63, 68, 71);
+-  --bg-color-2: rgba(135, 131, 120, 0.15);
++  --bg-color-0: #04347661;
++  --bg-color-1: #053f9642;
++  --bg-color-2: #a5a5a545;
+ 
+   --notion-red: rgb(255, 115, 105);
+   --notion-pink: rgb(226, 85, 161);
+@@ -111,6 +133,9 @@
+   --notion-gray_background_co: rgba(69, 75, 78, 0.3);
+ }
+ 
++.dark-mode {
++  background-color: var(--c_bg-10);
++}
+ .notion * {
+   box-sizing: border-box;
+ }
+@@ -1208,7 +1233,7 @@ svg.notion-page-icon {
    width: 100vw;
    max-width: 100vw;
    align-self: center;
@@ -40,7 +185,7 @@ index 71b8b4a..67f3e2b 100644
  }
  
  .notion-table-view {
-@@ -2745,7 +2758,7 @@ svg.notion-page-icon {
+@@ -2745,7 +2770,7 @@ svg.notion-page-icon {
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
@@ -49,7 +194,7 @@ index 71b8b4a..67f3e2b 100644
  }
  
  .notion-collection-view-tabs-content-item {
-@@ -2795,9 +2808,16 @@ svg.notion-page-icon {
+@@ -2795,9 +2820,16 @@ svg.notion-page-icon {
  }
  
  .nested-form-link {
