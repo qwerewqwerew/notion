@@ -1,17 +1,4 @@
 @media only screen and (max-width: 600px) and (min-resolution: 2x) {
-  /* .notion */
-  /* .notion {
-    width: 100%;
-    max-width: 100vw;
-    & .notion-title {
-      width: 100%;
-      font-size: 2rem;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-  } */
-  /* .notion-page-content-inner  */
   .notion-page-content-inner {
     & {
       align-items: center;

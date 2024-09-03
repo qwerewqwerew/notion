@@ -1,5 +1,28 @@
 @import url('./font/font.css');
 /* coalal-var=========================== */
+:root {
+  --a: 1;
+  --c_blue-00: rgba(232, 246, 251, var(--a));
+  --c_blue-20: rgba(171, 221, 241, 0.1);
+  --c_blue-30: rgba(130, 204, 234, var(--a));
+  --c_blue-40: rgba(88, 187, 227, var(--a));
+  --c_blue-50: rgba(46, 170, 220, var(--a));
+  --c_blue-60: rgba(31, 139, 182, var(--a));
+  --c_blue-70: rgba(15, 69, 91, var(--a));
+  --c_blue-80: rgba(23, 104, 137, var(--a));
+  --c_blue-90: rgba(15, 69, 91, var(--a));
+  --c_blue-10: rgba(8, 35, 46, var(--a));
+  --c_bg-00: rgba(244, 245, 246, var(--a));
+  --c_bg-10: #384247;
+  --c_bg-20: #b6c8e139;
+  --c_bg-30: #c1d0e580;
+  --c_bg-40: #dadee3;
+  --c_bg-50: #b5bdc7;
+  --c_bg-60: #909cab;
+  --c_bg-70: #7e8b9d;
+  --c_bg-80: #3c5f8c;
+  --c_bg-90: #505b69;
+}
 /* ==================================== */
 
 /* // !! coalal-var !! // */
