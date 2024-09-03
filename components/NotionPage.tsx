@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import cs from 'classnames'
 import { PageBlock } from 'notion-types'
 import { formatDate, getBlockTitle, getPageProperty } from 'notion-utils'
+import { arch } from 'os'
 import BodyClassName from 'react-body-classname'
 import { NotionRenderer } from 'react-notion-x'
 import TweetEmbed from 'react-tweet-embed'
@@ -183,6 +184,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
   }, [site, recordMap, lite])
 
   const keys = Object.keys(recordMap?.block || {})
+
   const block = recordMap?.block?.[keys[0]]?.value
 
   // const isRootPage =
@@ -241,7 +243,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
   const socialDescription =
     getPageProperty<string>('Description', block, recordMap) ||
     config.description
-
+  console.log('components', components)
   return (
     <>
       <PageHead

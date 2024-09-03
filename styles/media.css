@@ -1,4 +1,18 @@
 @media only screen and (max-width: 600px) and (min-resolution: 2x) {
+  .light-mode {
+    .notion-collection-row-property {
+      box-shadow: 0px 2px 4px var(--c_bg-20);
+    }
+  }
+  .notion-collection-page-properties {
+    .notion-collection-row-property {
+      padding: 0.5rem;
+      .notion-collection-column-title,
+      .notion-collection-column-title * {
+        display: none;
+      }
+    }
+  }
   .notion-page-content-inner {
     & {
       align-items: center;
@@ -16,20 +30,41 @@
         & > summary > div {
           transform: scale(1.2) !important;
         }
+        .notion-table-header-inner .notion-table-th:first-child,
+        .notion-table-header-inner .notion-table-th:first-child * {
+          display: none !important;
+        }
+        .notion-table-body .notion-table-row .notion-table-cell:first-child,
+        .notion-table-body .notion-table-row .notion-table-cell:first-child * {
+          display: none !important;
+        }
+        .notion-table-header-inner .notion-table-th:last-child,
+        .notion-table-header-inner .notion-table-th:last-child * {
+          display: none !important;
+        }
+        .notion-table-body .notion-table-row .notion-table-cell:last-child,
+        .notion-table-body .notion-table-row .notion-table-cell:last-child * {
+          display: none !important;
+        }
+        .notion-table-header-inner .notion-table-th:nth-child(2),
+        .notion-table-header-inner .notion-table-th:nth-child(2) * {
+          width: 80px;
+        }
+        .notion-table-body .notion-table-row .notion-table-cell:nth-child(2),
+        .notion-table-body .notion-table-row .notion-table-cell:nth-child(2) * {
+          max-width: 80px !important;
+          justify-content: center;
+          align-items: center;
+        }
+        .notion-table-header-inner .notion-table-th:last-child,
+        .notion-table-header-inner .notion-table-th:last-child * {
+          display: none !important;
+        }
+        .notion-table-body .notion-table-row .notion-table-cell:last-child,
+        .notion-table-body .notion-table-row .notion-table-cell:last-child * {
+          display: none !important;
+        }
       } /* //.notion-collection-group  */
-
-      .notion-table {
-        .notion-table-th:nth-child(2) .notion-table-view-header-cell {
-          display: none !important;
-          width: 0 !important;
-        }
-        .notion-table-body
-          .notion-table-row
-          .notion-table-cell-multi_select:nth-child(1) {
-          display: none !important;
-          width: 0 !important;
-        }
-      } /* //.notion-table */
     }
   } /* //.notion-page-content-inner  */
 } /* //media */

@@ -1,5 +1,4 @@
-import { siteConfig } from './lib/site-config';
-
+import { siteConfig } from './lib/site-config'
 
 export default siteConfig({
   // the site's root Notion page (required)
@@ -48,6 +47,7 @@ export default siteConfig({
   //   '/bar': '0be6efce9daf42688f65c76b89f8eb27'
   // }
   pageUrlOverrides: null,
+  classes: [{ name: 'label' }, { name: 'step' }],
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.

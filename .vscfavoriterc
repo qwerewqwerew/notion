@@ -3,6 +3,10 @@
     {
       "filePath": "node_modules\\react-notion-x",
       "group": "Default"
+    },
+    {
+      "filePath": "site.config.ts",
+      "group": "Default"
     }
   ],
   "groups": [
