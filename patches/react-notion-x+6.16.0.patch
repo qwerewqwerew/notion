@@ -21845,7 +21845,7 @@ index 216ef37..d4635e3 100644
 +}
 +export { Collection, PropertyImplMemo as Property }
 diff --git a/node_modules/react-notion-x/src/styles.css b/node_modules/react-notion-x/src/styles.css
-index 71b8b4a..eb086d3 100644
+index 71b8b4a..c7d4fb5 100644
 --- a/node_modules/react-notion-x/src/styles.css
 +++ b/node_modules/react-notion-x/src/styles.css
 @@ -2,6 +2,27 @@
@@ -21876,6 +21876,15 @@ index 71b8b4a..eb086d3 100644
    --fg-color: rgb(55, 53, 47);
    --fg-color-0: rgba(55, 53, 47, 0.09);
    --fg-color-1: rgba(55, 53, 47, 0.16);
+@@ -12,7 +33,7 @@
+   --fg-color-6: rgba(55, 53, 47, 0.8);
+   --fg-color-icon: var(--fg-color);
+ 
+-  --bg-color: #fff;
++  --bg-color: #f4f5f6;
+   --bg-color-0: rgba(135, 131, 120, 0.15);
+   --bg-color-1: rgb(247, 246, 243);
+   --bg-color-2: rgba(135, 131, 120, 0.15);
 @@ -65,51 +86,62 @@
    --notion-max-width: 720px;
    --notion-header-height: 45px;
