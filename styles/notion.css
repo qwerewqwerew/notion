@@ -26,8 +26,15 @@
 ==================================== */
 .dark-mode {
   --shadow: #dadee31d;
-
   background-color: var(--c_bg-10);
+  color: var(--c_bg-00);
+  & * {
+    color: var(--c_bg-40);
+    border-color: var(--c_bg-70);
+  }
+  & .notion-collection-column-title-icon {
+    fill: var(--c_bg-70);
+  }
   .notion {
     background-color: var(--c_bg-10);
   }
@@ -41,10 +48,17 @@
   .notion-orange_background,
   .notion-brown_background,
   .notion-gray_background {
-    padding: 0;
+    /* padding: 0;
     margin: 0;
-    border-radius: 0;
-    background: none !important;
+    border-radius: 0; */
+    mix-blend-mode: lighten;
+    padding:0.2rem 0.6rem;
+    a {
+      font-size: 1.4em;
+      font-weight: 500;
+      mix-blend-mode: exclusion;
+      color: #d6e2d5;
+    }
   }
   .notion-header {
     background: transparent;
