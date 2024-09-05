@@ -18,7 +18,6 @@
     "typeRoots": [ "./node_modules/@types" ],
     "incremental": true,
     "paths": {
-      "~@/*": [ "node_modules/*" ],
       "@/components/*": [ "components/*" ],
       "@/lib/*": [ "lib/*" ],
       "@/styles/*": [ "styles/*" ]

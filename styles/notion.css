@@ -28,6 +28,12 @@
   --shadow: #dadee31d;
   background-color: var(--c_bg-10);
   color: var(--c_bg-00);
+  [class*='PageSocial_action'] {
+    border-color: var(--c_bg-70) !important;
+    svg {
+      fill: var(--c_bg-40) !important;
+    }
+  }
   & * {
     color: var(--c_bg-40);
     border-color: var(--c_bg-70);
@@ -125,17 +131,24 @@
 }
 
 .notion-gallery-grid {
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  grid-gap: 6vmin;
-  gap: 6vmin;
+  grid-template-columns: repeat(auto-fit, minmax(calc(25% - 3vmin), 1fr));
+  grid-gap: 3vmin;
+  gap: 3vmin;
 }
 
+@media screen and (max-width: 500px) {
+  .notion-gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(calc(80%), 1fr));
+    grid-gap: 8vmin;
+    gap: 6vmin;
+  }
+}
 .notion-gallery-grid .notion-page-icon-inline {
   display: none;
 }
 
 .notion-gallery-grid .notion-page-title-text {
-  font-size: 2em;
+  font-size: 1.5em;
   white-space: unset;
 }
 

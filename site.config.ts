@@ -14,7 +14,7 @@ export default siteConfig({
   author: 'coalacoding',
 
   // open graph metadata (optional)
-  description: 'wrtieNotion',
+  description: '프론트엔드 기술에 대해 공부해요',
 
   // social usernames (optional)
   //twitter: '',

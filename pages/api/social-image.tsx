@@ -41,9 +41,7 @@ export default async function OGImage(req: NextRequest) {
           flexDirection: 'column',
           backgroundColor: '#1F2027',
           alignItems: 'center',
-          justifyContent: 'center',
-          fontFamily: '"Inter", sans-serif',
-          color: 'black'
+          justifyContent: 'center'
         }}
       >
         {pageInfo.image && (

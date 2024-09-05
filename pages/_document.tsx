@@ -1,23 +1,22 @@
 import * as React from 'react'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
-import { SpeedInsights } from '@vercel/speed-insights/next'
-
-export default class MyDocument extends Document {
+class MyDocument extends Document {
   render() {
     return (
       <Html lang='ko'>
         <Head>
           <link rel='shortcut icon' href='/favicon.ico' />
-          <link rel='icon' type='image/png' sizes='32x32' href='favicon.png' />
+          <link rel='icon' type='image/png' sizes='32x32' href='/favicon.png' />
           <link rel='manifest' href='/manifest.json' />
         </Head>
         <body>
           <Main />
           <NextScript />
-          <SpeedInsights />
         </body>
       </Html>
     )
   }
 }
+
+export default MyDocument
