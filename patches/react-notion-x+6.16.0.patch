@@ -21845,7 +21845,7 @@ index 216ef37..d4635e3 100644
 +}
 +export { Collection, PropertyImplMemo as Property }
 diff --git a/node_modules/react-notion-x/src/styles.css b/node_modules/react-notion-x/src/styles.css
-index 71b8b4a..ca4903f 100644
+index 71b8b4a..41853b9 100644
 --- a/node_modules/react-notion-x/src/styles.css
 +++ b/node_modules/react-notion-x/src/styles.css
 @@ -2,6 +2,7 @@
@@ -21927,7 +21927,7 @@ index 71b8b4a..ca4903f 100644
  }
  
  .notion-collection-view-tabs-content-item {
-@@ -2795,9 +2758,87 @@ svg.notion-page-icon {
+@@ -2795,9 +2758,16 @@ svg.notion-page-icon {
  }
  
  .nested-form-link {
@@ -21946,74 +21946,3 @@ index 71b8b4a..ca4903f 100644
 +.notion-page-scroller {
 +  overscroll-behavior: none;
 +}
-+
-+@media only screen and (max-width: 600px) and (min-resolution: 2x) {
-+  .light-mode {
-+    .notion-collection-row-property {
-+      box-shadow: 0px 2px 4px var(--c_bg-20);
-+    }
-+  }
-+  .notion-collection-page-properties {
-+    .notion-collection-row-property {
-+      padding: 0.5rem;
-+      .notion-collection-column-title,
-+      .notion-collection-column-title * {
-+        display: none;
-+      }
-+    }
-+  }
-+  .notion-page-content-inner {
-+    & {
-+      align-items: center;
-+      max-width: 90vw;
-+      width: 100%;
-+      margin: auto;
-+      padding: 0;
-+      overflow: hidden;
-+
-+      details.notion-collection-group {
-+        & {
-+          padding-left: 30vw;
-+          margin-bottom: 2rem;
-+        }
-+        & > summary > div {
-+          transform: scale(1.2) !important;
-+        }
-+        .notion-table-header-inner .notion-table-th:first-child,
-+        .notion-table-header-inner .notion-table-th:first-child * {
-+          display: none !important;
-+        }
-+        .notion-table-body .notion-table-row .notion-table-cell:first-child,
-+        .notion-table-body .notion-table-row .notion-table-cell:first-child * {
-+          display: none !important;
-+        }
-+        .notion-table-header-inner .notion-table-th:last-child,
-+        .notion-table-header-inner .notion-table-th:last-child * {
-+          display: none !important;
-+        }
-+        .notion-table-body .notion-table-row .notion-table-cell:last-child,
-+        .notion-table-body .notion-table-row .notion-table-cell:last-child * {
-+          display: none !important;
-+        }
-+        .notion-table-header-inner .notion-table-th:nth-child(2),
-+        .notion-table-header-inner .notion-table-th:nth-child(2) * {
-+          width: 80px;
-+        }
-+        .notion-table-body .notion-table-row .notion-table-cell:nth-child(2),
-+        .notion-table-body .notion-table-row .notion-table-cell:nth-child(2) * {
-+          max-width: 80px !important;
-+          justify-content: center;
-+          align-items: center;
-+        }
-+        .notion-table-header-inner .notion-table-th:last-child,
-+        .notion-table-header-inner .notion-table-th:last-child * {
-+          display: none !important;
-+        }
-+        .notion-table-body .notion-table-row .notion-table-cell:last-child,
-+        .notion-table-body .notion-table-row .notion-table-cell:last-child * {
-+          display: none !important;
-+        }
-+      } /* //.notion-collection-group  */
-+    }
-+  } /* //.notion-page-content-inner  */
-+} /* //media */
