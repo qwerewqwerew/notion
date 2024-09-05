@@ -20,51 +20,14 @@
       width: 100%;
       margin: auto;
       padding: 0;
-      overflow: hidden;
-
-      details.notion-collection-group {
-        & {
-          padding-left: 30vw;
-          margin-bottom: 2rem;
-        }
-        & > summary > div {
-          transform: scale(1.2) !important;
-        }
-        .notion-table-header-inner .notion-table-th:first-child,
-        .notion-table-header-inner .notion-table-th:first-child * {
-          display: none !important;
-        }
-        .notion-table-body .notion-table-row .notion-table-cell:first-child,
-        .notion-table-body .notion-table-row .notion-table-cell:first-child * {
-          display: none !important;
-        }
-        .notion-table-header-inner .notion-table-th:last-child,
-        .notion-table-header-inner .notion-table-th:last-child * {
-          display: none !important;
-        }
-        .notion-table-body .notion-table-row .notion-table-cell:last-child,
-        .notion-table-body .notion-table-row .notion-table-cell:last-child * {
-          display: none !important;
-        }
-        .notion-table-header-inner .notion-table-th:nth-child(2),
-        .notion-table-header-inner .notion-table-th:nth-child(2) * {
-          width: 80px;
-        }
-        .notion-table-body .notion-table-row .notion-table-cell:nth-child(2),
-        .notion-table-body .notion-table-row .notion-table-cell:nth-child(2) * {
-          max-width: 80px !important;
-          justify-content: center;
-          align-items: center;
-        }
-        .notion-table-header-inner .notion-table-th:last-child,
-        .notion-table-header-inner .notion-table-th:last-child * {
-          display: none !important;
-        }
-        .notion-table-body .notion-table-row .notion-table-cell:last-child,
-        .notion-table-body .notion-table-row .notion-table-cell:last-child * {
-          display: none !important;
-        }
-      } /* //.notion-collection-group  */
+    }
+    details.notion-collection-group {
+      & {
+        margin-bottom: 2rem;
+      }
+      & > summary > div {
+        transform: scale(1.2) !important;
+      }
     }
   } /* //.notion-page-content-inner  */
 } /* //media */

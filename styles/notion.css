@@ -8,7 +8,7 @@
  */
 
 /* ====================================
-.dark-mode
+.light-mode
 ==================================== */
 .light-mode {
   --shadow: #b6c8e139;
@@ -52,7 +52,7 @@
     margin: 0;
     border-radius: 0; */
     mix-blend-mode: lighten;
-    padding:0.2rem 0.6rem;
+    padding: 0.2rem 0.6rem;
     a {
       font-size: 1.4em;
       font-weight: 500;
@@ -251,9 +251,7 @@
 .notion-collection-page-properties .notion-collection-column-title {
   display: flex;
 }
-.notion-search-button {
-  display: none !important;
-}
+
 .notion-collection-row-property .notion-property {
   display: flex;
   justify-content: flex-start;
