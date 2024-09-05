@@ -93,3 +93,6 @@ a {
 ::-webkit-scrollbar-track {
   background-color: var(--bg-color);
 }
+.notion-search-button {
+  display: none !important;
+}
