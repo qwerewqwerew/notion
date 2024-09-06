@@ -8,7 +8,7 @@ import posthog from 'posthog-js'
 import 'prismjs/themes/prism-coy.css'
 import 'react-notion-x/src/styles.css'
 import 'styles/global.css'
-// import 'styles/media.css';
+import 'styles/media.css'
 // import 'prismjs/themes/prism-okaidia.css';
 import 'styles/notion.css'
 import 'styles/prism-theme.css'

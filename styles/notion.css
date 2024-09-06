@@ -131,10 +131,12 @@
 }
 
 .notion-gallery-grid {
-  grid-template-columns: repeat(auto-fit, minmax(calc(25% - 3vmin), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(calc(50% - 3vmin), 1fr));
   grid-gap: 3vmin;
   gap: 3vmin;
 }
+
+
 
 @media screen and (max-width: 500px) {
   .notion-gallery-grid {
