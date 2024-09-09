@@ -1,52 +1,34 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 
-const nextConfig = {
-  staticPageGenerationTimeout: 600,
+module.exports = withBundleAnalyzer({
+  staticPageGenerationTimeout: 300,
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'www.notion.so',
-        pathname: '/**'
+        hostname: 'www.notion.so'
       },
       {
         protocol: 'https',
-        hostname: 'notion.so',
-        pathname: '/**'
+        hostname: 'notion.so'
       },
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
-        pathname: '/**'
+        hostname: 'images.unsplash.com'
       },
       {
         protocol: 'https',
-        hostname: 'pbs.twimg.com',
-        pathname: '/**'
+        hostname: '**.twimg.com'
       },
       {
         protocol: 'https',
-        hostname: 'abs.twimg.com',
-        pathname: '/**'
-      },
-      {
-        protocol: 'https',
-        hostname: 's3.us-west-2.amazonaws.com',
-        pathname: '/**'
+        hostname: 's3.*.amazonaws.com'
       }
     ],
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
-  },
-  experimental: {
-    //largePageDataBytes: 128 * 1000, // 128KB by default
-    largePageDataBytes: 128 * 1000
   }
-}
-
-// @ts-ignore
-module.exports = withBundleAnalyzer(nextConfig)
+})
