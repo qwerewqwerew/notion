@@ -30,53 +30,42 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   React.useEffect(() => {
-    //     function updateNestedClasses() {
-    //       const bodyClass = document.body.className
-    //       const nestedElements = document.querySelectorAll(
-    //         '.dark-mode, .light-mode'
-    //       )
-    //
-    //       nestedElements.forEach((element) => {
-    //         if (bodyClass.includes('dark-mode')) {
-    //           element.classList.add('dark-mode')
-    //           element.classList.remove('light-mode')
-    //         } else {
-    //           element.classList.add('light-mode')
-    //           element.classList.remove('dark-mode')
-    //         }
-    //       })
-    //     }
-    //
-    //     function onRouteChangeComplete() {
-    //       if (fathomId) {
-    //         Fathom.trackPageview()
-    //       }
-    //
-    //       if (posthogId) {
-    //         posthog.capture('$pageview')
-    //       }
-    //
-    //       // Update nested classes on route change
-    //       updateNestedClasses()
-    //     }
-    //
-    //     if (fathomId) {
-    //       Fathom.load(fathomId, fathomConfig)
-    //     }
-    //
-    //     if (posthogId) {
-    //       posthog.init(posthogId, posthogConfig)
-    //     }
-    //
-    //     router.events.on('routeChangeComplete', onRouteChangeComplete)
-    //
-    //     // Initial update
-    //     updateNestedClasses()
-    //
-    //     // Cleanup
-    //     return () => {
-    //       router.events.off('routeChangeComplete', onRouteChangeComplete)
-    //     }
+    function updateNestedClasses() {
+      const bodyClass = document.body.className
+      const nestedElements = document.querySelectorAll(
+        '.dark-mode, .light-mode'
+      )
+      nestedElements.forEach((element) => {
+        if (bodyClass.includes('dark-mode')) {
+          element.classList.add('dark-mode')
+          element.classList.remove('light-mode')
+        } else {
+          element.classList.add('light-mode')
+          element.classList.remove('dark-mode')
+        }
+      })
+    }
+    function onRouteChangeComplete() {
+      if (fathomId) {
+        Fathom.trackPageview()
+      }
+      if (posthogId) {
+        posthog.capture('$pageview')
+      }
+      updateNestedClasses()
+    }
+    if (fathomId) {
+      Fathom.load(fathomId, fathomConfig)
+    }
+    if (posthogId) {
+      posthog.init(posthogId, posthogConfig)
+    }
+    router.events.on('routeChangeComplete', onRouteChangeComplete)
+    updateNestedClasses()
+
+    return () => {
+      router.events.off('routeChangeComplete', onRouteChangeComplete)
+    }
   }, [router.events])
 
   return <Component {...pageProps} />
