@@ -1,5 +1,4 @@
-import * as types from './types';
-
+import * as types from './types'
 
 export interface SiteConfig {
   rootNotionPageId: string
@@ -32,16 +31,10 @@ export interface SiteConfig {
   pageUrlOverrides?: types.PageUrlOverridesMap
   pageUrlAdditions?: types.PageUrlOverridesMap
 
-  classes: Array<ClassesName>
-
   navigationStyle?: types.NavigationStyle
   navigationLinks?: Array<NavigationLink>
 }
 
-export interface ClassesName {
-  name: string
-  value?: string
-}
 export interface NavigationLink {
   title: string
   pageId?: string

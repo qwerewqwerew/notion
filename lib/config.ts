@@ -9,7 +9,6 @@ import { PostHogConfig } from 'posthog-js'
 
 import { getEnv, getSiteConfig } from './get-config-value'
 import { NavigationLink } from './site-config'
-import { ClassesName } from './site-config'
 import {
   NavigationStyle,
   PageUrlOverridesInverseMap,
@@ -220,6 +219,3 @@ function invertPageUrlOverrides(
     }
   }, {})
 }
-
-// 코알라 추가
-export const classesAdd: Array<ClassesName | null> = getSiteConfig('classes', null)
