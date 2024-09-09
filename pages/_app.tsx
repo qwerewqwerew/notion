@@ -1,10 +1,9 @@
 import * as React from 'react'
 import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
-
-import * as Fathom from 'fathom-client'
+//import { useRouter } from 'next/router'
+//import * as Fathom from 'fathom-client'
 import 'katex/dist/katex.min.css'
-import posthog from 'posthog-js'
+//import posthog from 'posthog-js'
 import 'prismjs/themes/prism-coy.css'
 import 'react-notion-x/src/styles.css'
 import 'styles/global.css'
