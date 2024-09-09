@@ -6,8 +6,16 @@ import { ImageResponse } from '@vercel/og'
 import { api, apiHost, rootNotionPageId } from '@/lib/config'
 import { NotionPageInfo } from '@/lib/types'
 
+const interRegularFontP = fetch(
+  new URL('../../public/fonts/Inter-Regular.ttf', import.meta.url)
+).then((res) => res.arrayBuffer())
+
+const interBoldFontP = fetch(
+  new URL('../../public/fonts/Inter-SemiBold.ttf', import.meta.url)
+).then((res) => res.arrayBuffer())
+
 export const config = {
-  runtime: 'edge'
+  runtime: 'experimental-edge'
 }
 
 export default async function OGImage(req: NextRequest) {
@@ -30,6 +38,11 @@ export default async function OGImage(req: NextRequest) {
   const pageInfo: NotionPageInfo = await pageInfoRes.json()
   console.log(pageInfo)
 
+  const [interRegularFont, interBoldFont] = await Promise.all([
+    interRegularFontP,
+    interBoldFontP
+  ])
+
   return new ImageResponse(
     (
       <div
@@ -41,7 +54,9 @@ export default async function OGImage(req: NextRequest) {
           flexDirection: 'column',
           backgroundColor: '#1F2027',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          fontFamily: '"Inter", sans-serif',
+          color: 'black'
         }}
       >
         {pageInfo.image && (
@@ -144,7 +159,21 @@ export default async function OGImage(req: NextRequest) {
     ),
     {
       width: 1200,
-      height: 630
+      height: 630,
+      fonts: [
+        {
+          name: 'Inter',
+          data: interRegularFont,
+          style: 'normal',
+          weight: 400
+        },
+        {
+          name: 'Inter',
+          data: interBoldFont,
+          style: 'normal',
+          weight: 700
+        }
+      ]
     }
   )
 }
