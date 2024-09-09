@@ -8,7 +8,7 @@ import { NotionPageInfo } from '@/lib/types'
 
 
 export const config = {
-  runtime: 'edge'
+  runtime: 'experimental-edge'
 }
 
 export default async function OGImage(req: NextRequest) {
