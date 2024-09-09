@@ -9,7 +9,7 @@ export default siteConfig({
 
   // basic site info (required)
   name: 'CoalaCoding',
-  domain: 'coalacoding.com',
+  domain: 'coalacoding.notion.site',
   author: 'coalacoding',
 
   // open graph metadata (optional)
