@@ -136,6 +136,9 @@
   grid-template-columns: repeat(auto-fit, minmax(calc(25% - 3vmin), 1fr));
   grid-gap: 3vmin;
   gap: 3vmin;
+  .notion-collection-card-cover img {
+    object-fit: cover;
+  }
 }
 
 @media screen and (max-width: 500px) {

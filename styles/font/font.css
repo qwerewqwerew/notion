@@ -1,2 +1,9 @@
-@font-face { font-family: 'Pretendard'; src: url('/fonts/PretendardVariable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
-:root { --notion-font: 'Pretendard', sans-serif; }
+@font-face {
+  font-family: 'Pretendard';
+  src: url('./PretendardVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+:root {
+  --notion-font: 'Pretendard', sans-serif;
+}
