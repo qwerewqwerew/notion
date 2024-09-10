@@ -51,7 +51,7 @@ export const name: string = getSiteConfig('name')
 export const author: string = getSiteConfig('author')
 export const domain: string = getSiteConfig('domain')
 export const description: string = getSiteConfig('description', 'Notion Blog')
-export const language: string = getSiteConfig('language', 'en')
+export const language: string = getSiteConfig('language', 'ko')
 
 // social accounts
 export const twitter: string | null = getSiteConfig('twitter', null)
@@ -90,7 +90,7 @@ export const defaultPageCoverPosition: number = getSiteConfig(
 // Optional whether or not to enable support for LQIP preview images
 export const isPreviewImageSupportEnabled: boolean = getSiteConfig(
   'isPreviewImageSupportEnabled',
-  false
+  true
 )
 
 // Optional whether or not to include the Notion ID in page URLs or just use slugs
