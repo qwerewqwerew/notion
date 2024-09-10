@@ -12,5 +12,5 @@
 ---
 # patch-package
 npx patch-package 패키지명
-npx patch-package react-notion-x
+npx patch-package @react-icons/all-files
 npx patch-package notion-client notion-types notion-utils react-notion-x
