@@ -6,14 +6,6 @@ import { ImageResponse } from '@vercel/og'
 import { api, apiHost, rootNotionPageId } from '@/lib/config'
 import { NotionPageInfo } from '@/lib/types'
 
-const interRegularFontP = fetch(
-  new URL('../../public/style/fonts/PretendardVariable.woff2', import.meta.url)
-).then((res) => res.arrayBuffer())
-
-const interBoldFontP = fetch(
-  new URL('../../public/style/fonts/PretendardVariable.woff2', import.meta.url)
-).then((res) => res.arrayBuffer())
-
 export const config = {
   runtime: 'experimental-edge'
 }
@@ -37,11 +29,6 @@ export default async function OGImage(req: NextRequest) {
   }
   const pageInfo: NotionPageInfo = await pageInfoRes.json()
   console.log(pageInfo)
-
-  const [interRegularFont, interBoldFont] = await Promise.all([
-    interRegularFontP,
-    interBoldFontP
-  ])
 
   return new ImageResponse(
     (
@@ -159,21 +146,7 @@ export default async function OGImage(req: NextRequest) {
     ),
     {
       width: 1200,
-      height: 630,
-      fonts: [
-        {
-          name: 'Pretendard',
-          data: interRegularFont,
-          style: 'normal',
-          weight: 400
-        },
-        {
-          name: 'Pretendard',
-          data: interBoldFont,
-          style: 'normal',
-          weight: 700
-        }
-      ]
+      height: 630
     }
   )
 }
