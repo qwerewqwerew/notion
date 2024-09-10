@@ -7,11 +7,11 @@ import { api, apiHost, rootNotionPageId } from '@/lib/config'
 import { NotionPageInfo } from '@/lib/types'
 
 const interRegularFontP = fetch(
-  new URL('../../public/fonts/Inter-Regular.ttf', import.meta.url)
+  new URL('../../public/style/fonts/PretendardVariable.woff2', import.meta.url)
 ).then((res) => res.arrayBuffer())
 
 const interBoldFontP = fetch(
-  new URL('../../public/fonts/Inter-SemiBold.ttf', import.meta.url)
+  new URL('../../public/style/fonts/PretendardVariable.woff2', import.meta.url)
 ).then((res) => res.arrayBuffer())
 
 export const config = {
@@ -55,7 +55,7 @@ export default async function OGImage(req: NextRequest) {
           backgroundColor: '#1F2027',
           alignItems: 'center',
           justifyContent: 'center',
-          fontFamily: '"Inter", sans-serif',
+          fontFamily: '"Pretendard", sans-serif',
           color: 'black'
         }}
       >
@@ -162,13 +162,13 @@ export default async function OGImage(req: NextRequest) {
       height: 630,
       fonts: [
         {
-          name: 'Inter',
+          name: 'Pretendard',
           data: interRegularFont,
           style: 'normal',
           weight: 400
         },
         {
-          name: 'Inter',
+          name: 'Pretendard',
           data: interBoldFont,
           style: 'normal',
           weight: 700
