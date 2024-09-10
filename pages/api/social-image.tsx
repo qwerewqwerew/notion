@@ -6,7 +6,6 @@ import { ImageResponse } from '@vercel/og'
 import { api, apiHost, rootNotionPageId } from '@/lib/config'
 import { NotionPageInfo } from '@/lib/types'
 
-
 export const config = {
   runtime: 'experimental-edge'
 }
@@ -31,7 +30,6 @@ export default async function OGImage(req: NextRequest) {
   const pageInfo: NotionPageInfo = await pageInfoRes.json()
   console.log(pageInfo)
 
-
   return new ImageResponse(
     (
       <div
@@ -43,7 +41,7 @@ export default async function OGImage(req: NextRequest) {
           flexDirection: 'column',
           backgroundColor: '#1F2027',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'center'
         }}
       >
         {pageInfo.image && (
@@ -104,7 +102,7 @@ export default async function OGImage(req: NextRequest) {
               style={{
                 fontSize: 70,
                 fontWeight: 700,
-                fontFamily: 'Pretendard'
+                fontFamily: 'Inter'
               }}
             >
               {pageInfo.title}
@@ -146,7 +144,7 @@ export default async function OGImage(req: NextRequest) {
     ),
     {
       width: 1200,
-      height: 630,
+      height: 630
     }
   )
 }

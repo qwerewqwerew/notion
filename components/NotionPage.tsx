@@ -1,6 +1,6 @@
 import * as React from 'react'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -183,6 +183,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
   }, [site, recordMap, lite])
 
   const keys = Object.keys(recordMap?.block || {})
+
   const block = recordMap?.block?.[keys[0]]?.value
 
   // const isRootPage =
@@ -241,7 +242,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
   const socialDescription =
     getPageProperty<string>('Description', block, recordMap) ||
     config.description
-
   return (
     <>
       <PageHead
@@ -252,9 +252,12 @@ export const NotionPage: React.FC<types.PageProps> = ({
         image={socialImage}
         url={canonicalPageUrl}
       />
-
       {isLiteMode && <BodyClassName className='notion-lite' />}
-      {isDarkMode && <BodyClassName className='dark-mode' />}
+      {isDarkMode ? (
+        <BodyClassName className='dark-mode' />
+      ) : (
+        <BodyClassName className='light-mode' />
+      )}
 
       <NotionRenderer
         bodyClassName={cs(
@@ -280,7 +283,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
         pageAside={pageAside}
         footer={footer}
       />
-
       <GitHubShareButton />
     </>
   )
