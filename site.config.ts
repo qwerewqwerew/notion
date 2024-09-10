@@ -12,21 +12,23 @@ export default siteConfig({
   name: 'CoalaCoding',
   domain: 'coalacoding.notion.site',
   author: 'coalacoding',
-
   // open graph metadata (optional)
   description: '프론트엔드 기술에 대해 공부해요',
 
   // social usernames (optional)
-  //twitter: '',
   github: 'qwerewqwerew',
   //linkedin: 'qwerew0',
   youtube: 'channel/UCMb94yucTNsjIJqD8C8lO2Q',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
 
+  // mastodon: '#', // optional mastodon profile URL, provides link verification
+  // newsletter: '#', // optional newsletter URL
+  // youtube: '#', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
+
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
-  defaultPageIcon: '🐨',
+  defaultPageIcon: null,
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
 
@@ -47,7 +49,6 @@ export default siteConfig({
   //   '/bar': '0be6efce9daf42688f65c76b89f8eb27'
   // }
   pageUrlOverrides: null,
-  classes: [{ name: 'label' }, { name: 'step' }],
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.

@@ -9,7 +9,6 @@ import { PostHogConfig } from 'posthog-js'
 
 import { getEnv, getSiteConfig } from './get-config-value'
 import { NavigationLink } from './site-config'
-import { ClassesName } from './site-config'
 import {
   NavigationStyle,
   PageUrlOverridesInverseMap,
@@ -52,7 +51,7 @@ export const name: string = getSiteConfig('name')
 export const author: string = getSiteConfig('author')
 export const domain: string = getSiteConfig('domain')
 export const description: string = getSiteConfig('description', 'Notion Blog')
-export const language: string = getSiteConfig('language', 'ko')
+export const language: string = getSiteConfig('language', 'en')
 
 // social accounts
 export const twitter: string | null = getSiteConfig('twitter', null)
@@ -220,6 +219,3 @@ function invertPageUrlOverrides(
     }
   }, {})
 }
-
-// 코알라 추가
-export const classesAdd: Array<ClassesName | null> = getSiteConfig('classes', null)

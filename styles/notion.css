@@ -28,7 +28,7 @@
   --shadow: #dadee31d;
   background-color: var(--c_bg-10);
   color: var(--c_bg-00);
-  [class*="PageSocial_action"] {
+  [class*='PageSocial_action'] {
     border-color: var(--c_bg-70) !important;
     svg {
       fill: var(--c_bg-40) !important;
@@ -59,9 +59,7 @@
     border-radius: 0; */
     mix-blend-mode: lighten;
     padding: 0.2rem 0.6rem;
-    a,
-    b,
-    span {
+    a {
       font-size: 1.4em;
       font-weight: 500;
       mix-blend-mode: exclusion;
