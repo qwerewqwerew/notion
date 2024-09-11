@@ -11,4 +11,5 @@
 ---
 # patch-package
 npx patch-package 패키지명
-npx patch-package react-notion-x
+npx patch-package notion-utils
+npx patch-package react-notion-x notion-utils
