@@ -1,0 +1,209 @@
+diff --git a/node_modules/notion-utils/src/format-date.ts b/node_modules/notion-utils/src/format-date.ts
+new file mode 100644
+index 0000000..e53e454
+--- /dev/null
++++ b/node_modules/notion-utils/src/format-date.ts
+@@ -0,0 +1,8 @@
++export const formatDate = (
++  input: string | number,
++  { month = 'short' }: { month?: 'long' | 'short' } = {}
++) => {
++  const date = new Date(input)
++  const monthLocale = date.toLocaleString('en-US', { month })
++  return `${monthLocale} ${date.getUTCDate()}, ${date.getUTCFullYear()}`
++}
+diff --git a/node_modules/notion-utils/src/get-canonical-page-id.ts b/node_modules/notion-utils/src/get-canonical-page-id.ts
+new file mode 100644
+index 0000000..6bf3aaf
+--- /dev/null
++++ b/node_modules/notion-utils/src/get-canonical-page-id.ts
+@@ -0,0 +1,36 @@
++import { ExtendedRecordMap } from 'notion-types'
++import { uuidToId } from './uuid-to-id'
++import { getBlockTitle } from './get-block-title'
++import { getPageProperty } from './get-page-property'
++import { normalizeTitle } from './normalize-title'
++
++/**
++ * Gets the canonical, display-friendly version of a page's ID for use in URLs.
++ */
++export const getCanonicalPageId = (
++  pageId: string,
++  recordMap: ExtendedRecordMap,
++  { uuid = true }: { uuid?: boolean } = {}
++): string | null => {
++  if (!pageId || !recordMap) return null
++
++  const id = uuidToId(pageId)
++  const block = recordMap.block[pageId]?.value
++
++  if (block) {
++    const slug =
++      (getPageProperty('slug', block, recordMap) as string | null) ||
++      (getPageProperty('Slug', block, recordMap) as string | null) ||
++      normalizeTitle(getBlockTitle(block, recordMap))
++
++    if (slug) {
++      if (uuid) {
++        return `${slug}-${id}`
++      } else {
++        return slug
++      }
++    }
++  }
++
++  return id
++}
+diff --git a/node_modules/notion-utils/src/get-date-value.ts b/node_modules/notion-utils/src/get-date-value.ts
+new file mode 100644
+index 0000000..b18270a
+--- /dev/null
++++ b/node_modules/notion-utils/src/get-date-value.ts
+@@ -0,0 +1,21 @@
++import * as types from 'notion-types'
++
++/**
++ * Attempts to find a valid date from a given property.
++ */
++export const getDateValue = (prop: any[]): types.FormattedDate | null => {
++  if (prop && Array.isArray(prop)) {
++    if (prop[0] === 'd') {
++      return prop[1]
++    } else {
++      for (const v of prop) {
++        const value = getDateValue(v)
++        if (value) {
++          return value
++        }
++      }
++    }
++  }
++
++  return null
++}
+diff --git a/node_modules/notion-utils/src/get-page-breadcrumbs.ts b/node_modules/notion-utils/src/get-page-breadcrumbs.ts
+new file mode 100644
+index 0000000..f3faecb
+--- /dev/null
++++ b/node_modules/notion-utils/src/get-page-breadcrumbs.ts
+@@ -0,0 +1,51 @@
++import * as types from 'notion-types'
++import { getBlockTitle } from './get-block-title'
++import { getBlockIcon } from './get-block-icon'
++import { getBlockParentPage } from './get-block-parent-page'
++
++export const getPageBreadcrumbs = (
++  recordMap: types.ExtendedRecordMap,
++  activePageId: string
++): Array<any> | null => {
++  const blockMap = recordMap.block
++  const breadcrumbs = []
++
++  let currentPageId = activePageId
++
++  do {
++    const block = blockMap[currentPageId]?.value
++    if (!block) {
++      break
++    }
++
++    const title = getBlockTitle(block, recordMap)
++    const icon = getBlockIcon(block, recordMap)
++
++    if (!(title || icon)) {
++      break
++    }
++
++    breadcrumbs.push({
++      block,
++      active: currentPageId === activePageId,
++      pageId: currentPageId,
++      title,
++      icon
++    })
++
++    const parentBlock = getBlockParentPage(block, recordMap)
++    const parentId = parentBlock?.id
++
++    if (!parentId) {
++      break
++    }
++
++    currentPageId = parentId
++
++    // eslint-disable-next-line no-constant-condition
++  } while (true)
++
++  breadcrumbs.reverse()
++
++  return breadcrumbs
++}
+diff --git a/node_modules/notion-utils/src/id-to-uuid.ts b/node_modules/notion-utils/src/id-to-uuid.ts
+new file mode 100644
+index 0000000..7578c64
+--- /dev/null
++++ b/node_modules/notion-utils/src/id-to-uuid.ts
+@@ -0,0 +1,5 @@
++export const idToUuid = (id = '') =>
++  `${id.substr(0, 8)}-${id.substr(8, 4)}-${id.substr(12, 4)}-${id.substr(
++    16,
++    4
++  )}-${id.substr(20)}`
+diff --git a/node_modules/notion-utils/src/normalize-title.ts b/node_modules/notion-utils/src/normalize-title.ts
+new file mode 100644
+index 0000000..f5ad4c7
+--- /dev/null
++++ b/node_modules/notion-utils/src/normalize-title.ts
+@@ -0,0 +1,13 @@
++export const normalizeTitle = (title?: string | null): string => {
++  return (
++    (title || '')
++      .replace(/ /g, '-')
++      // CUSTOM: 한국어도 slug 사용 가능하도록 수정
++      .replace(/[^a-zA-Z0-9-\u4e00-\u9fa5ㄱ-힣]/g, '')
++      .replace(/--/g, '-')
++      .replace(/-$/, '')
++      .replace(/^-/, '')
++      .trim()
++      .toLowerCase()
++  );
++};
+diff --git a/node_modules/notion-utils/src/parse-page-id.ts b/node_modules/notion-utils/src/parse-page-id.ts
+new file mode 100644
+index 0000000..a426555
+--- /dev/null
++++ b/node_modules/notion-utils/src/parse-page-id.ts
+@@ -0,0 +1,33 @@
++import { idToUuid } from './id-to-uuid'
++
++const pageIdRe = /\b([a-f0-9]{32})\b/
++const pageId2Re =
++  /\b([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})\b/
++
++/**
++ * Robustly extracts the notion page ID from a notion URL or pathname suffix.
++ *
++ * Defaults to returning a UUID (with dashes).
++ */
++export const parsePageId = (
++  id: string | null = '',
++  { uuid = true }: { uuid?: boolean } = {}
++) => {
++  if (!id) {
++    return null
++  }
++
++  id = id.split('?')[0]
++  const match = id.match(pageIdRe)
++
++  if (match) {
++    return uuid ? idToUuid(match[1]) : match[1]
++  }
++
++  const match2 = id.match(pageId2Re)
++  if (match2) {
++    return uuid ? match2[1] : match2[1].replace(/-/g, '')
++  }
++
++  return null
++}
