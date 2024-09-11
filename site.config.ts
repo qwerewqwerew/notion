@@ -1,8 +1,10 @@
-import { siteConfig } from './lib/site-config'
+import { siteConfig } from './lib/site-config';
+
 
 export default siteConfig({
   // the site's root Notion page (required)
-  rootNotionPageId: 'CoalaCoding-660d1a8fa22a457ebab29e3d8c8af854',
+  rootNotionPageId: '660d1a8fa22a457ebab29e3d8c8af854',
+
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   rootNotionSpaceId: null,
@@ -11,23 +13,21 @@ export default siteConfig({
   name: 'CoalaCoding',
   domain: 'coalacoding.notion.site',
   author: 'coalacoding',
+
   // open graph metadata (optional)
-  description: '프론트엔드 기술에 대해 공부해요',
+  description: 'wrtieNotion',
 
   // social usernames (optional)
+  //twitter: '',
   github: 'qwerewqwerew',
   //linkedin: 'qwerew0',
   youtube: 'channel/UCMb94yucTNsjIJqD8C8lO2Q',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
 
-  // mastodon: '#', // optional mastodon profile URL, provides link verification
-  // newsletter: '#', // optional newsletter URL
-  // youtube: '#', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
-
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
-  defaultPageIcon: null,
+  defaultPageIcon: '🐨',
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
 

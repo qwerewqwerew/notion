@@ -1,6 +1,18 @@
 {
   "favorites.resources": [
     {
+      "filePath": "node_modules\\notion-client",
+      "group": "Default"
+    },
+    {
+      "filePath": "node_modules\\notion-types",
+      "group": "Default"
+    },
+    {
+      "filePath": "node_modules\\notion-utils",
+      "group": "Default"
+    },
+    {
       "filePath": "node_modules\\react-notion-x",
       "group": "Default"
     }
